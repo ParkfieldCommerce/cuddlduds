@@ -1,0 +1,55 @@
+//Mixins
+@mixin placeholder {
+  &.placeholder { @content; }
+  &:-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &::-webkit-input-placeholder { @content; }
+}
+
+@mixin minQuery($resolution){
+  @media screen and (min-width: $resolution){
+    @content;
+  }
+}
+
+@mixin maxQuery($resolution){
+  @media screen and (max-width: $resolution){
+    @content;
+  }
+}
+
+@mixin minmaxQuery($min, $max){
+  @media screen and (min-width: $min) and (max-width: $max){
+    @content;
+  }
+}
+
+@mixin flex() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin inline-flex(){
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+@mixin align-items($position){
+  -webkit-box-align: $position;
+  -ms-flex-align: $position;
+  align-items: $position;
+}
+@mixin justify-content($position){
+  -webkit-box-pack: $position;
+  -ms-flex-pack: $position;
+  justify-content: $position;
+}
+@mixin prefix($property, $value) { 
+  $prefixes: ("-webkit-","-moz-", "-o-", "-ms-", "");
+  @each $prefix in $prefixes {
+      #{$prefix}#{$property}: #{$value};
+  }
+}

@@ -1,0 +1,7 @@
+html{
+  font-size: 62.5%;
+}
+body,a{
+  background-color: $bg-light;
+  @include book(1.6rem);
+}

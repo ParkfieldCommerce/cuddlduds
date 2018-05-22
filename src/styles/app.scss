@@ -15,15 +15,18 @@
 
 /* Settings ==================================================================*/
 @import url('settings/variables.scss.liquid');
-
+@import url('custom/settings/variables.scss');
+@import url('custom/settings/fonts.scss');
 /* Utils =====================================================================*/
 @import url('utils/mixins.scss');
+@import url('custom/utils/mixins.scss');
 
 /* Global ====================================================================*/
 @import url('global/concrete-reset.scss');
 @import url('global/global.scss');
 @import url('global/grid.scss');
 @import url('global/forms.scss');
+@import url('custom/global/base.scss');
 
 /* Templates ==================================================================*/
 @import url('templates/collection.scss');
@@ -43,11 +46,26 @@
 @import url('modules/social.scss');
 @import url('modules/icon.scss');
 
+
+/* Header */
+@import url('custom/modules/header/header.scss');
+@import url('custom/modules/header/navigation.scss');
+/* Homepage Modules */
+@import url('custom/modules/homepage/promobar.scss');
+@import url('custom/modules/homepage/hero.scss');
+@import url('custom/modules/homepage/product-slider.scss');
+@import url('custom/modules/homepage/featured-collections.scss');
+@import url('custom/modules/homepage/full-width-banner.scss');
+@import url('custom/modules/homepage/instagram.scss');
+/* Footer */
+@import url('custom/modules/footer/footer.scss');
+
+
 /* Helpers ===================================================================*/
 @import url('global/helpers.scss');
 
 /* Optional extras ===========================================================*/
-// @import url('utils/additional-helpers.scss');
+@import url('utils/additional-helpers.scss');
 
 /* =============================================================================
    Shopify core helpers

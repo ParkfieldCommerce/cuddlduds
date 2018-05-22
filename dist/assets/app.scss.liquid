@@ -68,7 +68,37 @@ $transition: $transitionProperty $transitionSpeed $transitionStyle;
 $logoWidth: {{ settings.logo_width | default: '450' | append: 'px' }};
 $prefixes: webkit moz ms spec;
 
+$accent-color: #f97596;
+$accent-dark: black;
 
+$bg-light: white;
+$bg-dark: black;
+
+$heading: black;
+
+@font-face {
+  font-family: 'Gotham Rounded Book';
+  src: url(' {{ 'Gotham_Rounded_Book.otf' | asset_url }} ') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gotham Rounded Medium';
+  src: url(' {{ 'Gotham_Rounded_Medium.otf' | asset_url }} ') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@mixin book($font-size){
+  font-family: 'Gotham Rounded Book', sans-serif;
+  font-size: $font-size;
+}
+
+@mixin medium($font-size){
+  font-family: 'Gotham Rounded Medium';
+  font-size: $font-size;
+}
 /* Utils =====================================================================*/
 /* Mixins ====================================================================*/
 
@@ -213,6 +243,61 @@ $prefixes: webkit moz ms spec;
   height: 100%;
 }
 
+//Mixins
+@mixin placeholder {
+  &.placeholder { @content; }
+  &:-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &::-webkit-input-placeholder { @content; }
+}
+
+@mixin minQuery($resolution){
+  @media screen and (min-width: $resolution){
+    @content;
+  }
+}
+
+@mixin maxQuery($resolution){
+  @media screen and (max-width: $resolution){
+    @content;
+  }
+}
+
+@mixin minmaxQuery($min, $max){
+  @media screen and (min-width: $min) and (max-width: $max){
+    @content;
+  }
+}
+
+@mixin flex() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin inline-flex(){
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+@mixin align-items($position){
+  -webkit-box-align: $position;
+  -ms-flex-align: $position;
+  align-items: $position;
+}
+@mixin justify-content($position){
+  -webkit-box-pack: $position;
+  -ms-flex-pack: $position;
+  justify-content: $position;
+}
+@mixin prefix($property, $value) { 
+  $prefixes: ("-webkit-","-moz-", "-o-", "-ms-", "");
+  @each $prefix in $prefixes {
+      #{$prefix}#{$property}: #{$value};
+  }
+}
 
 /* Global ====================================================================*/
 /* Reset =====================================================================*/
@@ -397,13 +482,20 @@ select {
   &.error {
     border-color: $colorHighlight;
   }
-  // Placeholders
+  // Webkit placeholders
   &::placeholder,
-  &::-webkit-input-placeholder,
-  &:-moz-placeholder,
-  &::-moz-placeholder,
-  &:-ms-input-placeholder {
+  &::-webkit-input-placeholder {
 
+  }
+  // Firefox placeholders
+  &:-moz-placeholder,
+  &::-moz-placeholder {
+
+  }
+  // IE & Edge placeholders
+  &:-ms-input-placeholder
+  &::-ms-input-placeholder {
+    
   }
   // Safari placeholders
   &::-webkit-textfield-decoration-container {
@@ -782,6 +874,13 @@ form#CartPage {
   }
 }
 
+html{
+  font-size: 62.5%;
+}
+body,a{
+  background-color: $bg-light;
+  @include book(1.6rem);
+}
 
 /* Templates ==================================================================*/
 /* Collection ================================================================*/
@@ -1182,6 +1281,21 @@ form#CartPage {
 }
 
 
+
+/* Header */
+
+
+/* Homepage Modules */
+
+
+
+
+
+
+/* Footer */
+
+
+
 /* Helpers ===================================================================*/
 /* Helpers ===================================================================*/
 
@@ -1343,7 +1457,183 @@ form#CartPage {
 
 
 /* Optional extras ===========================================================*/
-// @import url('utils/additional-helpers.scss');
+/* Optional Additional Helpers ================================================*/
+
+// Margin & Padding
+@for $i from 0 through 20 {
+  $space: $spacing*$i;
+  .margin-#{$i}x {
+    margin: $space;
+  }
+  .margin-top-#{$i}x {
+    margin-top: $space;
+  }
+  .margin-bottom-#{$i}x {
+    margin-bottom: $space;
+  }
+  .margin-left-#{$i}x {
+    margin-left: $space;
+  }
+  .margin-right-#{$i}x {
+    margin-right: $space;
+  }
+  .padding-#{$i}x {
+    padding: $space;
+  }
+  .padding-top-#{$i}x {
+    padding-top: $space;
+  }
+  .padding-bottom-#{$i}x {
+    padding-bottom: $space;
+  }
+  .padding-left-#{$i}x {
+    padding-left: $space;
+  }
+  .padding-right-#{$i}x {
+    padding-right: $space;
+  }
+}
+@include xl() {
+  @for $i from 0 through 20 {
+    $space: $spacing*$i;
+    .xl-margin-#{$i}x {
+      margin: $space;
+    }
+    .xl-margin-top-#{$i}x {
+      margin-top: $space;
+    }
+    .xl-margin-bottom-#{$i}x {
+      margin-bottom: $space;
+    }
+    .xl-margin-left-#{$i}x {
+      margin-left: $space;
+    }
+    .xl-margin-right-#{$i}x {
+      margin-right: $space;
+    }
+    .xl-padding-#{$i}x {
+      padding: $space;
+    }
+    .xl-padding-top-#{$i}x {
+      padding-top: $space;
+    }
+    .xl-padding-bottom-#{$i}x {
+      padding-bottom: $space;
+    }
+    .xl-padding-left-#{$i}x {
+      padding-left: $space;
+    }
+    .xl-padding-right-#{$i}x {
+      padding-right: $space;
+    }
+  }
+}
+@include l() {
+  @for $i from 0 through 20 {
+    $space: $spacing*$i;
+    .l-margin-#{$i}x {
+      margin: $space;
+    }
+    .l-margin-top-#{$i}x {
+      margin-top: $space;
+    }
+    .l-margin-bottom-#{$i}x {
+      margin-bottom: $space;
+    }
+    .l-margin-left-#{$i}x {
+      margin-left: $space;
+    }
+    .l-margin-right-#{$i}x {
+      margin-right: $space;
+    }
+    .l-padding-#{$i}x {
+      padding: $space;
+    }
+    .l-padding-top-#{$i}x {
+      padding-top: $space;
+    }
+    .l-padding-bottom-#{$i}x {
+      padding-bottom: $space;
+    }
+    .l-padding-left-#{$i}x {
+      padding-left: $space;
+    }
+    .l-padding-right-#{$i}x {
+      padding-right: $space;
+    }
+  }
+}
+@include m() {
+  @for $i from 0 through 20 {
+    $space: $spacing*$i;
+    .m-margin-#{$i}x {
+      margin: $space;
+    }
+    .m-margin-top-#{$i}x {
+      margin-top: $space;
+    }
+    .m-margin-bottom-#{$i}x {
+      margin-bottom: $space;
+    }
+    .m-margin-left-#{$i}x {
+      margin-left: $space;
+    }
+    .m-margin-right-#{$i}x {
+      margin-right: $space;
+    }
+    .m-padding-#{$i}x {
+      padding: $space;
+    }
+    .m-padding-top-#{$i}x {
+      padding-top: $space;
+    }
+    .m-padding-bottom-#{$i}x {
+      padding-bottom: $space;
+    }
+    .m-padding-left-#{$i}x {
+      padding-left: $space;
+    }
+    .m-padding-right-#{$i}x {
+      padding-right: $space;
+    }
+  }
+}
+@include s() {
+  @for $i from 0 through 20 {
+    $space: $spacing*$i;
+    .s-margin-#{$i}x {
+      margin: $space;
+    }
+    .s-margin-top-#{$i}x {
+      margin-top: $space;
+    }
+    .s-margin-bottom-#{$i}x {
+      margin-bottom: $space;
+    }
+    .s-margin-left-#{$i}x {
+      margin-left: $space;
+    }
+    .s-margin-right-#{$i}x {
+      margin-right: $space;
+    }
+    .s-padding-#{$i}x {
+      padding: $space;
+    }
+    .s-padding-top-#{$i}x {
+      padding-top: $space;
+    }
+    .s-padding-bottom-#{$i}x {
+      padding-bottom: $space;
+    }
+    .s-padding-left-#{$i}x {
+      padding-left: $space;
+    }
+    .s-padding-right-#{$i}x {
+      padding-right: $space;
+    }
+  }
+}
+
 
 /* =============================================================================
    Shopify core helpers

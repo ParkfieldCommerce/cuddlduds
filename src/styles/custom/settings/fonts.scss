@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'Gotham Rounded Book';
+  src: url(' {{ 'Gotham_Rounded_Book.otf' | asset_url }} ') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gotham Rounded Medium';
+  src: url(' {{ 'Gotham_Rounded_Medium.otf' | asset_url }} ') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@mixin book($font-size){
+  font-family: 'Gotham Rounded Book', sans-serif;
+  font-size: $font-size;
+}
+
+@mixin medium($font-size){
+  font-family: 'Gotham Rounded Medium';
+  font-size: $font-size;
+}
