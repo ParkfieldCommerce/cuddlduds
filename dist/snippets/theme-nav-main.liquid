@@ -1,27 +1,55 @@
 <!-- /snippets/theme-nav-main.liquid -->
-<button>this is a button</button>
-<nav class="theme-nav-main" role="navigation">
+<nav class="theme-nav-main DesktopNav" role="navigation">
   <ul class="inline">
     {% for link in linklists.main-menu.links %}
       {% assign child_list_handle = link.title | handleize %}
       {% if linklists[child_list_handle].links != blank %}
-        <li class="dropdown" aria-haspopup="true">
-          <a href="{{ link.url }}" class="nav-link {% if link.active %} active{% endif %}">
+        <li class="dropdown DesktopNav__dropdown" aria-haspopup="true">
+          <a href="{{ link.url }}" class="DesktopNav__link nav-link {% if link.active %} active{% endif %}">
             {{ link.title }}
           </a>
-          <ul class="dropdown-menu">
-            {% for childlink in linklists[child_list_handle].links %}
-              <li>
-                <a href="{{ childlink.url }}" class="nav-link{% if childlink.active %} active{% endif %}">{{ childlink.title | escape }}</a>
-              </li>
-            {% endfor %}
+          <ul class="DesktopNav__dropdown-menu dropdown-menu">
+            <li class="DesktopNav__dropdown-menu-slider">
+              <div class="DesktopNav__arrow DesktopNav__arrow--prev js-DesktopNavPrev-{{forloop.index}}"><i class="fa fa-angle-left"></i></div>
+              <div class="DesktopNav__swiper-container swiper-container swiper-container-{{forloop.index}}">
+                <div class="swiper-wrapper">
+                  {% for childlink in linklists[child_list_handle].links %}
+                    <div class="DesktopNav__slide swiper-slide">
+                      {% if childlink.object%}
+                      <img src="{{childlink.object | img_url:'300x300'}}" alt="">
+                      {% endif %}
+                      <a href="{{ childlink.url }}" class="DesktopNav__dropdown-link nav-link{% if childlink.active %} active{% endif %}">{{ childlink.title | escape }}</a>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+              <div class="DesktopNav__arrow DesktopNav__arrow--next js-DesktopNavNext-{{forloop.index}}"><i class="fa fa-angle-right"></i></div>
+            </li>
           </ul>
         </li>
       {% else %}
-        <li>
-          <a href="{{ link.url }}" class="nav-link{% if link.active %} active{% endif %}">{{ link.title }}</a>
+        <li class="DesktopNav__dropdown">
+          <a href="{{ link.url }}" class="DesktopNav__link nav-link{% if link.active %} active{% endif %}">{{ link.title }}</a>
         </li>
       {% endif %}
     {% endfor %}
   </ul>
 </nav>
+
+<script>
+  {% for link in linklists.main-menu.links %}
+    {% assign child_list_handle = link.title | handleize %}
+    {% if linklists[child_list_handle].links != blank %}
+    var swiper{{forloop.index}} = new Swiper('.swiper-container-{{forloop.index}}', {
+      slidesPerView: 4,
+      spaceBetween: 30,
+      loop: false,
+      centeredSlides: false,
+      navigation:{
+        nextEl:'.js-DesktopNavNext-{{forloop.index}}',
+        prevEl:'.js-DesktopNavPrev-{{forloop.index}}'
+      }
+    });
+    {% endif %}
+  {% endfor %}
+</script>

@@ -1,49 +1,28 @@
 <!-- /snippets/theme-header.liquid -->
-
-{% assign enable_search = section.settings.enable_search %}
-
-<header class="theme-header" role="banner">
-  <div class="container">
-
-    <div class="row l-table m-table">
-      <div class="column l8 m8 s12 l-left m-left s-middle">
-        {% include 'theme-logo' %}
-      </div>
-
-      <div class="column l4 m4 s12 l-right m-right s-middle">
-        {% if customer %}
-          <a href="/account" data-trigger="popup" data-target="#PopupAccount">{{ 'account.general.title' | t }}</a>
-        {% else %}
-          <a href="/account">{{ 'account.login.title' | t }}</a>
-        {% endif %}
-
-        <a href="/cart" id="CartLink" data-trigger="popup" data-target="#PopupCart.popup" aria-controls="Cart" aria-expanded="false" class="v-middle">
-          {{ 'cart.title' | t }}
-          <span data-cart-item-count>{{ cart.item_count }}</span>
-          (<span data-cart-total>{{ cart.total_price | money_with_currency }}</span>)
-        </a>
-
-        <div class="s-show margin-top-2x">
-          <a href="#NavToggled" data-trigger="popup" data-target="#NavToggled">
-            {{ 'common.menu' | t }}
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="row l-table m-table s-hide">
-      <div class="column{% if enable_search %} l9 m9 {% else %} l12{% endif %} s12 l-left m-left s-v-middle">
+<header class="Header" role="banner">
+  <div class="container xl">
+    <div class="row Header__row">
+      <div class="Header__nav column l5">
         {% include 'theme-nav-main' %}
       </div>
-      {% if enable_search %}
-        <div class="column l3 m3 s12 l-right m-right">
-          {% include 'form-search' %}
-        </div>
-      {% endif %}
+      <div class="Header__logo column l2">
+        {% include 'theme-logo' %}
+      </div>
+      <div class="Header__user column l5">
+        {% include 'form-search' %}
+        {% if customer %}
+          <a class="Header__user-link" href="/account" data-trigger="popup" data-target="#PopupAccount">{{ 'account.general.title' | t }}</a>
+        {% else %}
+          <a class="Header__user-link" href="/account"><i class="icon flaticon-profile"></i></a>
+        {% endif %}
+        <a class="Header__user-link" href="/cart"><i class="icon flaticon-business"></i></a>
+      </div>
+      <div class="s-show margin-top-2x">
+        <a href="#NavToggled" data-trigger="popup" data-target="#NavToggled">
+          {{ 'common.menu' | t }}
+        </a>
+      </div>
     </div>
-
-    <hr>
-
   </div>
 </header>
 

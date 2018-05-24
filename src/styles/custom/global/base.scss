@@ -1,7 +1,30 @@
 html{
   font-size: 62.5%;
 }
-body,a{
+body{
   background-color: $bg-light;
+  color: $font-dark;
   @include book(1.6rem);
+}
+
+button, .Button{
+  background-color: $accent-dark;
+  color: $font-light;
+  @include inline-flex-center();
+  border: none;
+  transition: background-color .5s;
+  text-transform: uppercase;
+  @include medium(1.6rem);
+  &:hover{
+    color: $font-light;
+    background-color: $accent-color;
+  }
+}
+
+a{
+  transition: color .3s;
+  text-decoration: none;
+  &:hover{
+    color: $accent-color;
+  }
 }

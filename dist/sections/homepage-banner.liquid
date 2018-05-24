@@ -1,0 +1,156 @@
+<div class="HomeBanner margin-bottom-5x">
+  <a class="HomeBanner__link" href="{{section.settings.button_url}}">
+    <div class="HomeBanner__image"></div>
+    <div class="HomeBanner__content">
+      <div class="HomeBanner__inner-content">
+        <h2 class="HomeBanner__heading">{{section.settings.main_heading}}</h2>
+        <p class="HomeBanner__subheading">{{section.settings.subheading_line1}}<br>{{section.settings.subheading_line2}}</p>
+        <span class="HomeBanner__button Button Button--main">{{section.settings.button_text}}</span>
+      </div>
+    </div>
+  </a>
+</div>
+<style>
+  .HomeBanner .HomeBanner__content .HomeBanner__heading{
+    color: {{section.settings.mainheading_color}};
+  }
+  .HomeBanner .HomeBanner__content .HomeBanner__subheading{
+    color: {{section.settings.subheading_color}};
+  }  
+  .HomeBanner .HomeBanner__image{
+    min-height:  695px;
+    height: {{section.settings.desktop_padding_top}}vh;
+    background-position: {{section.settings.desktop_horizontal_position}}% 50%;
+    background-image: url('{{section.settings.image | img_url:'master'}}');
+  }
+
+  @media screen and (max-width: 900px){
+    .HomeBanner .Banner__image{
+      min-height:  222px;
+      height: {{section.settings.mobile_padding_top}}vh;
+      background-position: {{section.settings.mobile_horizontal_position}}% 50%;
+      background-image: url('{{section.settings.mobile_image | img_url:'master'}}');
+    }
+  }
+
+</style>
+
+{% schema %}
+  {
+    "name": "Banner",
+    "class": "homepage-Banner",
+    "settings":[
+      {
+        "type":"image_picker",
+        "id":"image",
+        "label":"Image"
+      },
+      {
+        "type":"image_picker",
+        "id":"mobile_image",
+        "label":"Mobile Image"
+      },
+      {
+        "type":"header",
+        "content":"Heading Settings"
+      },
+      {
+        "type":"text",
+        "id":"main_heading",
+        "label":"Main Heading"
+      },
+      {
+        "type":"text",
+        "id":"subheading_line1",
+        "label":"Subheading Line 1"
+      },
+      {
+        "type":"text",
+        "id":"subheading_line2",
+        "label":"Subheading Line 2"
+      },
+      {
+        "type":"color",
+        "id":"mainheading_color",
+        "label":"Main Heading Color",
+        "default":"#FFF"
+      },
+      {
+        "type":"color",
+        "id":"subheading_color",
+        "label":"Subheading Color",
+        "default":"#000"
+      },
+      {
+        "type":"header",
+        "content":"Button Settings"
+      },
+      {
+        "type":"text",
+        "id":"button_text",
+        "label":"Text"
+      },
+      {
+        "type":"url",
+        "id":"button_url",
+        "label":"Link"
+      },
+      {
+        "type":"header",
+        "content":"Desktop Image Settings"
+      },
+      {
+          "type":   "range",
+          "id":     "desktop_padding_top",
+          "min":       0,
+          "max":       100,
+          "step":      1,
+          "unit":      "%",
+          "label":     "Desktop Image Height",
+          "default":   70
+      },
+      {
+          "type":   "range",
+          "id":     "desktop_horizontal_position",
+          "min":       0,
+          "max":       100,
+          "step":      1,
+          "unit":      "%",
+          "label":     "Desktop Horizontal Position",
+          "default":   50,
+          "info":"Changes the horizontal position of the image, if the entire image isn't shown"
+      },
+      {
+        "type":"header",
+        "content":"Mobile Image Settings"
+      },
+      {
+          "type":   "range",
+          "id":     "mobile_padding_top",
+          "min":       0,
+          "max":       100,
+          "step":      1,
+          "unit":      "%",
+          "label":     "Mobile Image Height",
+          "default":   26
+      },
+      {
+          "type":   "range",
+          "id":     "mobile_horizontal_position",
+          "min":       0,
+          "max":       100,
+          "step":      1,
+          "unit":      "%",
+          "label":     "Mobile Horizontal Position",
+          "default":   35,
+          "info":"Changes the horizontal position of the image, if the entire image isn't shown"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Banner",
+        "category": "Homepage"
+      }
+    ]
+  }
+{% endschema %}

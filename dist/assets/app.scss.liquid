@@ -28,7 +28,7 @@ $adjustAmount: 25%;
 
 // Space & Borders
 $spacing: 10px;
-$gutter: $spacing*5;
+$gutter: $spacing*2;
 $borderRadius: 2px;
 $borderWeight: 2px;
 $borderStyle: solid;
@@ -75,6 +75,9 @@ $bg-light: white;
 $bg-dark: black;
 
 $heading: black;
+
+$font-light: white;
+$font-dark: black;
 
 @font-face {
   font-family: 'Gotham Rounded Book';
@@ -291,6 +294,28 @@ $heading: black;
   -webkit-box-pack: $position;
   -ms-flex-pack: $position;
   justify-content: $position;
+}
+@mixin flex-center(){
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+@mixin inline-flex-center(){
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 @mixin prefix($property, $value) { 
   $prefixes: ("-webkit-","-moz-", "-o-", "-ms-", "");
@@ -877,9 +902,32 @@ form#CartPage {
 html{
   font-size: 62.5%;
 }
-body,a{
+body{
   background-color: $bg-light;
+  color: $font-dark;
   @include book(1.6rem);
+}
+
+button, .Button{
+  background-color: $accent-dark;
+  color: $font-light;
+  @include inline-flex-center();
+  border: none;
+  transition: background-color .5s;
+  text-transform: uppercase;
+  @include medium(1.6rem);
+  &:hover{
+    color: $font-light;
+    background-color: $accent-color;
+  }
+}
+
+a{
+  transition: color .3s;
+  text-decoration: none;
+  &:hover{
+    color: $accent-color;
+  }
 }
 
 /* Templates ==================================================================*/
@@ -980,17 +1028,21 @@ body,a{
     position: relative;
     &:hover {
       .dropdown-menu {
-        display: block;
+        opacity: 1;
+        visibility: visible;
       }
     }
     .dropdown-menu {
-      display: none;
+      display: block;
+      opacity: 0;
+      visibility: hidden;
       padding: $gutter/3 0;
       position: absolute;
       top: 1.5rem;
       z-index: 2;
       li {
         display: block;
+        font-size: 0;
         padding: $gutter/4 $gutter/1.5;
         background: lighten($colorBackground, 30%);
         &:first-of-type {
@@ -1283,15 +1335,358 @@ body,a{
 
 
 /* Header */
+.Header{
+  @include flex();
+  background-color: $bg-dark;
+  position: relative;
+  height: 80px;
+}
+.Header .container{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.Header__row{
+  height: 100%;
+  width: 100%;
+}
 
+.Header__row .column{
+  height: 100%;
+}
 
+.Header__logo,
+.Header__user{
+  @include flex();
+  @include align-items(center);
+}
+.Header__logo{
+  @include justify-content(center);
+  img{
+    width: 100%;
+  }
+}
+.Header__user{
+  @include justify-content(flex-end);
+}
+.Header__user-link{
+  color: white;
+  &:hover{
+    color: $accent-color;
+  }
+}
+
+.SearchForm{
+  position: relative;
+  border: 2px solid white;
+  @include flex();
+  @include align-items(center);
+  padding-right: 10px;
+  @include justify-content(space-between);
+  .SearchForm__input{
+    background-color: transparent;
+    color: white;
+    height: 45px;
+    border: none;
+    padding: 0px 10px;
+    @include medium(1.2rem);
+    @include placeholder{
+      color: white;
+      @include medium(1.2rem);
+    }
+  }
+  .SearchForm__buttons{
+    @include flex();
+  }
+  .SearchForm__submit,
+  .SearchForm__reset{
+    width: 30px;
+    height: 30px;
+    transition: color .3s;
+    .flaticon:before{
+      font-size: 16px;
+      margin-left: 0;
+    }
+    padding: 0;
+    &:hover{
+      background-color: transparent;
+      color: $accent-color;
+    }
+  }
+}
+.DesktopNav{
+  height: 100%;
+}
+.DesktopNav ul{
+  height: 100%;
+}
+.DesktopNav .inline{
+  @include flex();
+}
+.DesktopNav .DesktopNav__dropdown{
+  position: static !important;
+  height: 100%;
+  @include flex-center();
+  flex: 1;
+}
+.DesktopNav__dropdown-menu{
+  width: 100%;
+  left: 0;
+  top: 80px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.DesktopNav__swiper-container{
+  max-width: 95%;
+}
+.DesktopNav .DesktopNav__dropdown-menu-slider{
+  @include flex();
+  @include align-items(stretch);
+  position: relative;
+}
+.DesktopNav__slide{
+  text-align: center;
+}
+.DesktopNav .DesktopNav__link{
+  @include medium(1.4rem);
+  color: $font-light;
+  text-transform: uppercase;
+  &:hover{
+    color: $accent-color;
+  }
+}
+.DesktopNav__arrow{
+  height: 100%;
+  width: 2.5%;
+  font-size: 2.4rem;
+  position: absolute;
+  top: 50%;
+  @include prefix(transform, translateY(-50%));
+  @include flex();
+  @include align-items(center);
+  @include justify-content(center);
+  &:hover{
+    color: $accent-color;
+    cursor: pointer;
+  }
+}
+.DesktopNav__arrow--next{
+  right: 0px;
+}
+.DesktopNav__arrow--prev{
+  left: 0px;
+}
+.DesktopNav__arrow
+.DesktopNav__dropdown-link{
+  color: $font-dark;
+}
 /* Homepage Modules */
+.Promobar{
+  height: 30px;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+  @include flex-center();
+  .Promobar__text-content{
+    text-transform: uppercase;
+    @include medium(1.1rem);
+    margin-bottom: 0;
+  }
+}
+/* Hero */
+.Hero{
+  width: 100%;
+  position: relative;
+}
+.Hero__image{
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.Hero__content{
+  position: absolute;
+  max-width: 100%;
+  width: 50%;
+  top: 50%;
+  right: 0;
+  @include prefix(transform, translateY(-50%));
+}
+.Hero__heading{
+  font-size: 7.2rem;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+.Hero__subheading{
+  @include medium(3rem);
+  margin-bottom: 30px;
+}
+.Hero__button{
+  @include flex-center();
+  width: 200px;
+  height: 50px;
+}
+.Hero__link{
+  display: block;
+}
+@include maxQuery(1200px){
+  .Hero__heading{
+  }
+  .Hero__content{
+    width: 60%;
+  }
+}
+@include maxQuery(768px){
+  .Hero__heading{
+    font-size: 5rem;
+  }
+  .Hero__subheading{
+    font-size: 2.4rem;
+  }
+  .Hero__button{
+    font-size: 1.8rem;
+  }
+  .Hero__content{
+    width: 65%;
+  }
+}
+@include maxQuery(500px){
+  .Hero__heading{
+    font-size: 3.5rem;
+  }
+  .Hero__subheading{
+    font-size: 2.4rem;
+  }
+  .Hero__content{
+    width: 100%;
+    padding: 0px 20px;
+    @include flex();
+    @include justify-content(flex-end);
+  }
+}
 
+.HomeCollection{
+  text-align: center;
+  img{
+    width: 100%;
+  }
+}
+.HomeCollection__subheading{
+  @include book(1.2rem);
+  margin-top: 20px;
+}
+.HomeCollection__heading{
+  @include medium(2.4rem);
+  text-transform: uppercase;
+}
+.HomeCollection__button{
+  height: 50px;
+  width: 250px;
+}
 
-
-
-
-
+@include maxQuery(800px){
+  .HomeCollections .column.l4{
+    width: 100%;
+    margin-bottom: 50px;
+  }
+}
+/* HomeBanner */
+.HomeBanner{
+  width: 100%;
+  position: relative;
+}
+.HomeBanner__image{
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.HomeBanner__content{
+  position: absolute;
+  max-width: 100%;
+  width: 40%;
+  top: 50%;
+  right: 0;
+  @include prefix(transform, translateY(-50%));
+}
+.HomeBanner__heading{
+  font-size: 4.8rem;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+.HomeBanner__subheading{
+  @include medium(2.4rem);
+  margin-bottom: 30px;
+}
+.HomeBanner__button{
+  @include flex-center();
+  width: 200px;
+  height: 50px;
+}
+.HomeBanner__link{
+  display: block;
+}
+@include maxQuery(1000px){
+  .HomeBanner__heading{
+  }
+  .HomeBanner__content{
+    width: 60%;
+  }
+}
+@include maxQuery(768px){
+  .HomeBanner__heading{
+    font-size: 5rem;
+  }
+  .HomeBanner__subheading{
+    font-size: 2.4rem;
+  }
+  .HomeBanner__button{
+    font-size: 1.8rem;
+  }
+  .HomeBanner__content{
+    width: 65%;
+  }
+}
+@include maxQuery(500px){
+  .HomeBanner__heading{
+    font-size: 3.5rem;
+  }
+  .HomeBanner__subheading{
+    font-size: 2.4rem;
+  }
+  .HomeBanner__content{
+    width: 100%;
+    padding: 0px 20px;
+    @include flex();
+    @include justify-content(flex-end);
+  }
+}
+.Instagram__feed{
+  @include flex();
+  flex-flow: row wrap;
+  @include align-items(center);
+  @include justify-content(space-between);
+  li{
+    list-style: none;
+    width: 24.5%;
+  }
+  @include maxQuery($m){
+    li{
+      width: 49.5%;
+      &:nth-child(1),
+      &:nth-child(2){
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+.Instagram__heading{
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  @include medium(2.4rem);
+  color: $font-dark;
+  &:hover{
+    color: $accent-color;
+  }
+  margin-bottom: 20px;
+}
 /* Footer */
 
 

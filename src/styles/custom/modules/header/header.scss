@@ -1,0 +1,78 @@
+.Header{
+  @include flex();
+  background-color: $bg-dark;
+  position: relative;
+  height: 80px;
+}
+.Header .container{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.Header__row{
+  height: 100%;
+  width: 100%;
+}
+
+.Header__row .column{
+  height: 100%;
+}
+
+.Header__logo,
+.Header__user{
+  @include flex();
+  @include align-items(center);
+}
+.Header__logo{
+  @include justify-content(center);
+  img{
+    width: 100%;
+  }
+}
+.Header__user{
+  @include justify-content(flex-end);
+}
+.Header__user-link{
+  color: white;
+  &:hover{
+    color: $accent-color;
+  }
+}
+
+.SearchForm{
+  position: relative;
+  border: 2px solid white;
+  @include flex();
+  @include align-items(center);
+  padding-right: 10px;
+  @include justify-content(space-between);
+  .SearchForm__input{
+    background-color: transparent;
+    color: white;
+    height: 45px;
+    border: none;
+    padding: 0px 10px;
+    @include medium(1.2rem);
+    @include placeholder{
+      color: white;
+      @include medium(1.2rem);
+    }
+  }
+  .SearchForm__buttons{
+    @include flex();
+  }
+  .SearchForm__submit,
+  .SearchForm__reset{
+    width: 30px;
+    height: 30px;
+    transition: color .3s;
+    .flaticon:before{
+      font-size: 16px;
+      margin-left: 0;
+    }
+    padding: 0;
+    &:hover{
+      background-color: transparent;
+      color: $accent-color;
+    }
+  }
+}

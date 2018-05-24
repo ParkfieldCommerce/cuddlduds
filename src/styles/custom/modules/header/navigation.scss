@@ -1,0 +1,67 @@
+.DesktopNav{
+  height: 100%;
+}
+.DesktopNav ul{
+  height: 100%;
+}
+.DesktopNav .inline{
+  @include flex();
+}
+.DesktopNav .DesktopNav__dropdown{
+  position: static !important;
+  height: 100%;
+  @include flex-center();
+  flex: 1;
+}
+.DesktopNav__dropdown-menu{
+  width: 100%;
+  left: 0;
+  top: 80px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.DesktopNav__swiper-container{
+  max-width: 95%;
+}
+.DesktopNav .DesktopNav__dropdown-menu-slider{
+  @include flex();
+  @include align-items(stretch);
+  position: relative;
+}
+.DesktopNav__slide{
+  text-align: center;
+}
+.DesktopNav .DesktopNav__link{
+  @include medium(1.4rem);
+  color: $font-light;
+  text-transform: uppercase;
+  &:hover{
+    color: $accent-color;
+  }
+}
+.DesktopNav__arrow{
+  height: 100%;
+  width: 2.5%;
+  font-size: 2.4rem;
+  position: absolute;
+  top: 50%;
+  @include prefix(transform, translateY(-50%));
+  @include flex();
+  @include align-items(center);
+  @include justify-content(center);
+  &:hover{
+    color: $accent-color;
+    cursor: pointer;
+  }
+}
+.DesktopNav__arrow--next{
+  right: 0px;
+}
+.DesktopNav__arrow--prev{
+  left: 0px;
+}
+.DesktopNav__arrow
+.DesktopNav__dropdown-link{
+  color: $font-dark;
+}

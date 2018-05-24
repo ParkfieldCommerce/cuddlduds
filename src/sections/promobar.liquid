@@ -1,0 +1,54 @@
+<!-- sections/products.liquid -->
+{% if section.settings.enable_promobar %}
+<div class="Promobar">
+  <p class="Promobar__text-content">
+    {{section.settings.text}}
+  </p>
+</div>
+<style>
+  .Promobar{
+    background: {{section.settings.bg_color}};
+  }
+  .Promobar p{
+    color: {{section.settings.text_color}};
+  }
+</style>
+{% endif %}
+{% schema %}
+  {
+    "name": "Promobar",
+    "settings": [
+      {
+        "type":"checkbox",
+        "id":"enable_promobar",
+        "label":"Enable Promobar",
+        "default":true
+      },
+      {
+        "type": "header",
+        "content": "Text Content"
+      },
+      {
+        "id":"text",
+        "type":"textarea",
+        "label":"Text"
+      },
+      {
+        "type":"header",
+        "content":"Styling"
+      },
+      {
+        "type":"color",
+        "id":"bg_color",
+        "label":"Background Color",
+        "default":"#A0DAE8"
+      },
+      {
+        "type":"color",
+        "id":"text_color",
+        "label":"Text Color",
+        "default":"#333E48"
+      }
+    ]
+  }
+{% endschema %}

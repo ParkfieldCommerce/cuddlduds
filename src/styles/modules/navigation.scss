@@ -11,17 +11,21 @@
     position: relative;
     &:hover {
       .dropdown-menu {
-        display: block;
+        opacity: 1;
+        visibility: visible;
       }
     }
     .dropdown-menu {
-      display: none;
+      display: block;
+      opacity: 0;
+      visibility: hidden;
       padding: $gutter/3 0;
       position: absolute;
       top: 1.5rem;
       z-index: 2;
       li {
         display: block;
+        font-size: 0;
         padding: $gutter/4 $gutter/1.5;
         background: lighten($colorBackground, 30%);
         &:first-of-type {

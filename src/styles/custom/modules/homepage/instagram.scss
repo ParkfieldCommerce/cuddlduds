@@ -1,0 +1,30 @@
+.Instagram__feed{
+  @include flex();
+  flex-flow: row wrap;
+  @include align-items(center);
+  @include justify-content(space-between);
+  li{
+    list-style: none;
+    width: 24.5%;
+  }
+  @include maxQuery($m){
+    li{
+      width: 49.5%;
+      &:nth-child(1),
+      &:nth-child(2){
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+.Instagram__heading{
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  @include medium(2.4rem);
+  color: $font-dark;
+  &:hover{
+    color: $accent-color;
+  }
+  margin-bottom: 20px;
+}

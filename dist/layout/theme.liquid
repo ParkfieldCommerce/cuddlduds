@@ -33,6 +33,8 @@ MIT License
   {{ content_for_header }}
 
   <!-- CSS ================================================================= -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  {{'flaticon.css' | asset_url | stylesheet_tag }}
   {{ 'app.scss.css' | asset_url | stylesheet_tag }}
   {{ 'swiper.min.css' | asset_url | stylesheet_tag }}
 
@@ -47,6 +49,7 @@ MIT License
 </head>
 
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% if template.suffix != null %} suffix-{{ template.suffix }}{% endif %}" itemscope itemtype="http://schema.org/WebSite">
+  {% section 'promobar' %}
   {% section 'theme-header' %}
 
   <main id="MainContent" role="main">

@@ -1,66 +1,66 @@
-/* Hero */
-.Hero{
+/* HomeBanner */
+.HomeBanner{
   width: 100%;
   position: relative;
 }
-.Hero__image{
+.HomeBanner__image{
   background-size: cover;
   background-repeat: no-repeat;
 }
-.Hero__content{
+.HomeBanner__content{
   position: absolute;
   max-width: 100%;
-  width: 50%;
+  width: 40%;
   top: 50%;
   right: 0;
   @include prefix(transform, translateY(-50%));
 }
-.Hero__heading{
-  font-size: 7.2rem;
+.HomeBanner__heading{
+  font-size: 4.8rem;
   margin-bottom: 30px;
   font-weight: 300;
 }
-.Hero__subheading{
-  @include medium(3rem);
+.HomeBanner__subheading{
+  @include medium(2.4rem);
   margin-bottom: 30px;
 }
-.Hero__button{
+.HomeBanner__button{
   @include flex-center();
   width: 200px;
   height: 50px;
 }
-.Hero__link{
+.HomeBanner__link{
   display: block;
 }
-@include maxQuery(1200px){
-  .Hero__heading{
+@include maxQuery(1000px){
+  .HomeBanner__heading{
   }
-  .Hero__content{
+  .HomeBanner__content{
     width: 60%;
   }
 }
 @include maxQuery(768px){
-  .Hero__heading{
+  .HomeBanner__heading{
     font-size: 5rem;
   }
-  .Hero__subheading{
+  .HomeBanner__subheading{
     font-size: 2.4rem;
   }
-  .Hero__button{
+  .HomeBanner__button{
     font-size: 1.8rem;
   }
-  .Hero__content{
+  .HomeBanner__content{
     width: 65%;
   }
 }
 @include maxQuery(500px){
-  .Hero__heading{
+  .HomeBanner__heading{
     font-size: 3.5rem;
   }
-  .Hero__subheading{
+  .HomeBanner__subheading{
     font-size: 2.4rem;
   }
-  .Hero__content{
+  .HomeBanner__content{
     width: 100%;
     padding: 0px 20px;
     @include flex();
