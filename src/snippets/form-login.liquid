@@ -1,7 +1,7 @@
 <!-- snippets/form-login.liquid -->
 
 {% form 'customer_login' %}
-
+  <h1>{{ 'account.login.title' | t }}</h1>
   {{ form.errors | default_errors }}
 
   <label for="CustomerEmail">{{ 'form.email' | t }}</label>

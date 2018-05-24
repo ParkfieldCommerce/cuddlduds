@@ -3,6 +3,9 @@
   background-color: $bg-dark;
   position: relative;
   height: 80px;
+  @include maxQuery(1000px){
+    display: none;
+  }
 }
 .Header .container{
   margin-top: 0;

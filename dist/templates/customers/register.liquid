@@ -1,7 +1,12 @@
 <!-- /templates/customers/register.liquid -->
 
-<div class="container s">
-  <h1>{{ 'account.register.title' | t }}</h1>
-  <h4>{{ 'account.register.message' | t }}</h4>
-  {% include 'form-register' %}
+<div class="LoginRegister container m l-padding-top-10x l-padding-bottom-10x s-padding-top-3x s-padding-bottom-5x">
+  <div class="row">
+    <div class="column l6 m6 s12">
+      {% include 'form-register' %}
+    </div>
+    <div class="column l6 m6 s12 s-margin-top-3x">
+      {% include 'form-login' %}
+    </div>
+  </div>
 </div>

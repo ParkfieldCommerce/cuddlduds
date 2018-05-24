@@ -50,6 +50,8 @@
 /* Header */
 @import url('custom/modules/header/header.scss');
 @import url('custom/modules/header/navigation.scss');
+@import url('custom/modules/header/mobile-header.scss');
+@import url('custom/modules/header/mobile-navigation.scss');
 /* Homepage Modules */
 @import url('custom/modules/homepage/promobar.scss');
 @import url('custom/modules/homepage/hero.scss');
@@ -59,7 +61,8 @@
 @import url('custom/modules/homepage/instagram.scss');
 /* Footer */
 @import url('custom/modules/footer/footer.scss');
-
+/* LoginRegister */
+@import url('custom/modules/account/login-register.scss');
 
 /* Helpers ===================================================================*/
 @import url('global/helpers.scss');

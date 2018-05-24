@@ -26,5 +26,7 @@
   &:hover{
     color: $accent-color;
   }
-  margin-bottom: 20px;
+  @include s(){
+    font-size: 1.7rem;
+  }
 }

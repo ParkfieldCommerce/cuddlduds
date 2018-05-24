@@ -15,6 +15,7 @@ button, .Button{
   transition: background-color .5s;
   text-transform: uppercase;
   @include medium(1.6rem);
+  height: 35px;
   &:hover{
     color: $font-light;
     background-color: $accent-color;
@@ -24,7 +25,27 @@ button, .Button{
 a{
   transition: color .3s;
   text-decoration: none;
-  &:hover{
+  &:hover,
+  &:focus{
     color: $accent-color;
   }
+}
+label{
+  @include book(1.4rem);
+}
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="tel"],
+input[type="password"],
+input[type="search"],
+{
+  height: 25px;
+  background-color: $bg-light;
+  border: 1px solid $accent-dark;
+  @include medium(1.4rem);
+}
+
+p{
+  font-size: 1.4rem;
 }

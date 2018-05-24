@@ -1,30 +1,70 @@
 <!-- /snippets/theme-nav-toggled.liquid -->
 
-<nav class="theme-nav-toggled from-left" id="NavToggled" role="navigation">
+<nav class="MobileNav theme-nav-toggled from-left" id="NavToggled" role="navigation">
+  <div class="MobileNav__close-container">
+    <a href="#close" class="MobileNav__close nav-toggled-close" data-close aria-label="{{ 'common.close' | t }}">
+      <i class="fa fa-times-thin fa-2x"></i>
+    </a>
+  </div>
   <div class="inner">
     <ul>
-      {% for link in linklists.main-menu.links %}
-        {% assign child_list_handle = link.title | handleize %}
-        {% if linklists[child_list_handle].links != blank %}
-          <li class="dropdown" aria-haspopup="true" data-id="{{ child_list_handle }}">
-            <a href="{{ link.url }}" class="nav-link{% if link.active %} active{% endif %}">
-              {{ link.title }}
-            </a>
-            <ul class="dropdown-menu" id="{{ child_list_handle }}">
-              {% for childlink in linklists[child_list_handle].links %}
-                <li>
-                  <a href="{{ childlink.url }}" class="nav-link{% if childlink.active %} active{% endif %}">{{ childlink.title }}</a>
+      {% for link in menu.links %}
+        {% if link.links != blank %}
+          <li class="MobileNav__dropdown MobileNav__dropdown--first" aria-haspopup="true">
+            <span class="MobileNav__dropdown-heading MobileNav__dropdown-heading--first js-toggleChildDropdown" data-closed="true">
+              {{ link.title }}<i class="fa fa-caret-down"></i>
+            </span>
+            <ul class="dropdown-menu">
+              {% for childlink in link.links %}
+                <li class="MobileNav__dropdown MobileNav__dropdown--second">
+                  {% if childlink.links != blank %}
+                  <span class="MobileNav__dropdown-heading MobileNav__dropdown-heading--second js-toggleChildDropdown" data-closed="true">
+                    {{ childlink.title }}<i class="fa fa-caret-down"></i>
+                  </span>
+                  <ul class="dropdown-menu">
+                    {% for grandchildlink in childlink.links %}
+                    <li class="MobileNav__dropdown--third">
+                      <a href="{{grandchildlink.url}}">{{grandchildlink.title}}</a>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                  {% else %}
+                  <a href="{{childlink.url}}" class="MobileNav__dropdown-heading MobileNav__dropdown-heading--second">
+                    {{ childlink.title }}
+                  </a>
+                  {% endif %}
                 </li>
               {% endfor %}
             </ul>
           </li>
         {% else %}
-          <li>
-            <a href="{{ link.url }}" class="nav-link{% if link.active %} active{% endif %}">{{ link.title }}</a>
+          <li class="MobileNav__standard-link">
+            <a href="{{ link.url }}" class="MobileNav__dropdown-heading">{{ link.title }}</a>
           </li>
         {% endif %}
       {% endfor %}
+      
+      <li class="MobileNav__account-link">
+        <a href="{% if customer %}/account{% else %}/account/register{% endif %}">My Account</a>
+      </li>
+      <li class="MobileNav__account-link">
+        <a href="/cart">Shopping Bag</a>
+      </li>
     </ul>
-    <a href="#close" class="nav-toggled-close" data-close aria-label="{{ 'common.close' | t }}">{{ 'common.close' | t }}</a>
   </div>
 </nav>
+
+<script>
+  $('.js-toggleChildDropdown').click(function(){
+    var state = $(this).data('closed');
+    if(state){
+      $(this).data('closed',false);
+      $(this).addClass('active');
+      $(this).next().show();
+    }else{
+      $(this).data('closed',true);
+      $(this).removeClass('active');
+      $(this).next().hide();
+    }
+  })
+</script>

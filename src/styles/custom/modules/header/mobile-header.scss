@@ -1,0 +1,89 @@
+.MobileHeader{
+  display: none;
+  background-color: $bg-dark;
+  position: relative;
+  height: 60px;
+  @include maxQuery(1000px){
+    @include flex();
+  }
+
+}
+.MobileHeader .container{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.MobileHeader__row{
+  height: 100%;
+  width: 100%;
+}
+
+.MobileHeader__row .column{
+  height: 100%;
+  @include flex-center();
+}
+.MobileHeader__row .MobileHeader__nav{
+  @include justify-content(flex-start);
+  @include maxQuery(500px){
+    width: 15%;
+  }
+}
+.MobileHeader__logo,
+.MobileHeader__user{
+  @include flex();
+  @include align-items(center);
+}
+.column.MobileHeader__logo{
+  @include justify-content(center);
+  img{
+    width: 100%;
+  }
+  @include maxQuery(500px){
+    width: 55%;
+  }
+}
+.column.MobileHeader__user{
+  @include justify-content(flex-end);
+  @include maxQuery(500px){
+    width: 30%;
+  }
+}
+.MobileHeader__user-link{
+  color: white;
+  margin-right: 10px;
+  &:hover{
+    color: $accent-color;
+  }
+  @include maxQuery(400px){
+    display: inline-block;
+    width: 33.33%;
+  }
+}
+
+#MobileNavToggle{
+  display: inline-block;
+  height: 20px;
+  width: 30px;
+}
+#MobileNavToggle .line{
+  width: 100%;
+  height: 3px;
+  display: block;
+  position: relative;
+  background-color: $font-light;
+  &:after, &:before{
+    content:'';
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: $font-light;
+    position: absolute;
+  }
+  &:after{
+    top: 10px;
+  }
+  &:before{
+    top: 20px;
+  }
+}
+
+

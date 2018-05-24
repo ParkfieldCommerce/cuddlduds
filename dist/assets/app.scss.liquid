@@ -916,6 +916,7 @@ button, .Button{
   transition: background-color .5s;
   text-transform: uppercase;
   @include medium(1.6rem);
+  height: 35px;
   &:hover{
     color: $font-light;
     background-color: $accent-color;
@@ -925,9 +926,29 @@ button, .Button{
 a{
   transition: color .3s;
   text-decoration: none;
-  &:hover{
+  &:hover,
+  &:focus{
     color: $accent-color;
   }
+}
+label{
+  @include book(1.4rem);
+}
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="tel"],
+input[type="password"],
+input[type="search"],
+{
+  height: 25px;
+  background-color: $bg-light;
+  border: 1px solid $accent-dark;
+  @include medium(1.4rem);
+}
+
+p{
+  font-size: 1.4rem;
 }
 
 /* Templates ==================================================================*/
@@ -1340,6 +1361,9 @@ a{
   background-color: $bg-dark;
   position: relative;
   height: 80px;
+  @include maxQuery(1000px){
+    display: none;
+  }
 }
 .Header .container{
   margin-top: 0;
@@ -1480,6 +1504,174 @@ a{
 .DesktopNav__dropdown-link{
   color: $font-dark;
 }
+.MobileHeader{
+  display: none;
+  background-color: $bg-dark;
+  position: relative;
+  height: 60px;
+  @include maxQuery(1000px){
+    @include flex();
+  }
+
+}
+.MobileHeader .container{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.MobileHeader__row{
+  height: 100%;
+  width: 100%;
+}
+
+.MobileHeader__row .column{
+  height: 100%;
+  @include flex-center();
+}
+.MobileHeader__row .MobileHeader__nav{
+  @include justify-content(flex-start);
+  @include maxQuery(500px){
+    width: 15%;
+  }
+}
+.MobileHeader__logo,
+.MobileHeader__user{
+  @include flex();
+  @include align-items(center);
+}
+.column.MobileHeader__logo{
+  @include justify-content(center);
+  img{
+    width: 100%;
+  }
+  @include maxQuery(500px){
+    width: 55%;
+  }
+}
+.column.MobileHeader__user{
+  @include justify-content(flex-end);
+  @include maxQuery(500px){
+    width: 30%;
+  }
+}
+.MobileHeader__user-link{
+  color: white;
+  margin-right: 10px;
+  &:hover{
+    color: $accent-color;
+  }
+  @include maxQuery(400px){
+    display: inline-block;
+    width: 33.33%;
+  }
+}
+
+#MobileNavToggle{
+  display: inline-block;
+  height: 20px;
+  width: 30px;
+}
+#MobileNavToggle .line{
+  width: 100%;
+  height: 3px;
+  display: block;
+  position: relative;
+  background-color: $font-light;
+  &:after, &:before{
+    content:'';
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: $font-light;
+    position: absolute;
+  }
+  &:after{
+    top: 10px;
+  }
+  &:before{
+    top: 20px;
+  }
+}
+
+
+
+.MobileNav{
+  background-color: $bg-light;
+  padding: 0;
+  a, span{
+    color: $font-dark;
+    text-transform: uppercase;
+  }
+}
+.MobileNav__close-container{
+  text-align: right;
+  position: relative;
+  height: 50px;
+}
+.MobileNav__close-container .MobileNav__close{
+  position: absolute;
+  top: 50%;
+  @include prefix(transform, translateY(-50%));
+  right: 10px;
+  .fa{
+    line-height: .7;
+  }
+  .fa-times-thin:before {
+    content: '\00d7';
+    font-size: 20px;
+  }
+}
+$mobilenav-tier1-padding: 10px;
+$mobilenav-tier2-padding: 25px;
+$mobilenav-tier3-padding: 30px;
+
+.MobileNav__dropdown-heading{
+  .fa-caret-down,
+  .fa-caret-up{
+    display: inline-block;
+    margin-left: 10px;
+  }
+}
+.MobileNav__dropdown-heading--first.active{
+  border-bottom: 1px solid #CECECE;
+}
+.MobileNav__dropdown .dropdown-menu{
+  display: none;
+}
+.MobileNav__dropdown--first .MobileNav__dropdown-heading--first,
+.MobileNav__standard-link,
+.MobileNav__account-link{
+  border-top: 1px solid #CECECE;
+  display: block;
+  width: 100%;
+  padding-left: $mobilenav-tier1-padding;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  @include medium(1.4rem);
+}
+
+.MobileNav__dropdown--second{
+  padding-left: $mobilenav-tier2-padding;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  @include book(1.2rem);
+  &:last-child{
+    padding-top: 0;
+  }
+}
+
+.MobileNav__dropdown--third{
+  padding-left: $mobilenav-tier3-padding;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.MobileNav__account-link{
+  @include book(1.4rem);
+  &:last-child{
+    border-bottom: 1px solid #CECECE;
+  }
+}
+
 /* Homepage Modules */
 .Promobar{
   height: 30px;
@@ -1685,10 +1877,107 @@ a{
   &:hover{
     color: $accent-color;
   }
-  margin-bottom: 20px;
+  @include s(){
+    font-size: 1.7rem;
+  }
 }
 /* Footer */
+.Footer{
+  background-color: $bg-dark;
+}
 
+.Footer__menu{
+  @include flex();
+}
+
+.Footer__menu-link{
+  border-right: 1px solid white;
+  padding-right: 10px;
+  padding-left: 10px;
+  @include medium(1.4rem);
+  &:first-child{
+    padding-left: 0;
+  }
+  &:last-child{
+    border-right: none;
+  }
+  a{
+    color: white;
+    &:hover{
+      color: $accent-color;
+    }
+  }
+}
+
+.Footer__form #contact_form{
+  border-bottom: 1px solid white;
+  display: inline-block;
+  max-width: 100%;
+  width: 500px;
+  @include inline-flex();
+  @include align-items(center);
+  input{
+    height: 35px;
+    border: none;
+    @include medium(1.4rem);
+    background-color: transparent;
+    color: white;
+    padding-left: 0;
+    padding-right: 0;
+    width: 90%;
+    margin-bottom: 0;
+    @include placeholder{
+      color: white;
+    }
+  }
+  button{
+    width: 10%;
+    font-size: 1.4rem;
+    background-color: transparent;
+    border: none;
+    padding-left: 0;
+    padding-right: 0;
+    @include justify-content(flex-end);
+    &:hover{
+      color: $accent-color;
+      background-color: transparent;
+    }
+  }
+}
+.Footer__social{
+  a{
+    color: white;
+    font-size: 2.5rem;
+    display: inline-block;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+}
+.Footer__copyright{
+  color: white;
+  @include book(1.4rem);
+}
+
+@include maxQuery($m){
+  .Footer__menu-row{
+    @include flex();
+    @include justify-content(center);
+    flex-flow: row wrap;
+    flex-direction: column-reverse;
+    .column{
+      width: 100%;
+    }
+  }
+  .Footer__menu{
+    @include justify-content(center);
+    flex-flow: row wrap;
+  }
+  .Footer__form{
+    @include flex();
+    @include justify-content(center);
+  }
+}
+/* LoginRegister */
 
 
 /* Helpers ===================================================================*/

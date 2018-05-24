@@ -1,7 +1,19 @@
 <!-- /templates/customers/login.liquid -->
 
-<div class="container s">
-  <h1>{{ 'account.login.title' | t }}</h1>
-  <h4>{{ 'account.login.message' | t }}</h4>
-  {% include 'form-login' %}
+<div class="LoginRegister container m l-padding-top-10x l-padding-bottom-10x s-padding-top-3x s-padding-bottom-5x">
+  <div class="row">
+    <div class="column l6 m6 s12">
+      {% include 'form-login' %}
+    </div>
+    <div class="column l6 m6 s12 s-margin-top-3x">
+      {% include 'form-register' %}
+    </div>
+  </div>
+  {% if shop.checkout.guest_login %}
+    <hr>
+    <h2>{{ 'form.guest_title' | t }}</h2>
+    {% form 'guest_login' %}
+      <input type="submit" value="{{ 'form.continue' | t }}">
+    {% endform %}
+  {% endif %}
 </div>

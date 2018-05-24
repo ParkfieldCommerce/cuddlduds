@@ -1,7 +1,7 @@
 <!-- /snippets/theme-nav-main.liquid -->
 <nav class="theme-nav-main DesktopNav" role="navigation">
   <ul class="inline">
-    {% for link in linklists.main-menu.links %}
+    {% for link in menu.links %}
       {% assign child_list_handle = link.title | handleize %}
       {% if linklists[child_list_handle].links != blank %}
         <li class="dropdown DesktopNav__dropdown" aria-haspopup="true">

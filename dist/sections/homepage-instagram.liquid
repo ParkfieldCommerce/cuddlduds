@@ -1,9 +1,9 @@
 <!-- homepage-instagram.liquid -->
-<div class="container">
+<div class="container margin-bottom-5x">
   <div class="row">
     <div class="column l12">
       <div class="Instagram">
-        <a target="_blank" rel="nofollow" href="{{section.settings.heading_url}}" class="Instagram__heading">{{section.settings.section_heading}}</a>
+        <a target="_blank" rel="nofollow" href="{{section.settings.heading_url}}" class="Instagram__heading margin-bottom-5x">{{section.settings.section_heading}}</a>
         <div class="Instagram__feed js-instagram"></div>
       </div>
     </div>
@@ -12,10 +12,19 @@
 {{'instagramLite.js' | asset_url | script_tag }}
 
 <script>
+  function fixInstagramSize(){
+    $('.js-instagram img').each(function(){
+      var src = $(this).attr('src');
+      $(this).hide();
+      $(this).parent().append('<div style="background:url('+src+'); background-size: cover; padding-top: 100%; background-position: 50% 50%;"></div>');
+    });
+  }
+
   $('.js-instagram').instagramLite({
     accessToken: '{{section.settings.access_token}}',
     limit: 4,
-    urls: true
+    urls: true,
+    success: fixInstagramSize
   });
 </script>
 

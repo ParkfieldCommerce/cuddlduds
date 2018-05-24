@@ -1,9 +1,11 @@
 <!-- /snippets/theme-header.liquid -->
+{% assign mainMenu = linklists[section.settings.main_menu] %}
+{% assign mobileMainMenu = linklists[section.settings.mobile_main_menu] %}
 <header class="Header" role="banner">
   <div class="container xl">
     <div class="row Header__row">
       <div class="Header__nav column l5">
-        {% include 'theme-nav-main' %}
+        {% include 'theme-nav-main' with menu:mainMenu %}
       </div>
       <div class="Header__logo column l2">
         {% include 'theme-logo' %}
@@ -25,8 +27,32 @@
     </div>
   </div>
 </header>
-
-{% include 'theme-nav-toggled' %}
+<header class="MobileHeader">
+  <div class="container xl">
+    <div class="row MobileHeader__row">
+      <div class="MobileHeader__nav column l3">
+        <a id="MobileNavToggle" class="js-mobileNavToggle" href="#NavToggled" data-trigger="popup" data-target="#NavToggled">
+          <span class="line"></span>
+        </a>
+        {% include 'theme-nav-toggled' with menu:mobileMainMenu %}
+      </div>
+      <div class="MobileHeader__logo column l6">
+        {% include 'theme-logo' %}
+      </div>
+      <div class="MobileHeader__user column l3">
+        <a class="MobileHeader__user-link" href="#">
+          <i class="flaticon flaticon-search"></i>
+        </a>
+        {% if customer %}
+          <a class="MobileHeader__user-link" href="/account" data-trigger="popup" data-target="#PopupAccount">{{ 'account.general.title' | t }}</a>
+        {% else %}
+          <a class="MobileHeader__user-link" href="/account"><i class="icon flaticon-profile"></i></a>
+        {% endif %}
+        <a class="MobileHeader__user-link" href="/cart"><i class="icon flaticon-business"></i></a>
+      </div>
+    </div>
+  </div>
+</header>
 
 {% schema %}
   {
@@ -41,6 +67,16 @@
         "id": "enable_search",
         "label": "Enable search",
         "default": true
+      },
+      {
+        "type":"link_list",
+        "id":"main_menu",
+        "label":"Main Menu"
+      },
+      {
+        "type":"link_list",
+        "id":"mobile_main_menu",
+        "label":"Mobile Main Menu"
       }
     ]
   }

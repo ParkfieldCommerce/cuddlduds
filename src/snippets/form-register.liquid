@@ -1,7 +1,7 @@
 <!-- snippets/form-register.liquid -->
 
 <div id="RegisterForm">
-
+  <h1>{{ 'account.register.title' | t }}</h1>
   {% form 'create_customer' %}
 
     {{ form.errors | default_errors }}
