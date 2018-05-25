@@ -64,4 +64,16 @@
 .DesktopNav__arrow
 .DesktopNav__dropdown-link{
   color: $font-dark;
+  &:hover{
+    color: $accent-color;
+  }
+}
+.theme-nav-main .DesktopNav__dropdown-link{
+  display: block;
+  text-align: center;
+  @include book(1.4rem);
+  color: $font-dark;
+  &:hover{
+    color: $accent-color;
+  }
 }

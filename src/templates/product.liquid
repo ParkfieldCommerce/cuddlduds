@@ -21,6 +21,48 @@ $(document).on('click', '#ProductThumbs img', function(event) {
   concrete.Images.switchImage($('#ProductPhoto img')[0], $(this, event.target)[0]);
 })
 
+
+//Get Description & Tabs for Product
+var rawDescription = $('.js-rawProductDescription');
+var descriptionHeadings = rawDescription.find('h5');
+descriptionHeadings.each(function(){
+  var headingText = $(this).text();
+  if(headingText === 'Description'){
+    $('.js-ProductDescription').append($(this).next());
+  }else{
+    $('.js-productTabs').append('<div class="js-tabHeading Product__tab-heading" data-open="false">' + headingText + ' <span>+</span></div>')
+    $('.js-productTabs').append('<div class="Product__tab-body">' + $(this).next().html() + '</div>')
+  }
+});
+
+$('.js-tabHeading').click(function(){
+  var state = $(this).attr('data-open');
+  console.log(state);
+  if(state == 'true'){
+    $(this).next().css('max-height', 0);
+    $(this).attr('data-open', 'false');
+    $(this).find('span').text('+');
+  }else{
+    $(this).next().css('max-height','initial');
+    $(this).attr('data-open', 'true');
+    $(this).find('span').text('-');
+  }
+})
+
+
+//Swatch Selection Logic
+$('.js-ProductSwatch').click(function(){
+  var color = $(this).data('color');
+  $('.Product__option-select-color').val(color);
+  $('.Product__option-select-color').trigger('change');
+});
+
+//Quantity
+$('.js-productQuantity').change(function(e){
+  $('.js-AddToCart').attr('data-cart-quantity', $(this).val());
+});
+
+
 </script>
 
 <script type="application/json" id="ProductJson">

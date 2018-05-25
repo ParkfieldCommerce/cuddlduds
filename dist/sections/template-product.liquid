@@ -19,7 +19,11 @@
   <div class="container l" itemscope itemtype="http://schema.org/Product" data-section-type="product" data-section-id="{{ section.id }}" data-enable-history-state="true">
     <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
     <meta itemprop="image" content="{{ product.featured_image | img_url: '1024x1024' }}">
-
+    <div class="row">
+      <div class="column l12">
+        {% include 'theme-breadcrumbs' %}
+      </div>
+    </div>
     <div class="row">
       <div class="column l6 m6 s12">
         <div id="ProductPhoto">
@@ -27,7 +31,7 @@
         </div>
 
         {% if product.images.size > 1 %}
-          <div id="ProductThumbs" class="row collapse">
+          <div id="ProductThumbs" class="Product__thumbs row collapse js-ProductThumbs">
             {% for image in product.images %}
               <div class="column l3 m4 s6">
                 <img srcset="{{ product.featured_image | img_url: '512x512', scale: 2 }} 2x" src="{{ image | img_url: '512x512' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %}>
@@ -38,24 +42,47 @@
       </div>
 
       <div class="column l6 m6 s12">
-        <h1 itemprop="name">{{ product.title }}</h1>
-
+        <h1 class="Product__name" itemprop="name">{{ product.title }}</h1>
+        <div class="Product__prices">
+          <span class="hidden">{{ 'product.regular_price' | t }}</span>
+          {% if on_sale %}
+              <s id="ComparePrice" class="Product__price Product__price--old">{{ product.compare_at_price | money }}</s>
+          {% endif %}
+          <span id="ProductPrice" class="h2 Product__price Product__price{% if on_sale %}--sale{% else %}--current{% endif %}" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+            {{ current_variant.price | money }}
+          </span>
+        </div>
+        <div class="Product__description js-ProductDescription"></div>
         <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
           <meta itemprop="priceCurrency" content="{{ shop.currency }}">
           <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
 
-          <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" data-cart-submit>
+          <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" data-cart-submit class="Product__form">
             {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
               {% for option in product.options_with_values %}
-                <label {% if option.name == 'default' %}class="hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index }}">
-                  {{ option.name }}
-                </label>
-                <div class="select-wrapper">
-                  <select class="single-option-selector" id="SingleOptionSelector-{{ forloop.index }}" data-index="option{{ forloop.index }}">
+                <div class="Product__option Product__option--{{option.name}}">
+                  <label class="Product__option-label" {% if option.name == 'default' %}class="hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index }}">
+                    {{ option.name }}
+                  </label>
+                  {% if option.name == 'Color' %}
+                  <div class="Product__swatches">
                     {% for value in option.values %}
-                      <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
+                    <button class="js-ProductSwatch Product__swatch" type="button" data-color="{{value}}">
+                      <span class="Product__swatch-color {{value | handleize }}"></span>
+                    </button>
                     {% endfor %}
-                  </select>
+                  </div>
+                  {% endif %%}
+                  <div class="Product__option-select-wrapper select-wrapper">
+                    <select class="single-option-selector Product__option-select Product__option-select-{{option.name | downcase }}" id="SingleOptionSelector-{{ forloop.index }}" data-index="option{{ forloop.index }}">
+                      {% for value in option.values %}
+                        {% if forloop.first %}
+                        <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>Select {{ option.name }}</option>
+                        {% endif %}
+                        <option value="{{ value | escape }}">{{ value }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
                 </div>
               {% endfor %}
             {% endunless %}
@@ -80,63 +107,83 @@
                 </select>
               </div>
             </div>
-
-            <span class="hidden">{{ 'product.regular_price' | t }}</span>
-            <span id="ProductPrice" class="h2" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
-              {{ current_variant.price | money }}
-            </span>
-
-            {% if on_sale %}
-              <p id="OnSale">
-                <span class="hidden">{{ 'product.original_price' | t }}</span>
-                <span>{{ 'product.original_price' | t }}</span>
-                <s id="ComparePrice">{{ product.compare_at_price | money }}</s>
-              </p>
-            {% endif %}
-
-            <label for="Quantity">{{ 'product.quantity' | t }}</label>
-            <div class="quantity-adjust">
-              <a class="adjust" data-change="-1">&#8211;</a>
-               <input type="number" id="Quantity" class="quantity" name="quantity" value="1" min="1" data-cart-quantity="1">
-              <a class="adjust" data-change="1">&#43;</a>
+            <div class="Product__quantity-container">
+              <label class="Product__quantity-label" for="Quantity">{{ 'product.quantity' | t }}</label>
+              <div class="select-wrapper">
+                <select class="js-productQuantity Product__quantity-select" name="quantity" id="Quantity">
+                  {% for i in (1..10) %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select>
+              </div>
             </div>
             {% if sold_out %}
-              <button type="submit" name="add" data-add-to-cart disabled>
+              <button class="Product__addToCart js-AddToCart" type="submit" name="add" data-cart-quantity="1" data-cart-add="{{product.selected_or_first_available_variant.id}}" disabled>
                 <span id="AddToCartText">{{ 'product.sold_out' | t }}</span>
               </button>
             {% else %}
-              <button type="submit" name="add" data-add-to-cart>
+              <button class="Product__addToCart js-AddToCart" type="submit" name="add" data-cart-quantity="1" data-cart-add="{{product.selected_or_first_available_variant.id}}">
                 <span id="AddToCartText">{{ 'product.add_to_cart' | t }}</span>
               </button>
             {% endif %}
+            {% assign shippingPage = pages[section.settings.shipping_page] %}
+            <a class="Product__shipping-link target="_blank" href="{{shippingPage.url}}">{{shippingPage.title}}</a>
           </form>
-
+          <div class="Product__tabs js-productTabs"></div>
         </div>
-
-        <div class="rte" itemprop="description">
-          {{ product.description }}
-        </div>
-
         <h4 class="margin-top-5x">{{ 'social.share.title' | t }}</h4>
         {% include 'social-sharing' %}
-
-        {% if collection %}
-          {% if collection.previous_product or collection.next_product %}
-            <p>
-              {% if collection.previous_product %}
-                <span class="left">
-                  {{ 'common.pagination.previous' | t | link_to: collection.previous_product }}
-                </span>
-              {% endif %}
-              {% if collection.next_product %}
-                <span class="right">
-                  {{ 'common.pagination.next' | t | link_to: collection.next_product }}
-                </span>
-              {% endif %}
-            </p>
-          {% endif %}
-        {% endif %}
       </div>
     </div>
   </div>
 </div>
+
+
+<div class="hidden rte js-rawProductDescription" itemprop="description">
+  {{ product.description }}
+</div>
+
+{% schema %}
+  {
+    "name": "Product Page",
+    "settings": [
+      {
+        "type":"header",
+        "content":"Tabs"
+      },
+      {
+        "type":"paragraph",
+        "content":"Set the following structure in the product description"
+      },
+      {
+        "type":"paragraph",
+        "content":"<h5>Tab 1</h5><div>Tab 1 Content</div><h5>Tab 2</h5><div>Tab 2 Content</div>"
+      },
+      {
+        "type":"header",
+        "content":"Fit Guide"
+      },
+      {
+        "type":"paragraph",
+        "content":"Tag the product with 'fit_[FIT GUIDE PAGE HANDLE]'"
+      },
+      {
+        "type":"header",
+        "content":"Video"
+      },
+      {
+        "type":"paragraph",
+        "content":"Upload the product video to the files section of Shopify, and place the url under the image alt. Video must be an MP4"
+      },
+      {
+        "type":"header",
+        "content":"Shipping Page"
+      },
+      {
+        "type":"page",
+        "id":"shipping_page",
+        "label":"Shipping Page"
+      }
+    ]
+  }
+{% endschema %}

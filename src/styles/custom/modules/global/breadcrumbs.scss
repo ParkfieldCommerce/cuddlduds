@@ -1,0 +1,10 @@
+.Breadcrumbs{
+  a{
+    color: $font-dark;
+    @include book(1.2rem);
+  }
+  span{
+    color: $accent-color;
+    @include medium(1.2rem);
+  }
+}

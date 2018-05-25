@@ -79,6 +79,8 @@ $heading: black;
 $font-light: white;
 $font-dark: black;
 
+$border-color: #e0e0e0;
+
 @font-face {
   font-family: 'Gotham Rounded Book';
   src: url(' {{ 'Gotham_Rounded_Book.otf' | asset_url }} ') format('opentype');
@@ -646,7 +648,6 @@ a.button {
     color: $colorText;
   }
   select {
-    width: 100%;
     padding-right: $spacing*5;
     &::-ms-expand {
       display: none;
@@ -854,10 +855,10 @@ form#address_form_new {
   .select-wrapper,
   .province-wrapper,
   button, .button {
-    width: 100%;
+    //width: 100%;
     @include clearfix();
     &:not(:last-child) {
-      margin-bottom: $spacing*2;
+      //margin-bottom: $spacing*2;
     }
   }
 }
@@ -917,6 +918,7 @@ button, .Button{
   text-transform: uppercase;
   @include medium(1.6rem);
   height: 35px;
+  border-radius: 0;
   &:hover{
     color: $font-light;
     background-color: $accent-color;
@@ -946,9 +948,17 @@ input[type="search"],
   border: 1px solid $accent-dark;
   @include medium(1.4rem);
 }
-
+select{
+  border: none;
+  background-color: transparent;
+  color: #b8b8b8;
+}
 p{
   font-size: 1.4rem;
+}
+
+hr{
+  border-top: 1px solid $border-color;
 }
 
 /* Templates ==================================================================*/
@@ -1355,6 +1365,18 @@ p{
 
 
 
+/* Global */
+.Breadcrumbs{
+  a{
+    color: $font-dark;
+    @include book(1.2rem);
+  }
+  span{
+    color: $accent-color;
+    @include medium(1.2rem);
+  }
+}
+
 /* Header */
 .Header{
   @include flex();
@@ -1503,6 +1525,18 @@ p{
 .DesktopNav__arrow
 .DesktopNav__dropdown-link{
   color: $font-dark;
+  &:hover{
+    color: $accent-color;
+  }
+}
+.theme-nav-main .DesktopNav__dropdown-link{
+  display: block;
+  text-align: center;
+  @include book(1.4rem);
+  color: $font-dark;
+  &:hover{
+    color: $accent-color;
+  }
 }
 .MobileHeader{
   display: none;
@@ -1632,7 +1666,7 @@ $mobilenav-tier3-padding: 30px;
   }
 }
 .MobileNav__dropdown-heading--first.active{
-  border-bottom: 1px solid #CECECE;
+  border-bottom: 1px solid $border-color;
 }
 .MobileNav__dropdown .dropdown-menu{
   display: none;
@@ -1640,7 +1674,7 @@ $mobilenav-tier3-padding: 30px;
 .MobileNav__dropdown--first .MobileNav__dropdown-heading--first,
 .MobileNav__standard-link,
 .MobileNav__account-link{
-  border-top: 1px solid #CECECE;
+  border-top: 1px solid $border-color;
   display: block;
   width: 100%;
   padding-left: $mobilenav-tier1-padding;
@@ -1668,7 +1702,7 @@ $mobilenav-tier3-padding: 30px;
 .MobileNav__account-link{
   @include book(1.4rem);
   &:last-child{
-    border-bottom: 1px solid #CECECE;
+    border-bottom: 1px solid $border-color;
   }
 }
 
@@ -1754,7 +1788,43 @@ $mobilenav-tier3-padding: 30px;
     @include justify-content(flex-end);
   }
 }
+.ProductSlider__heading{
+  @include medium(2.4rem);
+}
+.ProductSlider__subheading{
+  @include book(1.6rem);
+}
 
+.ProductSlider__slide{
+  text-align: center;
+}
+.ProductSlider__product-num{
+  text-align: center;
+  color: $accent-color;
+  @include medium(2.4rem);
+  position: relative;
+  display: inline-block;
+  min-width: 20px;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  &:after{
+    content:'';
+    position: absolute;
+    display: block;
+    height: 2px;
+    width: 100%;
+    bottom: 0;
+    background-color: $accent-color;
+  }  
+}
+.ProductSlider__swiper-scrollbar{
+  height: 3px;
+  background-color: #eaeaea;
+  .swiper-scrollbar-drag{
+    border-radius: 0;
+    background-color: #bbbbbb;
+  }
+}
 .HomeCollection{
   text-align: center;
   img{
@@ -1978,6 +2048,179 @@ $mobilenav-tier3-padding: 30px;
   }
 }
 /* LoginRegister */
+
+/* Collection */
+.CollectionProduct{
+  text-align: center;  
+}
+.CollectionProduct__image{
+  border: 1px solid $border-color;
+}
+.CollectionProduct__title{
+  @include book(1.8rem);
+  color: $font-dark;
+  margin-bottom: 10px;
+  display: block;
+  &:hover{
+    color: $accent-color;
+  }
+}
+
+.CollectionProduct__price{
+  @include medium(1.4rem);
+}
+.CollectionProduct__price--sale,
+.CollectionProduct__price--from{
+  color: $accent-color;
+}
+.CollectionProduct__price--old{
+  color: #b8b8b8;
+}
+/* Product */
+.Product__name{
+  @include book(3.0rem);
+  margin-bottom: 5px;
+}
+.Product__price{
+  display: inline-block;
+  @include medium(1.8rem);
+}
+.Product__price--sale{
+  color: $accent-color;
+}
+.Product__price--old{
+  color: #b8b8b8;
+}
+
+.Product__description{
+  @include book(1.4rem);
+  padding-bottom: 10px;
+}
+
+.Product__form{
+  padding-top: 20px;
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+}
+.Product__option{
+  @include flex();
+  @include align-items(center);
+  margin-bottom: 10px;
+}
+.Product__option-label{
+  text-transform: uppercase;
+  margin-bottom: 0;
+  margin-right: 10px;
+}
+.Product__option-select{
+  @include medium(1.4rem);
+}
+.select-wrapper{
+  position: relative;
+  display: inline-block !important;
+  &:after{
+    color: #b8b8b8;
+    font-family: FontAwesome;
+    content:'\f0d7' !important;
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    z-index: 1;
+    font-size: 15px;
+    @include prefix(transform, translateY(-50%));
+  }
+  select{
+    text-transform: uppercase;
+    padding-right: 30px;
+    height: 30px;
+    padding-left: 10px;
+    position: relative;
+    z-index: 2;
+  }
+}
+.Product__option--Color .Product__option-select-wrapper:after{
+  display: none !important;
+}
+.Product__swatches{
+  @include flex();
+  flex-flow: row wrap;
+}
+.Product__swatch{
+  position: relative;
+  width: 30px !important;
+  height: 30px;
+  background-color: transparent;
+  border: 1px solid $border-color;
+  padding: 0px;
+  margin-right: 10px;
+  margin-bottom: 0;
+  transition: border-color .3s;
+  &:hover{
+    background-color: transparent;
+    border-color: $accent-dark;
+  }
+  .Product__swatch-color{
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    left: 2px;
+    bottom: 2px;
+  }
+}
+.Product__swatch--active{
+  border-color: $accent-dark;
+}
+.Product__option-select-color{
+  display: none;
+}
+
+.Product__quantity-container{
+  @include flex();
+  @include align-items(center);
+  margin-bottom: 10px;
+}
+.Product__quantity-label{
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+.Product__quantity-select{
+  @include medium(1.4rem);
+}
+.Product__addToCart{
+  background-color: $accent-color;
+  width: 100%;
+  height: 50px;
+  &:hover{
+    background-color: darken($accent-color, 5%);
+  }
+}
+
+.Product__shipping-link{
+  display: inline-block;
+  margin-top: 20px;
+  @include medium(1.6rem);
+  text-decoration: underline;
+  color: $accent-color;
+  &:hover{
+    color: darken($accent-color, 10%);
+  }
+}
+
+.Product__tab-heading{
+  text-transform: uppercase;
+  @include medium(1.2rem);
+  &:hover{
+    cursor: pointer;
+  }
+}
+.Product__tab-body{
+  @include book(1.2rem);
+  overflow: hidden;
+  max-height: 0;
+}
 
 
 /* Helpers ===================================================================*/

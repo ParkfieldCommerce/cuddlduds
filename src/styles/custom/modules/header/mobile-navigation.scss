@@ -36,7 +36,7 @@ $mobilenav-tier3-padding: 30px;
   }
 }
 .MobileNav__dropdown-heading--first.active{
-  border-bottom: 1px solid #CECECE;
+  border-bottom: 1px solid $border-color;
 }
 .MobileNav__dropdown .dropdown-menu{
   display: none;
@@ -44,7 +44,7 @@ $mobilenav-tier3-padding: 30px;
 .MobileNav__dropdown--first .MobileNav__dropdown-heading--first,
 .MobileNav__standard-link,
 .MobileNav__account-link{
-  border-top: 1px solid #CECECE;
+  border-top: 1px solid $border-color;
   display: block;
   width: 100%;
   padding-left: $mobilenav-tier1-padding;
@@ -72,6 +72,6 @@ $mobilenav-tier3-padding: 30px;
 .MobileNav__account-link{
   @include book(1.4rem);
   &:last-child{
-    border-bottom: 1px solid #CECECE;
+    border-bottom: 1px solid $border-color;
   }
 }

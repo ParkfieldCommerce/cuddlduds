@@ -1,0 +1,144 @@
+.Product__name{
+  @include book(3.0rem);
+  margin-bottom: 5px;
+}
+.Product__price{
+  display: inline-block;
+  @include medium(1.8rem);
+}
+.Product__price--sale{
+  color: $accent-color;
+}
+.Product__price--old{
+  color: #b8b8b8;
+}
+
+.Product__description{
+  @include book(1.4rem);
+  padding-bottom: 10px;
+}
+
+.Product__form{
+  padding-top: 20px;
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+}
+.Product__option{
+  @include flex();
+  @include align-items(center);
+  margin-bottom: 10px;
+}
+.Product__option-label{
+  text-transform: uppercase;
+  margin-bottom: 0;
+  margin-right: 10px;
+}
+.Product__option-select{
+  @include medium(1.4rem);
+}
+.select-wrapper{
+  position: relative;
+  display: inline-block !important;
+  &:after{
+    color: #b8b8b8;
+    font-family: FontAwesome;
+    content:'\f0d7' !important;
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    z-index: 1;
+    font-size: 15px;
+    @include prefix(transform, translateY(-50%));
+  }
+  select{
+    text-transform: uppercase;
+    padding-right: 30px;
+    height: 30px;
+    padding-left: 10px;
+    position: relative;
+    z-index: 2;
+  }
+}
+.Product__option--Color .Product__option-select-wrapper:after{
+  display: none !important;
+}
+.Product__swatches{
+  @include flex();
+  flex-flow: row wrap;
+}
+.Product__swatch{
+  position: relative;
+  width: 30px !important;
+  height: 30px;
+  background-color: transparent;
+  border: 1px solid $border-color;
+  padding: 0px;
+  margin-right: 10px;
+  margin-bottom: 0;
+  transition: border-color .3s;
+  &:hover{
+    background-color: transparent;
+    border-color: $accent-dark;
+  }
+  .Product__swatch-color{
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    left: 2px;
+    bottom: 2px;
+  }
+}
+.Product__swatch--active{
+  border-color: $accent-dark;
+}
+.Product__option-select-color{
+  display: none;
+}
+
+.Product__quantity-container{
+  @include flex();
+  @include align-items(center);
+  margin-bottom: 10px;
+}
+.Product__quantity-label{
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+.Product__quantity-select{
+  @include medium(1.4rem);
+}
+.Product__addToCart{
+  background-color: $accent-color;
+  width: 100%;
+  height: 50px;
+  &:hover{
+    background-color: darken($accent-color, 5%);
+  }
+}
+
+.Product__shipping-link{
+  display: inline-block;
+  margin-top: 20px;
+  @include medium(1.6rem);
+  text-decoration: underline;
+  color: $accent-color;
+  &:hover{
+    color: darken($accent-color, 10%);
+  }
+}
+
+.Product__tab-heading{
+  text-transform: uppercase;
+  @include medium(1.2rem);
+  &:hover{
+    cursor: pointer;
+  }
+}
+.Product__tab-body{
+  @include book(1.2rem);
+  overflow: hidden;
+  max-height: 0;
+}

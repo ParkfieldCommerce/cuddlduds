@@ -173,8 +173,8 @@
     "regular_price": "Regular price",
     "quantity": "Quantity",
     "priced_from_html": "From {{ price }}",
-    "on_sale_html": "On sale for {{ price }}",
-    "on_sale_from_html": "On sale from {{ price }}",
+    "on_sale_html": "{{ price }}",
+    "on_sale_from_html": "{{ price }}",
     "on_sale": "On sale",
     "original_price": "Originaly",
     "sold_out": "Sold out"

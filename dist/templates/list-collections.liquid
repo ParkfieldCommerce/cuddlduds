@@ -1,28 +1,38 @@
 <!-- /templates/list-collections.liquid -->
-
-{% assign column_width = 'column l4 m6 s12' %}
-
-{% for collection in collections %}
-
+<div class="collections-page l-margin-top-10x m-margin-top-5x s-margin-top-3x l-margin-bottom-10x m-margin-bottom-5x s-margin-bottom-3x">
+{% for link in linklists['collections'].links %}
+  {% if link.type == 'collection_link' %}
+  {% assign collection = link.object %}
   {% unless collection.handle == 'frontpage' %}
-
     {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
 
     <div class="container l">
-      <p class="h1">{{ collection_title }}</p>
-      <a href="{{ collection.url }}" title="{{ 'collection.title }}">More {{ collection_title }} &rsaquo;</a>
+      <div class="row">
+        <div class="column l12">
+      <p class="h1 section-header__left"><a href="{{ collection.url }}" title="{{ 'collection.title }}">{{ collection_title }}</a>
+      </p>
+      </div>
+      </div>
     </div>
 
     <div class="container l">
       <div class="row">
         {% for product in collection.products limit: 4 %}
+        <div class="column l3 m3 s12">
           {% include 'collection-product' %}
+        </div>
         {% endfor %}
       </div>
     </div>
-
-    {% unless forloop.last %}<hr>{% endunless %}
+    <div class="container l">
+      <div class="row">
+        <div class="column l12">
+          {% unless forloop.last %}<hr>{% endunless %}
+        </div>
+      </div>
+    </div>
 
   {% endunless %}
-
+  {% endif %}
 {% endfor %}
+</div>

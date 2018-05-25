@@ -643,6 +643,9 @@ concrete.Product = (function() {
       this.$container.on('variantChange', this._updateAddToCart.bind(this));
       this.$container.on('variantChange', this._updateVariantId.bind(this));
       this.$container.on('variantChange', this._updatePrices.bind(this));
+      this.$container.on('variantChange', this._customActions.bind(this));
+
+      $('.Product__option-select-color').trigger('change');
     },
 
     _updateAddToCart: function(evt) {
@@ -679,6 +682,26 @@ concrete.Product = (function() {
       var variant = evt.variant;
       if (variant)
         $(this.selectors.variantId).val(variant.id);
+    },
+
+    _customActions: function(evt){
+      var variant = evt.variant;
+      var color = variant.option1;
+      //Set Active Swatch
+      $('.Product__swatch--active').removeClass('Product__swatch--active');
+      $('.Product__swatch[data-color="'+ color +'"]').addClass('Product__swatch--active');
+
+      //Show Correct Variant Images
+      $('.js-ProductThumbs img').each(function(){
+        if($(this).attr('alt') != color){
+          $(this).hide();
+        }else{
+          $(this).show();
+        }
+      });
+
+      //Set VariantId to button
+      $('.js-AddToCart').attr('data-cart-add', variant.id);
     },
 
     onUnload: function() {

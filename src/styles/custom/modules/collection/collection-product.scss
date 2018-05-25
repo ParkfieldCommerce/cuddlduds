@@ -1,0 +1,26 @@
+.CollectionProduct{
+  text-align: center;  
+}
+.CollectionProduct__image{
+  border: 1px solid $border-color;
+}
+.CollectionProduct__title{
+  @include book(1.8rem);
+  color: $font-dark;
+  margin-bottom: 10px;
+  display: block;
+  &:hover{
+    color: $accent-color;
+  }
+}
+
+.CollectionProduct__price{
+  @include medium(1.4rem);
+}
+.CollectionProduct__price--sale,
+.CollectionProduct__price--from{
+  color: $accent-color;
+}
+.CollectionProduct__price--old{
+  color: #b8b8b8;
+}

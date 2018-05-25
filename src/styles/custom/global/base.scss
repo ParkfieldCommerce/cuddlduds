@@ -16,6 +16,7 @@ button, .Button{
   text-transform: uppercase;
   @include medium(1.6rem);
   height: 35px;
+  border-radius: 0;
   &:hover{
     color: $font-light;
     background-color: $accent-color;
@@ -45,7 +46,15 @@ input[type="search"],
   border: 1px solid $accent-dark;
   @include medium(1.4rem);
 }
-
+select{
+  border: none;
+  background-color: transparent;
+  color: #b8b8b8;
+}
 p{
   font-size: 1.4rem;
+}
+
+hr{
+  border-top: 1px solid $border-color;
 }

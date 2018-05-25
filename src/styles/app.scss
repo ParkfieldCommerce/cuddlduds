@@ -47,6 +47,9 @@
 @import url('modules/icon.scss');
 
 
+/* Global */
+@import url('custom/modules/global/breadcrumbs.scss');
+
 /* Header */
 @import url('custom/modules/header/header.scss');
 @import url('custom/modules/header/navigation.scss');
@@ -55,7 +58,7 @@
 /* Homepage Modules */
 @import url('custom/modules/homepage/promobar.scss');
 @import url('custom/modules/homepage/hero.scss');
-@import url('custom/modules/homepage/product-slider.scss');
+@import url('custom/modules/homepage/homepage-product-slider.scss');
 @import url('custom/modules/homepage/homepage-collections.scss');
 @import url('custom/modules/homepage/homepage-banner.scss');
 @import url('custom/modules/homepage/instagram.scss');
@@ -63,6 +66,11 @@
 @import url('custom/modules/footer/footer.scss');
 /* LoginRegister */
 @import url('custom/modules/account/login-register.scss');
+/* Collection */
+@import url('custom/modules/collection/collection-product.scss');
+/* Product */
+@import url('custom/modules/product/product.scss');
+
 
 /* Helpers ===================================================================*/
 @import url('global/helpers.scss');

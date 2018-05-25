@@ -1,0 +1,37 @@
+.ProductSlider__heading{
+  @include medium(2.4rem);
+}
+.ProductSlider__subheading{
+  @include book(1.6rem);
+}
+
+.ProductSlider__slide{
+  text-align: center;
+}
+.ProductSlider__product-num{
+  text-align: center;
+  color: $accent-color;
+  @include medium(2.4rem);
+  position: relative;
+  display: inline-block;
+  min-width: 20px;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  &:after{
+    content:'';
+    position: absolute;
+    display: block;
+    height: 2px;
+    width: 100%;
+    bottom: 0;
+    background-color: $accent-color;
+  }  
+}
+.ProductSlider__swiper-scrollbar{
+  height: 3px;
+  background-color: #eaeaea;
+  .swiper-scrollbar-drag{
+    border-radius: 0;
+    background-color: #bbbbbb;
+  }
+}
