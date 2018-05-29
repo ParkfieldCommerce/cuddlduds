@@ -1,10 +1,27 @@
+.Product__heading--mobile{
+  display: none;
+  @include s(){
+    display: block;
+  }
+}
+.Product__heading--desktop{
+  @include s(){
+    display: none;
+  }
+}
 .Product__name{
-  @include book(3.0rem);
+  @include book(3rem);
   margin-bottom: 5px;
+  @include s(){
+    font-size: 2rem;
+  }
 }
 .Product__price{
   display: inline-block;
   @include medium(1.8rem);
+  @include s(){
+    font-size: 1.4rem;
+  }
 }
 .Product__price--sale{
   color: $accent-color;
@@ -62,6 +79,7 @@
     z-index: 2;
   }
 }
+
 .Product__option--Color .Product__option-select-wrapper:after{
   display: none !important;
 }
@@ -90,9 +108,15 @@
     left: 2px;
     bottom: 2px;
   }
+  @include s(){
+    margin-bottom: 0 !important;
+  }
 }
 .Product__swatch--active{
   border-color: $accent-dark;
+}
+.Product__option-select-wrapper--color{
+  display: none !important;
 }
 .Product__option-select-color{
   display: none;
@@ -141,4 +165,78 @@
   @include book(1.2rem);
   overflow: hidden;
   max-height: 0;
+}
+
+
+.Product__images-column{
+  @include flex();
+  @include align-items(flex-start);
+  flex-flow: row-reverse wrap;
+}
+.Product__main-image{
+  width: 80%;
+}
+.Product__thumbs{
+  padding-top: 20px;
+  width: 20%;
+  position: relative;
+  @include s(){
+    padding-top: 0;
+    margin-bottom: 20px;
+  }
+}
+.Product__thumbs-slider{
+  max-height: 440px;
+  .swiper-slide{
+    height: 150px !important;
+  }
+}
+.ProductThumbsSliderDots{
+  width: 100%;
+  .swiper-pagination-bullet{
+    border: 1px solid $font-dark;
+    background-color: transparent;
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+  .swiper-pagination-bullet-active{
+    background-color: $font-dark;
+  }
+}
+@include s(){
+  .Product__thumbs{
+    width: 100%;
+  }
+  .Product__main-image{
+    display: none;
+  }
+}
+
+.ProductThumbsSliderArrow{
+  font-size: 3rem;
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  width: 100%;
+  text-align: center;
+  @include prefix(transform, translateX(-50%));  
+  &:hover{
+    cursor: pointer;
+    color: $accent-color;
+  }
+  @include s(){
+    display: none;
+  }
+}
+.ProductThumbsSliderArrow--prev{
+  top: -20px;
+}
+.ProductThumbsSliderArrow--next{
+  bottom: -20px;
+}
+.ProductThumbsSliderArrow.swiper-button-disabled{
+  display: none;
+}
+.Product__thumbs-slider .swiper-slide{
+  @include flex-center();
 }

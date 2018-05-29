@@ -27,7 +27,9 @@
 {% assign categories = '' %}
 {% assign categories = categories | split: '' %}
 {% assign lastCategory = '' %}
-<ul class="CollectionFilter CollectionFilter--mobile">
+
+{% assign sizeTags = 'size_XS,size_S,size_M,size_L,size_XL,size_1X,size_2X,size_O/S' | split:',' %}
+<ul class="CollectionFilter CollectionFilter--mobile js-mobileCollectionFilter">
 {% for tag in collection.all_tags %}
   
   {% if tag contains '_' %}
@@ -39,17 +41,41 @@
       {% endif %}
       {% if lastCategory != categoryCheck %}
         <li class="CollectionFilter__category" data-category="{{categoryCheck}}">
-          <button class="CollectionFilter__dropdown-trigger js-mobileDropdownTrigger" data-category="{{categoryCheck}}">{{categoryCheck}}</button>
+          <button class="CollectionFilter__dropdown-trigger js-mobileDropdownTrigger" data-category="{{categoryCheck}}">
+            {{categoryCheck}}
+            <span>+</span>
+          </button>
           <ul class="CollectionFilter__dropdown">
       {% endif %}
       {% assign categories = categories | append: categoryCheck %}
       {% assign lastCategory = categoryCheck %}
     {% endunless %}
-    <li class="CollectionFilter__filter-value-container {% if current_tags contains tag %}active{% endif %}">
-      <input {% if current_tags contains tag %}checked{% endif %} class="CollectionFilter__filter-value js-filterValue" id="{{tag}}" type="radio" name="{{categoryCheck}}" value="{{tag | handleize}}">
-      <div class="CollectionFilter__checkbox js-filterCheckbox"></div>
-      <label class="CollectionFilter__filter-value-label" for="{{tag}}">{{tag | split:'_' | last }}</label>
-    </li>
+    {% unless categoryCheck == 'size' %}
+      <li class="CollectionFilter__filter-value-container {% if current_tags contains tag %}active{% endif %}">
+        <input {% if current_tags contains tag %}checked{% endif %} class="CollectionFilter__filter-value js-filterValue" id="{{tag}}" type="radio" name="{{categoryCheck}}" value="{{tag | handleize}}">
+        <div class="CollectionFilter__checkbox js-filterCheckbox"></div>
+        {% assign labelText = tag | split:'_' | last %}
+        {% if categoryCheck == 'price' %}
+        {% assign firstMoney = labelText | split:'-' | first %}
+        {% assign lastMoney = labelText | split:'-' | last %}
+        {% assign labelText = '$' | append: firstMoney | append:'.00' | append:' - $' | append: lastMoney %}
+        {% endif %}
+        <label class="CollectionFilter__filter-value-label" for="{{tag}}">{{ labelText }}</label>
+      </li>
+    {% else %}
+      {% if sizeTags %}
+        {% for tag in sizeTags %}
+          {% if collection.all_tags contains tag %}
+          <li class="CollectionFilter__filter-value-container {% if current_tags contains tag %}active{% endif %}">
+            <input {% if current_tags contains tag %}checked{% endif %} class="CollectionFilter__filter-value js-filterValue" id="{{tag}}" type="radio" name="{{categoryCheck}}" value="{{tag | handleize}}">
+            <div class="CollectionFilter__checkbox js-filterCheckbox"></div>
+            <label class="CollectionFilter__filter-value-label" for="{{tag}}">{{tag | split:'_' | last }}</label>
+          </li>
+          {% endif %}
+        {% endfor %}
+        {% assign sizeTags = false %}
+      {% endif %}
+    {% endunless %}
   {% endif %}
 
   {% if forloop.last %}
@@ -128,9 +154,23 @@
     if(values.hasClass('active')){
       $(this).parent().removeClass('active');
       values.removeClass('active');
+      $(this).find('span').text('+');
     }else{
       $(this).parent().addClass('active');
       values.addClass('active');
+      $(this).find('span').text('-');
+    }
+  });
+
+  //Show Filters for Mobile
+  $('.js-mobileFilterTrigger').click(function(){
+    var mobileFilter = $('.js-mobileCollectionFilter');
+    if(mobileFilter.hasClass('active')){
+      mobileFilter.fadeOut();
+      mobileFilter.removeClass('active');
+    }else{
+      mobileFilter.fadeIn();
+      mobileFilter.addClass('active');
     }
   });
 </script>

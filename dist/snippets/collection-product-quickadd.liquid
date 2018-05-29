@@ -66,7 +66,7 @@
   {% if option.name == 'Color' %}
     <div class="Product__swatches">
       {% for value in option.values %}
-      <button class="js-ProductSwatch Product__swatch {% if forloop.first %}Product__swatch--active{% endif %}" type="button" data-color="{{value}}">
+      <button class="js-QuickAddProductSwatch Product__swatch {% if forloop.first %}Product__swatch--active{% endif %}" type="button" data-color="{{value}}">
         <span class="Product__swatch-color {{value | handleize }}"></span>
       </button>
       {% endfor %}

@@ -3,7 +3,7 @@ $(document).ready(function(){
     CartJS.addItem($(this).attr('data-variant-id'), 1);
   });
 
-  $('.js-ProductSwatch').click(function(){
+  $('.js-QuickAddProductSwatch').click(function(){
     var parentContainer = $(this).closest('.js-CollectionProductContainer');
     var json = parentContainer.find('.js-CollectionProductJSON').html();
     json = $.parseJSON(json);

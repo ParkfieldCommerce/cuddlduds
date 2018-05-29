@@ -98,13 +98,49 @@ concrete.Product = (function() {
       $('.Product__swatch[data-color="'+ color +'"]').addClass('Product__swatch--active');
 
       //Show Correct Variant Images
+      $('.js-ProductThumbsSlider .swiper-wrapper').empty();
+      $('.js-ProductThumbsSliderDots').empty();
+      //$('.js-ProductThumbsSliderDots').empty();
+      $('.BackupSlides .swiper-slide').clone().appendTo('.js-ProductThumbsSlider .swiper-wrapper');
       $('.js-ProductThumbs img').each(function(){
         if($(this).attr('alt') != color){
-          $(this).hide();
-        }else{
-          $(this).show();
+          $(this).parent().remove();
         }
       });
+
+      //Determine number of slides based on # of variant images
+      var numOfSlides = $('.js-ProductThumbsSlider .swiper-slide').length;
+      if(numOfSlides > 3){
+        numOfSlides = 3;
+      }
+
+      //Destroy Existing Slider
+      if(thumbsSlider != undefined){
+        thumbsSlider.destroy();
+      }
+
+      //Reinitialize Slider
+      var mobileSettings = {
+        direction: 'horizontal',
+        slidesPerView: 1,
+        loop: false,
+        allowTouchMove: true,
+        pagination: {
+          el: '.swiper-pagination',
+        }
+      };
+      var desktopSettings = {
+        direction: 'vertical',
+        slidesPerView: numOfSlides,
+        loop: false,
+        allowTouchMove: false,
+        navigation: {
+          nextEl: '.js-ProductThumbsSliderNext',
+          prevEl: '.js-ProductThumbsSliderPrev',
+        }
+      };
+      var sliderSettings = $(window).width() < 600 ? mobileSettings : desktopSettings;
+      thumbsSlider = new Swiper('.js-ProductThumbsSlider', sliderSettings);        
 
       //Set VariantId to button
       $('.js-AddToCart').attr('data-cart-add', variant.id);

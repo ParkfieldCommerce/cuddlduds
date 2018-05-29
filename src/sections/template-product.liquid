@@ -1,5 +1,4 @@
 <!-- sections/template-product.liquid -->
-
 {% assign sold_out = true %}
 {% assign on_sale = false %}
 {% assign current_variant = product.selected_or_first_available_variant %}
@@ -15,7 +14,7 @@
 <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
 <meta itemprop="image" content="{{ product.featured_image | img_url: '1024x1024' }}">
 
-<div class="padding-top-5x padding-bottom-5x">
+<div class="l-padding-top-5x m-padding-top-5x s-padding-top-3x padding-bottom-5x">
   <div class="container l" itemscope itemtype="http://schema.org/Product" data-section-type="product" data-section-id="{{ section.id }}" data-enable-history-state="true">
     <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
     <meta itemprop="image" content="{{ product.featured_image | img_url: '1024x1024' }}">
@@ -26,31 +25,60 @@
     </div>
     <div class="row">
       <div class="column l6 m6 s12">
-        <div id="ProductPhoto">
+        <div class="Product__images-column">
+        <div class="Product__heading--mobile">
+          <h1 class="Product__name" itemprop="name">{{ product.title }}</h1>
+          <div class="Product__prices">
+            <span class="hidden">{{ 'product.regular_price' | t }}</span>
+            {% if on_sale %}
+                <s id="ComparePrice" class="Product__price Product__price--old">{{ product.compare_at_price | money }}</s>
+            {% endif %}
+            <span id="ProductPrice" class="h2 Product__price Product__price{% if on_sale %}--sale{% else %}--current{% endif %}" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+              {{ current_variant.price | money }}
+            </span>
+          </div>
+        </div>
+        <div id="ProductPhoto" class="Product__main-image">
           <img srcset="{{ product.featured_image | img_url: '1024x1024', scale: 2 }} 2x" src="{{ product.featured_image | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %}>
         </div>
 
         {% if product.images.size > 1 %}
-          <div id="ProductThumbs" class="Product__thumbs row collapse js-ProductThumbs">
-            {% for image in product.images %}
-              <div class="column l3 m4 s6">
-                <img srcset="{{ product.featured_image | img_url: '512x512', scale: 2 }} 2x" src="{{ image | img_url: '512x512' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %}>
+          <div id="ProductThumbs" class="Product__thumbs collapse js-ProductThumbs">
+            <div class="js-ProductThumbsSlider Product__thumbs-slider swiper-container">
+              <div class="swiper-wrapper">
+              {% for image in product.images %}
+                <div class="swiper-slide">
+                  <img srcset="{{ product.featured_image | img_url: '512x512', scale: 2 }} 2x" src="{{ image | img_url: '512x512' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %}>
+                </div>
+              {% endfor %}
               </div>
-            {% endfor %}
+            </div>
+            <div class="ProductThumbsSliderArrow ProductThumbsSliderArrow--next js-ProductThumbsSliderNext"><i class="fa fa-angle-down"></i></div>
+            <div class="ProductThumbsSliderArrow ProductThumbsSliderArrow--prev js-ProductThumbsSliderPrev"><i class="fa fa-angle-up"></i></div>
+            <div class="ProductThumbsSliderDots js-ProductThumbsSliderDots swiper-pagination"></div>
           </div>
         {% endif %}
+        <div class="BackupSlides" style="display: none;">
+          {% for image in product.images %}
+            <div class="swiper-slide">
+              <img srcset="{{ product.featured_image | img_url: '512x512', scale: 2 }} 2x" src="{{ image | img_url: '512x512' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %}>
+            </div>
+          {% endfor %}
+        </div>
+        </div>
       </div>
-
       <div class="column l6 m6 s12">
-        <h1 class="Product__name" itemprop="name">{{ product.title }}</h1>
-        <div class="Product__prices">
-          <span class="hidden">{{ 'product.regular_price' | t }}</span>
-          {% if on_sale %}
-              <s id="ComparePrice" class="Product__price Product__price--old">{{ product.compare_at_price | money }}</s>
-          {% endif %}
-          <span id="ProductPrice" class="h2 Product__price Product__price{% if on_sale %}--sale{% else %}--current{% endif %}" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
-            {{ current_variant.price | money }}
-          </span>
+        <div class="Product__heading--desktop">
+          <h1 class="Product__name" itemprop="name">{{ product.title }}</h1>
+          <div class="Product__prices">
+            <span class="hidden">{{ 'product.regular_price' | t }}</span>
+            {% if on_sale %}
+                <s id="ComparePrice" class="Product__price Product__price--old">{{ product.compare_at_price | money }}</s>
+            {% endif %}
+            <span id="ProductPrice" class="h2 Product__price Product__price{% if on_sale %}--sale{% else %}--current{% endif %}" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+              {{ current_variant.price | money }}
+            </span>
+          </div>
         </div>
         <div class="Product__description js-ProductDescription"></div>
         <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
@@ -73,7 +101,7 @@
                     {% endfor %}
                   </div>
                   {% endif %%}
-                  <div class="Product__option-select-wrapper select-wrapper">
+                  <div class="Product__option-select-wrapper select-wrapper Product__option-select-wrapper--{{option.name | downcase }}">
                     <select class="single-option-selector Product__option-select Product__option-select-{{option.name | downcase }}" id="SingleOptionSelector-{{ forloop.index }}" data-index="option{{ forloop.index }}">
                       {% for value in option.values %}
                         {% if forloop.first %}
@@ -83,6 +111,9 @@
                       {% endfor %}
                     </select>
                   </div>
+                  {% if option.name == 'Size' %}
+                  {% include 'size-guide' %}
+                  {% endif %}
                 </div>
               {% endfor %}
             {% endunless %}
@@ -146,6 +177,7 @@
 {% schema %}
   {
     "name": "Product Page",
+    "class":"product-page",
     "settings": [
       {
         "type":"header",

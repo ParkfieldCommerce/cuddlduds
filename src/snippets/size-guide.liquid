@@ -1,0 +1,25 @@
+{% for tag in product.tags %}
+{% if tag contains 'size-guide_' %}
+  {% assign sizeGuide = true %}
+  {% assign sizeGuideHandle = tag | split:'_' | last %}
+  {% assign sizeGuidePage = pages[sizeGuideHandle] %}
+{% endif %}
+{% endfor %}
+{% if sizeGuide %}
+<div id="SizeGuide" class="SizeGuide popup overlay">
+  <div class="popup-inner">
+    <div class="SizeGuide__content popup-content center">
+      <h2>Size Guide</h2>
+      <p>Need more help? <a href="/contact-us">Contact Us</a></p>
+      {{sizeGuidePage.content}}
+      <a href="#close" class="popup-close" data-close aria-label="{{ 'common.close' | t }}">
+        <i class="fa fa-times-thin fa-2x"></i>
+      </a>
+    </div>
+  </div>
+</div>
+<button data-trigger="popup" data-target="#SizeGuide">Click Me</button>
+<script>
+  var newPopup = new Focus('#SizeGuide');
+</script>
+{% endif %}

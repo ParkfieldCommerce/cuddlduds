@@ -11,7 +11,14 @@
       width: 100%;
       border-right: 1px solid $border-color;
       border-bottom: 0;
+      &:hover{
+        background-color: transparent;
+        color: $font-dark;
+      }
     }
+  }
+  @include s(){
+    display: none;
   }
 }
 .CollectionFilter--mobile .CollectionFilter__category{
@@ -37,8 +44,48 @@
     margin-bottom: 10px;
   }
 }
+.CollectionFilter--mobile .CollectionFilter__dropdown-trigger{
+  position: relative;
+  span{
+    @include medium(1.4rem);
+    position: absolute;
+    top: 50%;
+    @include prefix(transform, translateY(-50%));
+    right: 20px;
+  }
+}
+
 .CollectionFilter--mobile .CollectionFilter__dropdown{
   @include s(){
     display: none;
+  }
+}
+
+.Collection__mobile-sort{
+  @include flex();
+  @include align-items(center);
+  @include justify-content(flex-end);
+  @include s(){
+    .select-wrapper{
+      width: auto;
+      margin-bottom: 0;
+    }
+    @include justify-content(space-between);
+  }
+}
+.CollectionFilter__mobile-trigger{
+  width: auto;
+  background-color: transparent;
+  border: 1px solid $border-color;
+  color: #b8b8b8;
+  margin-bottom: 0 !important;
+  height: 30px;
+  @include book(1.25rem);
+  padding-right: 30px;
+  display: inline-block;
+  &:hover{
+    color: #b8b8b8;
+    background-color: transparent;
+    border-color: $border-color;
   }
 }

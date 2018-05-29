@@ -8,3 +8,9 @@
     @include medium(1.2rem);
   }
 }
+
+.product-page .Breadcrumbs{
+  @include s(){
+    display: none;
+  }
+}

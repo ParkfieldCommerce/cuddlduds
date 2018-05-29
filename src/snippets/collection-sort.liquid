@@ -2,7 +2,7 @@
 
 {% assign sort_options = 'manual,best-selling,title-ascending,title-descending,price-ascending,price-descending,created-descending,created-ascending' | split: ',' %}
 
-<div class="select-wrapper">
+<div class="CollectionSort select-wrapper">
   <select name="SortBy" data-sort>
     <option selected disabled>Sort By</option>
     {% for option in sort_options %}

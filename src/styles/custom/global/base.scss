@@ -17,6 +17,9 @@ button, .Button{
   @include medium(1.6rem);
   height: 35px;
   border-radius: 0;
+  &::-moz-focus-inner {
+    border: 0;
+  }
   &:hover{
     color: $font-light;
     background-color: $accent-color;

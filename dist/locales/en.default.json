@@ -160,12 +160,12 @@
       "title": "Sort",
       "manual": "Featured",
       "best-selling": "Best selling",
-      "title-ascending": "Alphabetically, A-Z",
-      "title-descending": "Alphabetically, Z-A",
-      "price-ascending": "Price, low to high",
-      "price-descending": "Price, high to low",
-      "created-descending": "Date, new to old",
-      "created-ascending": "Date, old to new"
+      "title-ascending": "A-Z",
+      "title-descending": "Z-A",
+      "price-ascending": "Price: Low to High",
+      "price-descending": "Price: High to Low",
+      "created-descending": "Date: New to Old",
+      "created-ascending": "Date: Old to New"
     }
   },
   "product": {

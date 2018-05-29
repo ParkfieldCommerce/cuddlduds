@@ -60,7 +60,7 @@ form#CartPage {
   textarea,
   .select-wrapper,
   .province-wrapper {
-    width: 100%;
+    //width: 100%;
     @include clearfix();
     &:not(:last-child) {
       margin-bottom: $spacing*2;

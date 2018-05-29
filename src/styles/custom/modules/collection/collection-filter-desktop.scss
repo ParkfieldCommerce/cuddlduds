@@ -31,13 +31,18 @@
 .CollectionFilter__dropdown{
   @include flex();
   flex-flow: row wrap;
+  text-align: center;
   @include justify-content(center);
 }
 .CollectionFilter__filter-value-container{
-  @include flex();
+  @include inline-flex();
   @include align-items(center);
   margin-bottom: 5px;
   margin-right: 15px;
+  @include s(){
+    width: 100%;
+    margin-right: 0;
+  }
 }
 .CollectionFilter__filter-value-container.active{
   .CollectionFilter__checkbox{
