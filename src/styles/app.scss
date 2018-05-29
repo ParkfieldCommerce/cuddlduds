@@ -49,7 +49,7 @@
 
 /* Global */
 @import url('custom/modules/global/breadcrumbs.scss');
-
+@import url('custom/modules/global/pagination.scss');
 /* Header */
 @import url('custom/modules/header/header.scss');
 @import url('custom/modules/header/navigation.scss');
@@ -67,7 +67,10 @@
 /* LoginRegister */
 @import url('custom/modules/account/login-register.scss');
 /* Collection */
+@import url('custom/modules/collection/collection-banner.scss');
 @import url('custom/modules/collection/collection-product.scss');
+@import url('custom/modules/collection/collection-filter-desktop.scss');
+@import url('custom/modules/collection/collection-filter-mobile.scss');
 /* Product */
 @import url('custom/modules/product/product.scss');
 

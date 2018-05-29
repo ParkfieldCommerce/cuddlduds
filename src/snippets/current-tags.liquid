@@ -1,0 +1,35 @@
+
+        <span class="CurrentTags">
+        {% for tag in current_tags %}
+        {% assign currentTag = tag %}
+        {% if tag contains '(0)'%}
+          {% assign currentTag = tag | replace_first: '(0)', '' %}
+        {% endif %}
+        {% if tag contains '(d)'%}
+          {% assign currentTag = tag | replace_first: '(d)', '0' %}
+        {% endif %}
+        {% if tag contains '(h)' %}
+          {% assign currentTag = tag | replace_first: '(h)', '00' %}
+        {% endif %}
+        {% if tag contains '(k)' %}
+          {% assign currentTag = tag | replace_first: '(k)', '000' %}
+        {% endif %}
+        
+        {% if forloop.length > 2 %}
+          {% unless forloop.last %}
+            {{currentTag | split:'_' | last | capitalize }},
+          {% else %}
+            and {{currentTag | split:'_' | last | capitalize }}
+          {% endunless %}
+        {% elsif forloop.length == 2 %}
+          {% unless forloop.last %}
+            {{currentTag | split:'_' | last | capitalize }}
+          {% else %}
+            and {{currentTag | split:'_' | last | capitalize }}
+          {% endunless %}
+        {% else %}
+          {{currentTag | split:'_' | last | capitalize }}
+        {% endif %}
+        {% endfor %}
+        </span>
+        <a class="ResetFilter" href="{{collection.url}}">Reset Filters</a>

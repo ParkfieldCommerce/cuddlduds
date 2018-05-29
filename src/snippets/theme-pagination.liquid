@@ -1,10 +1,43 @@
-<!-- /snippets/theme-pagination.liquid -->
-
-{% if paginate.pages > 1 %}
-  {% if theme-pagination == 'hr' %}
-    <hr>
+{% assign current_page = paginate.current_page %}
+<div class="Pagination center margin-bottom-3x">
+  <i class="fa fa-angle-left" aria-hidden="true"></i>
+  {% for part in paginate.parts %}
+  {% assign partNumber = part.title | plus: 0 %}
+  
+  {% assign prevPage2 = current_page | minus: 2 %}
+  {% if partNumber ==  prevPage2 and part.is_link %}
+  <a href="{{part.url}}">{{part.title}}</a><span>/</span>
   {% endif %}
-  <div class="pagination">
-    {{ paginate | default_pagination }}
-  </div>
+
+  {% assign prevPage1 = current_page | minus: 1 %}
+  {% if partNumber ==  prevPage1 and part.is_link %}
+  <a href="{{part.url}}">{{part.title}}</a><span>/</span>
+  {% endif %}
+
+  {% assign nextPage = current_page %}
+  {% if partNumber ==  nextPage %}
+  <span class="current">{{part.title}}</span><span>/</span>
+  {% endif %}
+
+  {% assign nextPage1 = current_page | plus: 1 %}
+  {% if partNumber ==  nextPage1 and part.is_link %}
+  <a href="{{part.url}}">{{part.title}}</a><span>/</span>
+  {% endif %}
+
+  {% assign nextPage2 = current_page | plus: 2 %}
+  {% if partNumber == nextPage2 and part.is_link %}
+  <a href="{{part.url}}">{{part.title}}</a>
+  {% endif %}
+
+  {% if partNumber == paginate.pages %}
+  {% unless paginate.current_page == paginate.pages or nextPage2 == paginate.pages or nextPage1 == paginate.pages %}
+    /.../<a href="{{part.url}}">{{part.title}}</a>
+  {% endunless %}
+  {% endif %}
+
+  {% endfor %}
+  <i class="fa fa-angle-right" aria-hidden="true"></i>
+</div>
+{% if paginate.next.url != blank %}
+<a href="{{paginate.next.url}}" class="Pagination__load-more">Load Next</a>
 {% endif %}

@@ -1,0 +1,78 @@
+.CollectionFilter--desktop{
+  @include flex();
+  justify-content: center;
+  @include s(){
+    display: none;
+  }
+}
+.CollectionFilter__dropdown-trigger{
+  background-color: transparent;
+  border: 1px solid $border-color;
+  border-right: none;
+  color: $font-dark;
+  text-transform: uppercase;
+  height: 50px;
+  width: 150px;
+  @include book(1.4rem);
+  &:hover{
+    border-color: $border-color;
+  }
+}
+.CollectionFilter__dropdown-trigger.active{
+  background-color: $accent-color;
+  color: $font-light;
+}
+.CollectionFilter__category{
+  &:last-child button{
+    border-right: 1px solid $border-color;
+  }
+}
+
+.CollectionFilter__dropdown{
+  @include flex();
+  flex-flow: row wrap;
+  @include justify-content(center);
+}
+.CollectionFilter__filter-value-container{
+  @include flex();
+  @include align-items(center);
+  margin-bottom: 5px;
+  margin-right: 15px;
+}
+.CollectionFilter__filter-value-container.active{
+  .CollectionFilter__checkbox{
+    position: relative;
+    &:after{
+      display: inline-block;
+      font-family: FontAwesome;
+      content:"\f00c";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      @include prefix(transform, translate(-50%,-50%));
+    }
+  }
+}
+.CollectionFilter__filter-value-label{
+  margin-bottom: 0;
+  @include book(1.4rem);
+  color: #9e9e9e;
+  font-weight: 300;
+}
+.CollectionFilter__filter-value{
+  display: none;
+}
+.CollectionFilter__checkbox{
+  margin-right: 5px;
+  height: 20px;
+  width: 20px;
+  border: 1px solid $border-color;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.CurrentTags,
+.ResetFilter{
+  font-size: 1.2rem;
+}

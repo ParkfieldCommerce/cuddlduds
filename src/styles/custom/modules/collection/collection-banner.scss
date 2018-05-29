@@ -1,0 +1,32 @@
+.CollectionBanner{
+  position: relative;
+  img{
+    width: 100%;
+    vertical-align: middle;
+  }
+}
+.CollectionBanner__image--desktop{
+  @include maxQuery($s){
+    display: none;
+  }
+}
+.CollectionBanner__image--mobile{
+  display: none;
+  @include maxQuery($s){
+    display: block;
+  }
+}
+.CollectionBanner__heading{
+  @include book(5rem);
+  text-transform: uppercase;
+  position: absolute;
+  top: 50%;
+  font-weight: 500;
+  left: 50%;
+  width: 100%;
+  text-align: center;
+  @include prefix(transform, translate(-50%,-50%));
+  @include maxQuery($s){
+    font-size: 2.5rem;
+  }
+}

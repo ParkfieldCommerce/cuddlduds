@@ -1,0 +1,136 @@
+{% assign categories = '' %}
+{% assign categories = categories | split: '' %}
+{% assign lastCategory = '' %}
+<ul class="CollectionFilter CollectionFilter--desktop">
+{% for tag in collection.all_tags %}
+  {% if tag contains '_' %}
+    {% assign categoryCheck = tag | split:'_' | first %}
+    {% unless categories contains categoryCheck %}
+      {% if lastCategory != '' and lastCategory != categoryCheck %}
+        </li>
+      {% endif %}
+      {% if lastCategory != categoryCheck %}
+        <li class="CollectionFilter__category">
+          <button class="CollectionFilter__dropdown-trigger js-dropdownTrigger" type="button" data-category="{{categoryCheck}}">{{categoryCheck}}</button>
+      {% endif %}
+      {% assign categories = categories | append: categoryCheck %}
+      {% assign lastCategory = categoryCheck %}
+    {% endunless %}
+  {% endif %}
+
+  {% if forloop.last %}
+  </li>
+  {% endif %}
+{% endfor %}
+</ul>
+
+{% assign categories = '' %}
+{% assign categories = categories | split: '' %}
+{% assign lastCategory = '' %}
+<ul class="CollectionFilter CollectionFilter--mobile">
+{% for tag in collection.all_tags %}
+  
+  {% if tag contains '_' %}
+    {% assign categoryCheck = tag | split:'_' | first %}
+    {% unless categories contains categoryCheck %}
+      {% if lastCategory != '' and lastCategory != categoryCheck %}
+        </ul>
+        </li>
+      {% endif %}
+      {% if lastCategory != categoryCheck %}
+        <li class="CollectionFilter__category" data-category="{{categoryCheck}}">
+          <button class="CollectionFilter__dropdown-trigger js-mobileDropdownTrigger" data-category="{{categoryCheck}}">{{categoryCheck}}</button>
+          <ul class="CollectionFilter__dropdown">
+      {% endif %}
+      {% assign categories = categories | append: categoryCheck %}
+      {% assign lastCategory = categoryCheck %}
+    {% endunless %}
+    <li class="CollectionFilter__filter-value-container {% if current_tags contains tag %}active{% endif %}">
+      <input {% if current_tags contains tag %}checked{% endif %} class="CollectionFilter__filter-value js-filterValue" id="{{tag}}" type="radio" name="{{categoryCheck}}" value="{{tag | handleize}}">
+      <div class="CollectionFilter__checkbox js-filterCheckbox"></div>
+      <label class="CollectionFilter__filter-value-label" for="{{tag}}">{{tag | split:'_' | last }}</label>
+    </li>
+  {% endif %}
+
+  {% if forloop.last %}
+  </ul>
+  </li>
+  {% endif %}
+
+{% endfor %}
+</ul>
+
+<script>
+  //Setting Filter and URL Redirect
+  $('.js-filterValue').change(function(){
+    var rootUrl = '{{shop.url}}'+'{{collection.url}}';
+    if('{{collection.url}}' == ''){
+      rootUrl = '{{shop.url}}'+'/collections/all'
+    }
+    var urlSegment = '';
+    $(".js-filterValue:checked").each(function() {
+      if(this.checked){
+        if(urlSegment == ''){
+          urlSegment+='/'+this.value;
+        }else{
+          urlSegment+='+'+this.value;
+        }
+      }
+    });
+
+    window.location = rootUrl+urlSegment;
+  });
+  
+  //Checkbox Logic
+  $('.js-filterCheckbox').click(function(){
+    var radio = $(this).prev();
+    var container = $(this).parent();
+
+    if(container.hasClass('active')){
+      radio.prop('checked', false);
+      container.removeClass('active');
+    }else{
+      radio.prop('checked', true);
+      container.addClass('active');
+    }
+    radio.trigger('change');
+  });
+
+  //Dropdown Toggle
+  $('.js-dropdownTrigger').click(function(){
+    var category = $(this).attr('data-category');
+    var values = $('.CollectionFilter__category[data-category="'+category+'"]');
+
+    //Set other options to inactive
+    $('.CollectionFilter__category[data-category!="'+category+'"]').removeClass('active');
+    $('.js-dropdownTrigger[data-category!="'+category+'"]').removeClass('active');
+
+    //Set Current Option to Active
+    if(values.hasClass('active')){
+      $(this).removeClass('active');
+      values.removeClass('active');
+    }else{
+      $(this).addClass('active');
+      values.addClass('active');
+    }
+  });
+
+    //Mobile Dropdown Toggle
+  $('.js-mobileDropdownTrigger').click(function(){
+    var category = $(this).attr('data-category');
+    var values = $('.CollectionFilter__category[data-category="'+category+'"]');
+
+    //Set other options to inactive
+    $('.CollectionFilter__category[data-category!="'+category+'"]').removeClass('active');
+    $('.js-mobileDropdownTrigger[data-category!="'+category+'"]').parent().removeClass('active');
+
+    //Set Current Option to Active
+    if(values.hasClass('active')){
+      $(this).parent().removeClass('active');
+      values.removeClass('active');
+    }else{
+      $(this).parent().addClass('active');
+      values.addClass('active');
+    }
+  });
+</script>

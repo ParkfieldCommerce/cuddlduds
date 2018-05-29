@@ -5,10 +5,11 @@
   border: 1px solid $border-color;
 }
 .CollectionProduct__title{
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
   @include book(1.8rem);
   color: $font-dark;
-  margin-bottom: 10px;
-  display: block;
   &:hover{
     color: $accent-color;
   }
@@ -23,4 +24,61 @@
 }
 .CollectionProduct__price--old{
   color: #b8b8b8;
+}
+
+.CollectionProduct .Product__swatches{
+  @include justify-content(center);
+  margin-bottom: 15px;
+}
+.CollectionProduct .Product__swatch{
+  outline: none;
+  &::-moz-focus-inner {
+    border: 0;
+  }
+}
+.CollectionProduct--quickadd{
+  .CollectionProduct__image-container{
+    position: relative;
+    overflow: hidden;
+    img{
+      vertical-align: middle;
+    }
+  }
+  .CollectionProduct__size-variants{
+    @include flex();
+    flex-flow: row wrap;
+    height: 70px;
+    width: 100%;
+    position: absolute;
+    bottom: -70px;
+    background-color: rgba(255,255,255,.75);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    transition: bottom .3s;
+    @include maxQuery($s){
+      display: none;
+    }
+  }
+  .CollectionProduct__size-variants-label{
+    display: block;
+    @include medium(1.4rem);
+    text-align: center;
+    width: 100%;
+    text-transform: uppercase;
+  }
+  .CollectionProduct__size-variant{
+    background-color: transparent;
+    padding: 0;
+    color: black;
+    flex: 1;
+    transition: color .3s;
+    &:hover{
+      color: $accent-color;
+    }
+  }
+  &:hover{
+    .CollectionProduct__size-variants{
+      bottom: 0;
+    }
+  }
 }

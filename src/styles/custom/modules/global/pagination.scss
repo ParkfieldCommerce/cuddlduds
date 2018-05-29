@@ -1,0 +1,40 @@
+.Pagination{
+  display: inline-block;
+  width: 100%;
+  a, span{
+    padding: 3px;
+    @include book(1.4rem);
+    border: none;
+    background-color: transparent;
+    color: $font-dark;
+    &:hover{
+      background-color: transparent;
+      color: $accent-color;
+    }
+  }
+  .current{
+    padding: 3px;
+    text-decoration: underline;
+  }
+  @include maxQuery(800px){
+    display: none;
+  }
+}
+
+.Pagination__load-more{
+  display: none;
+  text-transform: uppercase;
+  border: thin solid $border-color;
+  height: 50px;
+  @include prefix(align-items, center);
+  @include prefix(justify-content, center);
+  a,span{@include book(1.4rem);}
+}
+@include maxQuery(800px){
+  .Pagination__load-more{
+    @include flex();
+    max-width: 80%;
+    margin: 0 auto;
+    margin-bottom: 90px;
+  }
+}

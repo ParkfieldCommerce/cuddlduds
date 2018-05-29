@@ -1,0 +1,85 @@
+<!-- /snippets/template-collection.liquid -->
+{% assign column_width = 'column l4 m6 s12' %}
+{% assign pagination = pagination | default: 50 %}
+{% assign hasBanner = false %}
+
+{% for block in section.blocks %}
+  {% if collection.handle == block.settings.collection %}
+    {% assign hasBanner = true %}
+    {% assign banner = block.settings.banner | img_url:'master' %}
+    {% assign mobileBanner = block.settings.mobile_banner | img_url:'master' %}
+  {% endif %}
+{% endfor %}
+
+{% paginate collection.products by 1 %}
+  <div class="CollectionBanner l-margin-bottom-5x m-margin-bottom-5x s-margin-bottom-3x" data-section-type="collection">
+    <img class="CollectionBanner__image CollectionBanner__image--desktop" src="{{banner}}" alt="Collection Banner">
+    <img class="CollectionBanner__image CollectionBanner__image--mobile" src="{{mobileBanner}}" alt="CollectionBanner">
+    <h1 class="CollectionBanner__heading">{{ collection.title }}</h1>
+  </div>
+  <div class="container l" data-section-type="collection">
+    <header>
+      <div class="row">
+        <div class="column l12 m12 s12 right">
+          {% include 'collection-sort' %}
+        </div>
+      </div>
+      <div class="row">
+        <div class="column l12 m12 s12">
+          {% include 'collection-filter' %}
+        </div>
+      </div>
+      {% if current_tags %}
+      <div class="row">
+        <div class="column l12 m12 s12 center">
+          {% include 'current-tags' %}
+        </div>
+      </div>
+      {% endif %}
+    </header>
+
+    <section class="row margin-top-3x">
+      {% for product in collection.products %}
+      <div class="column l3 m3 s6">
+        {% include 'collection-product-quickadd' %}
+      </div>
+      {% else %}
+        <div class="column l12">
+          <p class="h4">{{ 'collection.no_matches' | t }}</p>
+        </div>
+      {% endfor %}
+    </section>
+
+    {% include 'theme-pagination' with 'hr' %}
+  </div>
+
+{% endpaginate %}
+
+{% schema %}
+  {
+    "name": "Collection Page",
+    "blocks": [
+      {
+        "type":"collection",
+        "name":"Collection",
+        "settings":[
+          {
+            "type":"collection",
+            "id":"collection",
+            "label":"Collection"
+          },
+          {
+            "type":"image_picker",
+            "id":"banner",
+            "label":"Banner"
+          },
+          {
+            "type":"image_picker",
+            "id":"mobile_banner",
+            "label":"Mobile Banner"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
