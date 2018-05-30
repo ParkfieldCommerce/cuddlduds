@@ -1,8 +1,7 @@
 <!-- /templates/page.liquid -->
-
-<div class="container l">
-
-  <h1>{{ page.title }}</h1>
+<div class="Page container l l-padding-top-5x m-padding-top-5x s-padding-top-3x l-padding-bottom-10x m-padding-bottom-10x s-padding-bottom-5x">
+  {% include 'theme-breadcrumbs' %}
+  <h1 class="Page__heading">{{ page.title }}</h1>
 
   <div class="rte">
     {{ page.content }}

@@ -38,7 +38,7 @@
       <span aria-hidden="true">&rsaquo;</span>
       <span>{{ article.title }}</span>
     {% elsif template contains 'page' %}
-      <span aria-hidden="true">&rsaquo;</span>
+      <span aria-hidden="true">/</span>
       <span>{{ page.title }}</span>
     {% elsif template contains 'search' and search.performed %}
       {% capture search_url %}/search/{% endcapture %}

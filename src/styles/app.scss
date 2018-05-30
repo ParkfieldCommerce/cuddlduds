@@ -74,7 +74,10 @@
 /* Product */
 @import url('custom/modules/product/product.scss');
 @import url('custom/modules/product/size-guide.scss');
-
+/* Page */
+@import url('custom/modules/page/page.scss');
+/* Cart */
+@import url('custom/modules/cart/popup-cart.scss');
 
 /* Helpers ===================================================================*/
 @import url('global/helpers.scss');
