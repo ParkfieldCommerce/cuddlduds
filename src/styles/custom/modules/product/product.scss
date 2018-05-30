@@ -78,6 +78,9 @@
     position: relative;
     z-index: 2;
   }
+  @include maxQuery($s){
+    margin-bottom: 0 !important;
+  }
 }
 
 .Product__option--Color .Product__option-select-wrapper:after{
@@ -188,6 +191,7 @@
 .Product__thumbs-slider{
   max-height: 440px;
   .swiper-slide{
+    position: relative;
     height: 150px !important;
   }
 }
@@ -240,3 +244,37 @@
 .Product__thumbs-slider .swiper-slide{
   @include flex-center();
 }
+.Product__video{
+  display: none;
+  width: 100%;
+}
+.Product__video-trigger{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  @include flex-center();
+  .fa.fa-play{
+    height: 32px;
+    width: 32px;
+    border-radius: 30px;
+    background-color: #484848;
+    color: white;
+    position: relative;
+    transition: color .3s;
+    &:before{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      @include prefix(transform, translate(-50%,-50%));
+    }
+  }
+  &:hover{
+    cursor: pointer;
+    .fa.fa-play{
+      background-color: $accent-color;
+    }
+  }
+}
+

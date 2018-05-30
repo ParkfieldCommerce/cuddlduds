@@ -1,5 +1,5 @@
 <!-- snippets/form-login.liquid -->
-
+<div class="LoginRegister">
 {% form 'customer_login' %}
   <h1>{{ 'account.login.title' | t }}</h1>
   {{ form.errors | default_errors }}
@@ -12,7 +12,7 @@
     <input type="password" value="" name="customer[password]" id="CustomerPassword"{% if form.errors contains 'password' %} class="error"{% endif %}>
   {% endif %}
 
-  <button type="submit" class="wide">{{ 'account.login.submit' | t }}</button>
+  <button type="submit">{{ 'account.login.submit' | t }}</button>
 
   <p>{{ 'account.login.no_account' | t }} {{ 'account.login.register' | t | customer_register_link }}</p>
   {% if form.password_needed %}
@@ -28,3 +28,4 @@
     <input type="submit" value="{{ 'form.continue' | t }}">
   {% endform %}
 {% endif %}
+</div>

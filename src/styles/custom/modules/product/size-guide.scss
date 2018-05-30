@@ -8,21 +8,36 @@
     width: 650px;
     height: 450px;
   }
+  .SizeGuide__heading{
+    text-align: center;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    color: $accent-color;
+  }
+  .SizeGuide__body{
+    text-align: center;
+  }
+  .popup-close{
+    color: $font-dark;
+  }
   tbody{
+    font-size: 14px;
     td{
       width: 30%;
       text-align: center;
       vertical-align: middle;
       border: 1px solid $border-color;
     }
-    tr:first-child{
+    tr:first-child{//First Row
       background-color: $border-color;
       color: $font-dark;
+      text-transform: uppercase;
+      td{padding: 5px;}
     }
-    tr:not(:first-child) td:first-child{
+    td:first-child{//First Column
+      width: 10%;
       background-color: $border-color;
       color: $font-dark;
-      width: 10%;
     }
     tr:not(:first-child) td:last-child{
       border-right: none;
@@ -30,5 +45,86 @@
     tr:not(:first-child) td{
       padding: 10px 0px;
     }
+  }
+}
+
+.SizeFitInfo__container{
+  position: relative;
+  .fa-times-thin{
+    position: absolute;
+    top: 10px;
+    height: 20px;
+    right: 25px;
+  }
+  .fa-times-thin:before {
+    content: '\00d7';
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+  }
+}
+.SizeFitInfo{
+  position: absolute;
+  opacity: 0;
+  display: none;
+  background-color: $bg-dark;
+  color: $font-light;
+  padding: 20px;
+  width: 230px;
+  bottom: 40px;
+  z-index: 3;
+  transition: opacity .3s;
+  p{
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+  a{
+    color: $font-light;
+    text-decoration: underline;
+    font-size: 1.4rem;
+    &:hover{
+      color: $accent-color;
+    }
+  }
+  &:after{
+    content:'';
+    display: inline-block;
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    bottom: -7px;
+    left: 15%;
+    @include prefix(transform, rotate(-45deg));
+    background-color: $bg-dark;
+    z-index: 2;
+  }
+  @include maxQuery(900px){
+    left: -100%;
+    &:after{
+      left: 75%; 
+    } 
+  }
+  @include maxQuery(650px){
+    left: -150%;
+  }
+  @include s(){
+    left: -10%;
+  }  
+  @include maxQuery(500px){
+    left: -100%;
+    &:after{
+      left: 75%;
+    }
+  }
+
+}
+.SizeFitInfo.active{
+  display: inline-block;
+  opacity: 1;
+}
+.SizeFitInfo__trigger{
+  font-size: 1.4rem;
+  @include s(){
+    font-size: 1.2rem;
   }
 }

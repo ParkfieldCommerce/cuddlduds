@@ -39,7 +39,8 @@
           </div>
         </div>
         <div id="ProductPhoto" class="Product__main-image">
-          <img srcset="{{ product.featured_image | img_url: '1024x1024', scale: 2 }} 2x" src="{{ product.featured_image | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %}>
+          <img class="js-mainPhoto" srcset="{{ product.featured_image | img_url: '1024x1024', scale: 2 }} 2x" src="{{ product.featured_image | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %}>
+          <video src="" class="js-video js-video--desktop Product__video" width="320" height="240" controls></video>
         </div>
 
         {% if product.images.size > 1 %}
@@ -49,6 +50,8 @@
               {% for image in product.images %}
                 <div class="swiper-slide">
                   <img srcset="{{ product.featured_image | img_url: '512x512', scale: 2 }} 2x" src="{{ image | img_url: '512x512' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %}>
+                  {% if image.alt contains 'mp4' %}<span class="Product__video-trigger js-videoImage"><i class="fa fa-play"></i></span>{% endif %}
+                  <video src="" class="js-video js-video--mobile Product__video" width="320" height="240" controls></video>
                 </div>
               {% endfor %}
               </div>
@@ -62,6 +65,10 @@
           {% for image in product.images %}
             <div class="swiper-slide">
               <img srcset="{{ product.featured_image | img_url: '512x512', scale: 2 }} 2x" src="{{ image | img_url: '512x512' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %}>
+              {% if image.alt contains 'mp4' %}
+                <span class="Product__video-trigger js-videoImage"><i class="fa fa-play"></i></span>
+                <video src="" class="js-video js-video--mobile Product__video" width="320" height="240" controls></video>
+              {% endif %}
             </div>
           {% endfor %}
         </div>

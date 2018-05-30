@@ -3,49 +3,63 @@
   The popup cart has been added to display the opportunities for displaying the
   cart contents on any page
 {% endcomment %}
-<form class="PopupCart" action="/cart" method="post" novalidate id="Cart-Drawer-Container" data-cart-view rv-cloak>
-  <div class="top-half">
-    <div class="heading-row">
-      <div class="PopupCart__title">{{ 'cart.title' | t }}</div>
-    </div>
-    <div class="PopupCart__product" rv-each-item="cart.items">
-      <a class="PopupCart__product__image" rv-href="item.url">
-        <img rv-src="item.image | product_image_size">
-      </a>
-      <div class="PopupCart__product__title-price">
-        <a class="PopupCart__product__title" rv-href="item.url">{ item.product_title }</a>
-        <span class="PopupCart__product__price">{ item.line_price | money_with_currency }</span>
-        <ul class="PopupCart__product__properties">
-          <li rv-each-property="item.properties | propertyList">
-            {property}
-          </li>
-        </ul>
-        <div class="PopupCart__product__quantity-container">
-          <div class="PopupCart__product__quantity-controls">
-          <span class="PopupCart__product__quantity-adjust-parent">
-            <a class="adjust" id="minusOne" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | minus 1">&#8722;</a>
-          </span>
-          <span class="PopupCart__product__quantity-adjust-parent" id="manualQuantity">{item.quantity}</span>
-          <span class="PopupCart__product__quantity-adjust-parent">
-            <a class="adjust" id="plusOne" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | plus 1">&#43;</a>
-          </span>
+<div id="PopupCart" class="js-PopupCart popup overlay">
+  <div class="popup-inner">
+    <div class="popup-content">
+      <form class="PopupCart" action="/cart" method="post" novalidate data-cart-view rv-cloak>
+        <div class="top-half">
+          <div class="heading-row">
+            <a href="#close" class="popup-close" data-close aria-label="{{ 'common.close' | t }}">
+              <i class="fa fa-times-thin fa-2x"></i>
+            </a>
+            <div class="PopupCart__title">{{ 'cart.title' | t }}</div>
           </div>
-          <a class="remove" id="plusOne" rv-data-cart-update="0" rv-data-cart-remove="index | plus 1"><i class="fa fa-trash-o"></i></a>
+          <div class="PopupCart__product" rv-each-item="cart.items">
+            <a class="PopupCart__product__image" rv-href="item.url">
+              <img rv-src="item.image | product_image_size">
+            </a>
+            <div class="PopupCart__product__title-price">
+              <a class="PopupCart__product__title" rv-href="item.url">{ item.product_title } - {item.variant_title}</a>
+              <span class="PopupCart__product__price">{ item.line_price | money_with_currency }</span>
+              <ul class="PopupCart__product__properties">
+                <li rv-each-property="item.properties | propertyList">
+                  {property}
+                </li>
+              </ul>
+              <div class="PopupCart__product__quantity-container">
+                <div class="PopupCart__product__quantity-controls">
+                <span class="PopupCart__product__quantity-adjust-parent">
+                  <a class="adjust" id="minusOne" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | minus 1">&#8722;</a>
+                </span>
+                <span class="PopupCart__product__quantity-adjust-parent" id="manualQuantity">{item.quantity}</span>
+                <span class="PopupCart__product__quantity-adjust-parent">
+                  <a class="adjust" id="plusOne" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | plus 1">&#43;</a>
+                </span>
+                </div>
+                <a class="PopupCart__product__remove" id="plusOne" rv-data-cart-update="0" rv-data-cart-remove="index | plus 1"><i class="fa fa-trash-o"></i></a>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+        <div class="bottom-half" rv-if="cart.item_count | gt 0">
+          <p class="PopupCart__subtotal">
+            <span class="label">{{ 'cart.subtotal' | t }}</span>
+            <span class="price">{ cart.total_price | money_with_currency }</span>
+          </p>
+          <p class="action-buttons">
+            <button class="PopupCart__checkout" href="/cart" type="submit" name="checkout" class="btn" aria-label="{{ 'cart.checkout' | t }}">{{ 'cart.checkout' | t }}</button>
+            <a class="PopupCart__close" href="#close" data-close class="close">Continue Shopping</a>
+          </p>
+        </div>
+        <div class="empty-cart-message" rv-if="cart.item_count | eq 0">
+          <p>{{'cart.empty' | t }}</p>
+        </div>
+      </form>
     </div>
   </div>
-  <div class="bottom-half" rv-if="cart.items | gtArr 0">
-    <p class="subtotal">
-      <span class="label">{{ 'cart.subtotal' | t }}</span>
-      <span class="price">{ cart.total_price | money_with_currency }</span>
-    </p>
-    <p class="action-buttons">
-      <button class="checkout" href="/cart" type="submit" name="checkout" class="btn" aria-label="{{ 'cart.checkout' | t }}">{{ 'cart.checkout' | t }}</button>
-      <a href="#close" class="close">Continue</a>
-    </p>
-  </div>
-  <div class="empty-cart-message" rv-if="cart.items | eqArr 0">
-    <p>{{'cart.empty' | t }}</p>
-  </div>
-</form>
+</div>
+
+<script>
+  var FocusPopupCart = new Focus('#PopupCart');
+</script>
+

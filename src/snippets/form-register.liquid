@@ -1,6 +1,6 @@
 <!-- snippets/form-register.liquid -->
 
-<div id="RegisterForm">
+<div class="LoginRegister">
   <h1>{{ 'account.register.title' | t }}</h1>
   {% form 'create_customer' %}
 
@@ -18,7 +18,7 @@
     <label for="CreatePassword">{{ 'form.password' | t }}</label>
     <input type="password" name="customer[password]" id="CreatePassword"{% if form.errors contains 'password' %} class="error"{% endif %}>
 
-    <button type="submit" class="wide">{{ 'account.register.submit' | t }}</button>
+    <button type="submit">{{ 'account.register.submit' | t }}</button>
 
     <p>{{ 'account.register.already_registered' | t }} {{ 'account.login.title' | t | customer_login_link }}</p>
 

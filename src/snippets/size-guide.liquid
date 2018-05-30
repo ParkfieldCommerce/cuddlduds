@@ -1,7 +1,7 @@
 {% for tag in product.tags %}
-{% if tag contains 'size-guide_' %}
+{% if tag contains 'SizeGuide' %}
   {% assign sizeGuide = true %}
-  {% assign sizeGuideHandle = tag | split:'_' | last %}
+  {% assign sizeGuideHandle = tag | split:'=' | last %}
   {% assign sizeGuidePage = pages[sizeGuideHandle] %}
 {% endif %}
 {% endfor %}
@@ -9,8 +9,8 @@
 <div id="SizeGuide" class="SizeGuide popup overlay">
   <div class="popup-inner">
     <div class="SizeGuide__content popup-content center">
-      <h2>Size Guide</h2>
-      <p>Need more help? <a href="/contact-us">Contact Us</a></p>
+      <h2 class="SizeGuide__heading">Size Guide</h2>
+      <p class="SizeGuide__body">Need more help? <a href="/contact-us">Contact Us</a></p>
       {{sizeGuidePage.content}}
       <a href="#close" class="popup-close" data-close aria-label="{{ 'common.close' | t }}">
         <i class="fa fa-times-thin fa-2x"></i>
@@ -18,8 +18,25 @@
     </div>
   </div>
 </div>
-<button data-trigger="popup" data-target="#SizeGuide">Click Me</button>
+<div class="SizeFitInfo__container">
+  <div class="SizeFitInfo js-modelInfo">
+    <a href="#" class="SizeFitInfo__close js-closeFitInfo">
+      <i class="fa fa-times-thin fa-2x"></i>
+    </a>
+    <a href="#" data-trigger="popup" data-target="#SizeGuide">Size Guide</a>
+  </div>
+  <a href="#" class="SizeFitInfo__trigger js-openFitInfo">Size & Fit Information</a>
+</div>
 <script>
-  var newPopup = new Focus('#SizeGuide');
+  var SizeGuidePopup = new Focus('#SizeGuide');
+  $('.js-openFitInfo').click(function(e){
+    e.preventDefault();
+    $('.js-modelInfo').addClass('active');
+  });
+
+  $('.js-closeFitInfo').click(function(e){
+    e.preventDefault();
+    $('.js-modelInfo').removeClass('active');
+  })
 </script>
 {% endif %}

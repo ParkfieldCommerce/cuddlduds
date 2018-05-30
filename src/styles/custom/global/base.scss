@@ -29,6 +29,7 @@ button, .Button{
 a{
   transition: color .3s;
   text-decoration: none;
+  color: $accent-color;
   &:hover,
   &:focus{
     color: $accent-color;

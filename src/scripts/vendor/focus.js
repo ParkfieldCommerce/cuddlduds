@@ -117,7 +117,7 @@ Focus.prototype.hide = function() {
   if (this.visible || this.element.hasClass(this.config.visibleClass)) {
     this.element.removeClass(this.config.visibleClass);
     jQuery('body').removeClass(this.config.bodyClass);
-
+    jQuery('body').removeClass('active-popup');
     // Remove any vertical height that overrides subpixel placement
     if (this.config.avoidSubpixels) {
       jQuery(this.target).find(this.config.popupContent).removeAttr('style');

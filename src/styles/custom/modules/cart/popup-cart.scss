@@ -1,24 +1,36 @@
 .PopupCart{
   overflow-y: scroll;
   padding: 15px;
-  position: fixed;
-  z-index: 11;
-  top: 0px !important;
-  width: 300px;
-  bottom: 0;
+  width: 300px !important;
   background-color: white;
   border: 1px solid black;
-  right: 0px;
-  transition: right .3s;
+  height: 100%;
+  margin-left: auto;
   .top-half{
     width: 100%;
+  }
+  .heading-row{
+    position: relative;
   }
   .PopupCart__title{
     border-bottom: 1px solid $border-color;
     text-align: center;
-    @include book(2em);
-    text-transform: uppercase;
+    @include book(1.8rem);
     padding-bottom: 15px;
+    text-transform: uppercase;
+  }
+  .fa-times-thin{
+    position: absolute;
+    top: 50%;
+    height: 20px;
+    right: 10px;
+    @include prefix(transform, translateY(-50%));
+  }
+  .fa-times-thin:before {
+    content: '\00d7';
+    font-size: 20px;
+    position: absolute;
+    top: 0;
   }
   .PopupCart__product{
     width: 100%;
@@ -38,12 +50,16 @@
     width: 64%;
     padding-left: 1%;
     .PopupCart__product__title{
-      @include book(1em);
+      @include book(1.4rem);
       display: block;
       margin-bottom: 5px;
+      color: $font-dark;
+      &:hover{
+        color: $accent-color;
+      }
     }
     .PopupCart__product__price{
-      @include medium(1em);
+      @include book(1.4rem);
       display: block;
       margin-bottom: 15px;
     }
@@ -60,12 +76,16 @@
     }
     .PopupCart__product__quantity-adjust-parent{
       @include inline-flex();
-      border: 1px solid black;
+      border: 1px solid $border-color;
       align-items: center;
       justify-content: center;
       a{
+        color: #c7c7c7;
         display: inline-block;
-        padding: 7px 15px;
+        padding: 3px 10px;
+        &:hover{
+          color: $accent-color;
+        }
       }
       &:nth-child(2){
         padding: 1px 15px;
@@ -73,70 +93,94 @@
         border-left: none;
       }
     }
-    .remove{
-      @include flex();
-      align-items: center;
-      justify-content: center;
-      svg{
-        height: 15px;
-        width: 15px;
-        transition: fill .3s;
-        &:hover{
-          fill: red;
-        }
+    .PopupCart__product__remove{
+      @include flex-center();
+      color: #c7c7c7;
+      &:hover{
+        color: $accent-color;
       }
     }
   }
-  .subtotal{
+  .PopupCart__subtotal{
     padding: 15px 0px;
     border-top: 1px solid $border-color;
     border-bottom: 1px solid $border-color;
     width: 100%;
+    margin-bottom: 10px !important;
     @include flex();
-    justify-content: space-between;
-    font-size: 1em;
+    @include justify-content(space-between);
+    font-size: 1.4rem;
     .label{
-      @include book(1em);
+      @include book(1.4rem);
       text-transform: uppercase;
     }
     .price{
-      @include medium(1em);
+      @include medium(1.4rem);
     }
   }
   .action-buttons{
-    font-size: 1em;
+    font-size: 1.4rem;
     margin-bottom: 20px;
-    button, .close{
+    button, .PopupCart__close{
       text-align: center;
       width: 100%;
       @include flex();
       align-items: center;
       justify-content: center;
-      @include book(1em);
+      @include medium(1.4rem);
       text-transform: uppercase;
       border: 0px;
-      height: 30px;
+      height: 50px;
       transition: box-shadow .3s;
+      color: $font-light;
+      background-color: $accent-dark;
+      transition: background-color .3s;
       &:hover{
         cursor: pointer;
-        box-shadow: 0px 1px 1px rgba(66,66,66,0.73)
       }
     }
-    .checkout{
-      color: white;
-      background-color: black;
+    .PopupCart__checkout{
       margin-bottom: 10px;
+      &:hover{
+        background-color: $accent-color;
+      }
     }
-    .close{
-      color: black;
-      background-color: black;
+    .PopupCart__close{
+      background-color: $border-color;
+      color: #625a5a;
+      &:hover{
+        background-color: darken($border-color, 10%);
+      }
     }
   }
   .empty-cart-message{
     margin-top: 15px;
-    @include medium(1em);
+    @include medium(1.4rem);
   }
 }
-#Cart-Drawer-Container.push{
-  right: 0;
+
+#PopupCart{
+  .popup-content{
+    width: auto;
+    top: 0;
+    right: -300px;
+    bottom: 0;
+    transform: none;
+    position: fixed;
+    padding: 0;
+    transition: right .3s;
+  }
+  .popup-inner{
+    transform: none;
+  }
+}
+#PopupCart.visible{
+  .popup-content{
+    right: 0px;
+  }
+}
+
+body.active-popup{
+  overflow: hidden;
+  width: 100%;
 }

@@ -697,9 +697,23 @@ concrete.Product = (function() {
       //$('.js-ProductThumbsSliderDots').empty();
       $('.BackupSlides .swiper-slide').clone().appendTo('.js-ProductThumbsSlider .swiper-wrapper');
       $('.js-ProductThumbs img').each(function(){
-        if($(this).attr('alt') != color){
+        if($(this).attr('alt') != color && $(this).attr('alt').indexOf('mp4') == -1){
           $(this).parent().remove();
         }
+      });
+
+      //Video Thumbnail Logic
+      $('.js-videoImage').click(function(){
+        var videoUrl = $(this).prev().attr('alt');
+        var videoClass = $(window).width() < 600 ? '.js-video--mobile' : '.js-video--desktop';
+        var video = document.querySelector(videoClass);
+        $('.js-mainPhoto').hide();
+        $(videoClass).show();
+        video.src = videoUrl;
+        if($(window).width() < 600){
+          $(this).hide();
+        }
+        video.play();
       });
 
       //Determine number of slides based on # of variant images

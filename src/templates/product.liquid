@@ -19,8 +19,11 @@ $(document).on('variantImageChange', function(event) {
 // But this is a bit long winded so heres an example just using concrete imageSwitch function
 $(document).on('click', '#ProductThumbs img', function(event) {
   concrete.Images.switchImage($('#ProductPhoto img')[0], $(this, event.target)[0]);
-})
 
+  $('.js-mainPhoto').show();
+  $('.js-video').hide();
+  
+});
 
 //Get Description & Tabs for Product
 var rawDescription = $('.js-rawProductDescription');
@@ -29,6 +32,8 @@ descriptionHeadings.each(function(){
   var headingText = $(this).text();
   if(headingText === 'Description'){
     $('.js-ProductDescription').append($(this).next());
+  }else if(headingText === 'Model'){
+    $('.js-modelInfo').prepend($(this).next());
   }else{
     $('.js-productTabs').append('<div class="js-tabHeading Product__tab-heading" data-open="false">' + headingText + ' <span>+</span></div>')
     $('.js-productTabs').append('<div class="Product__tab-body">' + $(this).next().html() + '</div>')
@@ -37,7 +42,6 @@ descriptionHeadings.each(function(){
 
 $('.js-tabHeading').click(function(){
   var state = $(this).attr('data-open');
-  console.log(state);
   if(state == 'true'){
     $(this).next().css('max-height', 0);
     $(this).attr('data-open', 'false');
@@ -62,6 +66,7 @@ $('.js-productQuantity').change(function(e){
   $('.js-AddToCart').attr('data-cart-quantity', $(this).val());
 });
 
+//Setting Thumbslider Globally so we can access it in product.js
 var thumbsSlider;
 </script>
 

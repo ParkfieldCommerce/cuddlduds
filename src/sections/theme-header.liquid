@@ -17,7 +17,9 @@
         {% else %}
           <a class="Header__user-link" href="/account"><i class="icon flaticon-profile"></i></a>
         {% endif %}
-        <a class="Header__user-link" href="/cart"><i class="icon flaticon-business"></i></a>
+        <a class="Header__user-link" href="#" data-trigger="popup" data-target="#PopupCart" data-cart-view rv-cloak>
+          <i class="icon flaticon-business"></i><span rv-text="cart.item_count"></span>
+        </a>
       </div>
       <div class="s-show margin-top-2x">
         <a href="#NavToggled" data-trigger="popup" data-target="#NavToggled">
