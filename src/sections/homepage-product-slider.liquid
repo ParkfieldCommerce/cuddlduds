@@ -9,7 +9,8 @@
     <div class="ProductSlider">
       <div class="ProductSlider__swiper-container swiper-container">
         <div class="swiper-wrapper">
-          {% for product in collections[section.settings.collection].products %}
+          {% assign numOfProducts = section.settings.numOfProducts | plus: 0 %}
+          {% for product in collections[section.settings.collection].products limit: numOfProducts %}
           <div class="ProductSlider__slide swiper-slide column l4">
             <div class="ProductSlider__product-num">{{forloop.index}}</div>
             {% include 'collection-product' %}
@@ -33,6 +34,21 @@
     scrollbar: {
       el: '.ProductSlider__swiper-scrollbar'
     },
+    breakpoints: {
+      // when window width is <= 320px
+      800: {
+        slidesPerView: 4,
+        spaceBetween: 5
+      },
+      600: {
+        slidesPerView: 3,
+        spaceBetween: 5
+      },
+      400: {
+        slidesPerView: 2,
+        spaceBetween: 5
+      }
+    }
   });
 </script>
 
@@ -57,6 +73,12 @@
         "type":"collection",
         "id":"collection",
         "label":"Collection"  
+      },
+      {
+        "type":"text",
+        "id":"numOfProducts",
+        "label":"Number of Products",
+        "default":"7"
       }
     ],
     "presets": [

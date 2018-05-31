@@ -1,0 +1,70 @@
+.MobileSearch{
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  left: 0;
+  background-color: $bg-light;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 0vh;
+  overflow: hidden;
+  transition: height .3s;
+  .SearchForm__header{
+    @include flex();
+    @include justify-content(space-between);
+    width: 100%;
+  }
+  .SearchForm__heading{
+    text-transform: uppercase;
+    @include medium(1.2rem);
+    color: #C7C7C7;
+  }
+  .SearchForm{
+    width: 100%;
+    flex-flow: row wrap;
+    border-bottom: 1px solid $border-color;
+    input{
+      padding-left: 0;
+      margin-bottom: 0 !important;
+    }
+  }
+  .SearchForm__input{
+    color: $font-dark;
+    @include medium(1.6rem);
+    @include placeholder{
+      color: $font-dark;
+      @include medium(1.6rem);
+    }
+    width: 80%;
+  }
+  .SearchForm__submit{
+    width: 20%;
+    background: transparent;
+    color: $font-dark;
+  }
+  .SearchForm__reset{
+    display: none;
+  }
+  .close{
+    width: 25px;
+    height: 25px;
+    @include flex-center();
+    &:hover{
+      cursor: pointer;
+    }
+  }
+  .fa-times-thin{
+  }
+  .fa-times-thin:before {
+    content: '\00d7';
+    font-size: 15px;
+    position: absolute;
+    top: 0;
+  }
+}
+
+.MobileSearch.active{
+  padding-top: 10px;
+  height: 500px;
+  height: 80vh;
+}

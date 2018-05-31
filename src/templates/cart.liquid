@@ -34,6 +34,11 @@
             <div class="CartPage__item__variants">
               { item.variant_title }
             </div>
+            <ul class="CartPage__item__properties">
+              <li rv-each-property="item.properties | propertyList">
+                {property}
+              </li>
+            </ul>
           </div>
         </div>
         <div class="column l2 m2 s-hide">

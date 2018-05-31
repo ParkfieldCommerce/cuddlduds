@@ -1,0 +1,60 @@
+{% assign numOfRelated = section.settings.numOfRelatedProducts | plus: 0 %}
+{% for collection in product.collections %}
+  {% if collection.products.size >= numOfRelated %}
+    {% assign mainCollection = collection %}
+  {% endif %}
+{% endfor %}
+
+{% if mainCollection %}
+<div class="Product__related-products l-margin-bottom-10x m-margin-bottom-10x s-margin-bottom-5x">
+<div class="container l">
+  <div class="row">
+    <div class="column l12 m12 s12 center">
+      <h3 class="Product__related-products-heading">{{section.settings.related_products_heading}}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column l12 m12 s12">
+      <div class="swiper-container js-Product__related-products-slider">
+          <div class="swiper-wrapper">
+          {% if mainCollection %}
+          {% for product in mainCollection.products limit: numOfRelated %}
+            <div class="swiper-slide">{% include 'collection-product-quickadd' %}</div>
+          {% endfor %}
+          {% endif %}
+          </div>
+          <div class="swiper-scrollbar"></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+  var relatedProductsSlider = new Swiper ('.js-Product__related-products-slider', {
+    // Optional parameters
+    direction: 'horizontal',
+    loop: false,
+    slidesPerView: 5,
+    spaceBetween: 5,
+    scrollbar: {
+      el: '.swiper-scrollbar',
+    },
+    breakpoints: {
+      // when window width is <= 320px
+      800: {
+        slidesPerView: 4,
+        spaceBetween: 5
+      },
+      600: {
+        slidesPerView: 3,
+        spaceBetween: 5
+      },
+      400: {
+        slidesPerView: 2,
+        spaceBetween: 5
+      }
+    }
+  })
+</script>
+{% endif %}

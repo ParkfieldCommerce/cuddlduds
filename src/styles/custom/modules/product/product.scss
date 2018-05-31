@@ -144,6 +144,9 @@
   &:hover{
     background-color: darken($accent-color, 5%);
   }
+  @include s(){
+    margin-bottom: 0 !important;
+  }
 }
 
 .Product__shipping-link{
@@ -278,3 +281,34 @@
   }
 }
 
+.Product__social{
+  .button.share{
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: #232221;
+    &:hover{
+      color: $accent-color;
+      background-color: transparent;
+    }
+  }
+}
+
+.Product__related-products{
+  .CollectionProduct{
+    margin-bottom: 30px;
+  }
+  .swiper-scrollbar{
+    height: 3px;
+    background-color: #eaeaea;
+    .swiper-scrollbar-drag{
+      border-radius: 0;
+      background-color: #bbbbbb;
+    }
+  }
+}
+.Product__related-products-heading{
+  text-transform: uppercase;
+  font-weight: 300;
+  @include book(2.4rem);
+}

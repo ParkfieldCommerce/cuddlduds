@@ -65,6 +65,10 @@
       line-height: 1.25;
       @include book(1.4rem);
     }
+    .CartPage__item__properties{
+      margin-top: 5px;
+      font-size: 1.2rem;
+    }
   }
   .CartPage__item__price{
     @include book(1.4rem);

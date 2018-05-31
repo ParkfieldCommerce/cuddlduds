@@ -14,16 +14,33 @@ $(document).on('variantImageChange', function(event) {
   var newImage = concrete.Images.getImageUrl(event.variant.featured_image.src, oldSize)
   // Change to the new variants image
   $('#ProductPhoto img').attr('src', newImage);
+  $('.js-mainPhoto').myElevateZoom();
 });
 
 // But this is a bit long winded so heres an example just using concrete imageSwitch function
 $(document).on('click', '#ProductThumbs img', function(event) {
   concrete.Images.switchImage($('#ProductPhoto img')[0], $(this, event.target)[0]);
-
   $('.js-mainPhoto').show();
   $('.js-video').hide();
-  
+  $('.js-mainPhoto').myElevateZoom();
 });
+
+$.fn.myElevateZoom = function () {
+  $(this).removeData('elevateZoom');
+  $(this).removeData('zoomImage');
+  $('.zoomContainer').remove();
+
+  $(this).elevateZoom({
+    zoomType:'inner',
+    scrollZoom: true,
+    responsive: true, 
+    zoomWindowFadeIn: 500,
+    zoomWindowFadeOut: 750
+  });
+
+};
+
+$(".js-mainPhoto").myElevateZoom();
 
 //Get Description & Tabs for Product
 var rawDescription = $('.js-rawProductDescription');

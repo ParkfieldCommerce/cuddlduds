@@ -1,0 +1,35 @@
+<!-- /snippets/form-search.liquid -->
+
+{% assign include_results = '' %}
+
+{% if settings.include_products %}
+  {% assign include_results = include_results | append: 'product,' %}
+{% endif %}
+
+{% if settings.include_articles  %}
+  {% assign include_results = include_results | append: 'article,' %}
+{% endif %}
+
+{% if settings.include_pages %}
+  {% assign include_results = include_results | append: 'page,' %}
+{% endif %}
+
+{% assign include_results = include_results | append: '[last]' | remove: ',[last]' | remove: '[last]' %}
+
+<form class="SearchForm" action="/search" method="get" role="search">
+  <div class="SearchForm__header">
+    <span class="SearchForm__heading">Search Cuddl Duds</span><div class="js-mobileSearchClose close"><i class="fa fa-times-thin fa-2x"></i></div>
+  </div>
+  {% if include_results != '' and include_results != 'product,article,page' %}
+    <input type="hidden" name="type" value="{{ include_results }}">
+  {% endif %}
+  <input class="SearchForm__input" type="text" name="q" value="{{ search.terms | escape }}" placeholder="Type here to search..." aria-label="{{ 'search.title' | t }}"{% if search_show_button %} autofocus{% endif %}>
+  <div class="SearchForm__buttons">
+    <button class="SearchForm__reset" type="reset">
+      <i class="flaticon flaticon-cancel-music"></i>
+    </button>
+    <button class="SearchForm__submit" type="submit">
+      <i class="flaticon flaticon-search"></i>
+    </button>
+  </div>
+</form>

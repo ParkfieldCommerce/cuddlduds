@@ -38,9 +38,12 @@
             </span>
           </div>
         </div>
-        <div id="ProductPhoto" class="Product__main-image">
+        <div id="ProductPhoto" data-zoom-image="{{ product.featured_image | img_url: '2048x2048' }}" class="Product__main-image">
           <img class="js-mainPhoto" srcset="{{ product.featured_image | img_url: '1024x1024', scale: 2 }} 2x" src="{{ product.featured_image | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %}>
           <video src="" class="js-video js-video--desktop Product__video" width="320" height="240" controls></video>
+          <div class="Product__social">
+          {% include 'social-sharing' %}
+          </div>
         </div>
 
         {% if product.images.size > 1 %}
@@ -169,13 +172,11 @@
           </form>
           <div class="Product__tabs js-productTabs"></div>
         </div>
-        <h4 class="margin-top-5x">{{ 'social.share.title' | t }}</h4>
-        {% include 'social-sharing' %}
       </div>
     </div>
   </div>
 </div>
-
+{% include 'product-related-collection' %}
 
 <div class="hidden rte js-rawProductDescription" itemprop="description">
   {{ product.description }}
@@ -207,6 +208,10 @@
         "content":"Tag the product with 'fit_[FIT GUIDE PAGE HANDLE]'"
       },
       {
+        "type":"paragraph",
+        "content":"To Show the Model information add a <h5>Model</h5><div>[Your model description]</div> to the product description"
+      },
+      {
         "type":"header",
         "content":"Video"
       },
@@ -222,6 +227,25 @@
         "type":"page",
         "id":"shipping_page",
         "label":"Shipping Page"
+      },
+      {
+        "type":"header",
+        "content":"Related Products"
+      },
+      {
+        "type":"text",
+        "id":"related_products_heading",
+        "label":"Related Products Heading"
+      },
+      {
+        "type":"text",
+        "id":"numOfRelatedProducts",
+        "label":"Number of Products",
+        "default":"7"
+      },
+      {
+        "type":"paragraph",
+        "content":"The set of products comes from the first collection that means the min number of products"
       }
     ]
   }

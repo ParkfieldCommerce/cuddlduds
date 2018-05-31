@@ -8,11 +8,11 @@
     </div>
     <div class="row">
       <div class="column l12 m12 s12">
-        <div class="Gift__form">
+        <div class="Gift__form js-giftForm">
           <div class="Gift__select-wrapper">
             <label for="amount">Amount</label>
             <div class="select-wrapper">
-            <select name="amount" id="amount">
+            <select class="js-giftVariant" data-filled="false" name="amount" id="amount">
             {% for variant in product.variants %}
             {% if forloop.first %}
             <option value="{{variant.id}}" selected disabled>Select</option>
@@ -25,24 +25,80 @@
           <div class="Gift__select-wrapper">
             <label for="quantity">Quantity</label>
             <div class="select-wrapper">
-            <select name="quantity" id="quantity">
+            <select class="js-giftQuantity" name="quantity" id="quantity">
               {% for i in (1..5) %}
               <option value="{{i}}">{{i}}</option>
               {% endfor %}
             </select>
             </div>
           </div>
-          <input class="Gift__input" type="text" id="SenderName" name="SenderName" placeholder="Sender Name*">
-          <input class="Gift__input" type="text" id="RecipientName" name="RecipientName" placeholder="Recipient Name*">
-          <input class="Gift__input" type="text" id="RecipientEmail" name="RecipientEmail" placeholder="Recipient E-Mail*">
-          <textarea class="Gift__input" name="Message" id="Message" cols="30" rows="5" placeholder="Message*"></textarea>
-          <button type="button" class="Gift__add" id="AddToBag">Add To Bag</button>
+          <input data-filled="false" class="Gift__input" type="text" id="SenderName" name="SenderName" placeholder="Sender Name*">
+          <input data-filled="false" class="Gift__input" type="text" id="RecipientName" name="RecipientName" placeholder="Recipient Name*">
+          <input data-filled="false" class="Gift__input" type="email" id="RecipientEmail" name="RecipientEmail" placeholder="Recipient E-Mail*">
+          <textarea data-filled="false" class="Gift__input" name="Message" id="Message" cols="30" rows="5" placeholder="Message*"></textarea>
+          <button type="button" class="js-giftAdd Gift__add" id="AddToBag" disabled>Add To Bag</button>
         </div>
       </div>
     </div>
   </div>
 </div>
+<script>
+  /* Form Validation */
+  function checkForm(){
+    if($('[data-filled="false"]').length == 0){
+      $('.js-giftAdd').attr('disabled', false);
+    }else{
+      $('.js-giftAdd').attr('disabled', true);
+    }
+  }
+  $('.js-giftForm select').change(function(){
+    $(this).attr('data-filled', true);
+    checkForm();      
+  });
 
+  $('.js-giftForm input[type="text"], .js-giftForm textarea').keyup(function(e){
+    if(e.target.value.length > 0){
+      $(this).attr('data-filled', true);
+      checkForm();
+    }else{
+      $(this).attr('data-filled', false);
+      checkForm();
+    }
+  });
+
+  $('.js-giftForm input[type="email"]').keyup(function(e){
+    function validateEmail(email) 
+    {
+      var re = /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
+      return re.test(email);
+    }
+    if(validateEmail(e.target.value) > 0){
+      $(this).attr('data-filled', true);
+      checkForm();
+    }else{
+      $(this).attr('data-filled', false);
+      checkForm();
+    }
+  });
+
+  /* Add To Bag Logic */
+  $('.js-giftAdd').click(function(){
+    var variantId = $('.js-giftVariant').val();
+    var quantity = $('.js-giftQuantity').val();
+    var lineProperties = {};
+    $('.js-giftForm input').each(function(){
+      var key = $(this).attr('name');
+      var value = $(this).val();
+      lineProperties[key] = value;
+    });
+    $('.js-giftForm textarea').each(function(){
+      var key = $(this).attr('name');
+      var value = $(this).val();
+      lineProperties[key] = value;
+    });
+    CartJS.addItem(variantId, quantity, lineProperties);
+  });
+</script>
 <script type="application/json" id="ProductJson">
  {{ product | json }}
 </script>

@@ -17,7 +17,7 @@
         {% else %}
           <a class="Header__user-link" href="/account"><i class="icon flaticon-profile"></i></a>
         {% endif %}
-        <a class="Header__user-link" href="#" data-trigger="popup" data-target="#PopupCart" data-cart-view rv-cloak>
+        <a class="Header__user-link Header__user-link--cart" href="#" data-trigger="popup" data-target="#PopupCart" data-cart-view rv-cloak>
           <i class="icon flaticon-business"></i><span rv-text="cart.item_count"></span>
         </a>
       </div>
@@ -42,7 +42,7 @@
         {% include 'theme-logo' %}
       </div>
       <div class="MobileHeader__user column l3">
-        <a class="MobileHeader__user-link" href="#">
+        <a class="MobileHeader__user-link js-mobileSearchTrigger" href="#">
           <i class="flaticon flaticon-search"></i>
         </a>
         {% if customer %}
@@ -50,8 +50,13 @@
         {% else %}
           <a class="MobileHeader__user-link" href="/account"><i class="icon flaticon-profile"></i></a>
         {% endif %}
-        <a class="MobileHeader__user-link" href="/cart"><i class="icon flaticon-business"></i></a>
+        <a class="Header__user-link Header__user-link--cart" href="#" data-trigger="popup" data-target="#PopupCart" data-cart-view rv-cloak>
+          <i class="icon flaticon-business"></i><span rv-text="cart.item_count"></span>
+        </a>
       </div>
+    </div>
+    <div class="MobileSearch js-mobileSearch">
+      {% include 'form-search-mobile' %}
     </div>
   </div>
 </header>

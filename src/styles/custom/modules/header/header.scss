@@ -40,6 +40,15 @@
     color: $accent-color;
   }
 }
+.Header__user-link--cart{
+  position: relative;
+  span{
+    color: $accent-color;
+    bottom: -8px;
+    position: absolute;
+    font-size: 1.3rem;
+  }
+}
 
 .SearchForm{
   position: relative;

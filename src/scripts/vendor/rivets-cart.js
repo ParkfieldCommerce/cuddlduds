@@ -2251,6 +2251,22 @@
     rivets.formatters.product_image_size = function(src, size) {
       return CartJS.Utils.getSizedImageUrl(src, size);
     };
+    rivets.formatters.propertyList = function(obj) {
+      return (function() {
+        function capitalizeFirstLetter(string) {
+          return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+        var properties = [];
+        if(obj != null){
+          for(var key in obj){
+            if(obj.hasOwnProperty(key)){
+              properties.push(capitalizeFirstLetter(key) +" : "+capitalizeFirstLetter(obj[key]));
+            };
+          }
+          return properties
+        }
+      })();
+    };
     rivets.formatters.moneyWithCurrency = rivets.formatters.money_with_currency;
     rivets.formatters.weightWithUnit = rivets.formatters.weight_with_unit;
     rivets.formatters.productImageSize = rivets.formatters.product_image_size;

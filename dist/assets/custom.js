@@ -1,4 +1,15 @@
 $(document).ready(function(){
+  //Logic to Open Mobile Search
+  $('.js-mobileSearchTrigger, .js-mobileSearchClose').click(function(){
+    var mobileSearch = $('.js-mobileSearch');
+    if(mobileSearch.hasClass('active')){
+      mobileSearch.removeClass('active');
+    }else{
+      mobileSearch.addClass('active');
+    }
+  });
+
+  //Logic for QuickAdd Product Listings
   $('.js-CollectionProductSizes button').click(function(){
     CartJS.addItem($(this).attr('data-variant-id'), 1);
   });

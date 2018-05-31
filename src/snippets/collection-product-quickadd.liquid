@@ -39,6 +39,14 @@
       {% endif %}
       {% endfor %}
       </div>
+    {% else %}
+      <div class="CollectionProduct__size-variants js-CollectionProductSizes">
+      {% for variant in product.variants %}
+      {% if variant.available %}
+        <button class="CollectionProduct__size-variant" type="button" data-variant-id="{{variant.id}}">Add To Bag</button>
+      {% endif %}
+      {% endfor %}
+      </div>
     {% endif %}
   </div>
   <p>

@@ -46,6 +46,7 @@
   }
   .CollectionProduct__size-variants{
     @include flex();
+    @include align-items(center);
     flex-flow: row wrap;
     height: 70px;
     width: 100%;
