@@ -1,6 +1,47 @@
-<!-- /templates/product.liquid -->
-
-{% section 'template-product' %}
+<div class="l-padding-top-5x m-padding-top-5x s-padding-top-3x padding-bottom-5x">
+  <div class="container m">
+    <div class="row margin-bottom-3x">
+      <div class="column l12 m12 s12">
+        <h1 class="Gift__title center">{{product.title}}</h1>
+        <div class="Gift__description">{{product.description}}</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column l12 m12 s12">
+        <div class="Gift__form">
+          <div class="Gift__select-wrapper">
+            <label for="amount">Amount</label>
+            <div class="select-wrapper">
+            <select name="amount" id="amount">
+            {% for variant in product.variants %}
+            {% if forloop.first %}
+            <option value="{{variant.id}}" selected disabled>Select</option>
+            {% endif %}
+            <option value="{{variant.id}}">{{variant.title}}</option>
+            {% endfor %}
+            </select>
+            </div>
+          </div>
+          <div class="Gift__select-wrapper">
+            <label for="quantity">Quantity</label>
+            <div class="select-wrapper">
+            <select name="quantity" id="quantity">
+              {% for i in (1..5) %}
+              <option value="{{i}}">{{i}}</option>
+              {% endfor %}
+            </select>
+            </div>
+          </div>
+          <input class="Gift__input" type="text" id="SenderName" name="SenderName" placeholder="Sender Name*">
+          <input class="Gift__input" type="text" id="RecipientName" name="RecipientName" placeholder="Recipient Name*">
+          <input class="Gift__input" type="text" id="RecipientEmail" name="RecipientEmail" placeholder="Recipient E-Mail*">
+          <textarea class="Gift__input" name="Message" id="Message" cols="30" rows="5" placeholder="Message*"></textarea>
+          <button type="button" class="Gift__add" id="AddToBag">Add To Bag</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="application/json" id="ProductJson">
  {{ product | json }}

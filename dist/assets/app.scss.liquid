@@ -2808,6 +2808,44 @@ $mobilenav-tier3-padding: 30px;
     font-size: 1.2rem;
   }
 }
+.Gift__form{
+  @include flex();
+  flex-flow: row wrap;
+}
+.Gift__select-wrapper{
+  @include flex();
+  @include align-items(center);
+  width: 50%;
+  label{
+    text-transform: uppercase;
+    margin-bottom: 0;
+  }
+  select{
+    @include book(1.4rem);
+  }
+  margin-bottom: 20px;
+}
+.Gift__input[type="text"],
+textarea.Gift__input{
+  width: 100%;
+  padding-left: 0;
+  border: none;
+  border-bottom: 1px solid $border-color;
+  background-color: $bg-light;
+  margin-bottom: 20px;
+  @include book(1.4rem);
+  @include placeholder{
+    text-transform: uppercase;
+  }
+}
+.Gift__add{
+  height: 50px;
+  width: 100%;
+  background-color: $accent-color;
+  &:hover{
+    background-color: darken($accent-color, 10%);
+  }
+}
 /* Page */
 .Page{
   min-height: 75vh;
