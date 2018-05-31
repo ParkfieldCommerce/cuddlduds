@@ -3,7 +3,7 @@
 {% assign pagination = 6 %}
 
 {% paginate customer.addresses by pagination %}
-
+  <div class="AccountPage l-padding-top-5x m-padding-top-5x s-padding-top-3x padding-bottom-5x">
   <div class="container l">
     <header>
       {% include 'theme-breadcrumbs' %}
@@ -61,7 +61,7 @@
       <a href="#PopupAddress" data-target="#PopupAddress" data-trigger="popup" class="button">{{ 'account.address.add' | t }}</a>
     </section>
   </div>
-
+  </div>
   <script>
     // Modified contents of customer_area.js (global asset)
     Shopify.CustomerAddress = {

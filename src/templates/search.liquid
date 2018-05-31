@@ -8,29 +8,25 @@
 {% assign search_show_button = true %}
 
 {% paginate search.results by 10 %}
-
+  <div class="SearchPage l-padding-top-5x m-padding-top-5x s-padding-top-3x padding-bottom-5x">
   <div class="container l">
-
-    {% include 'theme-breadcrumbs' %}
-
+    <div class="row">
+      <div class="column l12 m12 s12">
+        {% include 'theme-breadcrumbs' %}
+        <h1>{{ 'search.title' | t }}</h1>
+        {% if search.performed %}
+          {% if search.results_count > 0 %}
+            <h1 class="h3">{{ 'search.results_for_html' | t: terms: search.terms }}</h1>
+          {% else %}
+            <h1 class="h3">{{ 'search.no_results_html' | t: terms: search.terms }}</h1>
+          {% endif %}
+        {% endif %}
+        <div class="SearchPage__form-container margin-bottom-3x">
+          {% include 'form-search' %}
+        </div>
+      </div>
+    </div>
     {% if search.performed %}
-      {% if search.results_count > 0 %}
-        <h1 class="h3">{{ 'search.results_for_html' | t: terms: search.terms }}</h1>
-      {% else %}
-        <h1 class="h3">{{ 'search.no_results_html' | t: terms: search.terms }}</h1>
-      {% endif %}
-    {% else %}
-      <h1>{{ 'search.title' | t }}</h1>
-    {% endif %}
-
-    {% include 'form-search' %}
-
-    {% if search.performed %}
-
-      {% if search.results_count > 0 %}
-        <hr class="hr">
-      {% endif %}
-
         <div class="row">
         {% for item in search.results %}
           {% if item.price %}
@@ -47,5 +43,5 @@
     {% endif %}
 
   </div>
-
+</div>
 {% endpaginate %}

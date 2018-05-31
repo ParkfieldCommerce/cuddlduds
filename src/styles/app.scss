@@ -67,6 +67,7 @@
 @import url('custom/modules/footer/footer.scss');
 /* LoginRegister */
 @import url('custom/modules/account/login-register.scss');
+@import url('custom/modules/account/account-page.scss');
 /* Collection */
 @import url('custom/modules/collection/collection-banner.scss');
 @import url('custom/modules/collection/collection-product.scss');
@@ -81,6 +82,8 @@
 /* Cart */
 @import url('custom/modules/cart/popup-cart.scss');
 @import url('custom/modules/cart/cart-page.scss');
+/* Search */
+@import url('custom/modules/search/search-page.scss');
 
 /* Helpers ===================================================================*/
 @import url('global/helpers.scss');

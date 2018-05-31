@@ -460,7 +460,7 @@ em, i {
 }
 
 small, .small {
-  font-size: $small;
+  font-size: 1.4rem;
 }
 
 .rte {
@@ -582,6 +582,7 @@ input[type="checkbox"] {
       text-align: center;
       vertical-align: top;
       @include transition();
+      font-size: 1.4rem;
     }
   }
   &:checked {
@@ -630,7 +631,7 @@ input[type="reset"] {
   }
 }
 a.button {
-  display: inline-block;
+  @include inline-flex();
   text-decoration: none;
 }
 
@@ -909,7 +910,7 @@ body{
   @include book(1.6rem);
 }
 
-button, .Button{
+button, .Button, .button{
   background-color: $accent-dark;
   color: $font-light;
   @include inline-flex-center();
@@ -1195,6 +1196,12 @@ hr{
   opacity: 0;
   visibility: hidden;
   @include transition();
+  .fa-2x{
+    font-size: 2rem;
+  }
+  .fa-times-thin:before {
+    content: '\00d7';
+  }
   &.visible {
     opacity: 1;
     visibility: visible;
@@ -1207,7 +1214,7 @@ hr{
     max-height: 100%;
     overflow: auto; // Optional line for overly tall popups
     padding: $gutter;
-    background-color: $colorBackground;
+    background-color: $bg-light;
     text-align: initial;
     cursor: default;
     white-space: initial;
@@ -2180,10 +2187,30 @@ $mobilenav-tier3-padding: 30px;
   min-height: 52vh;
   input{
     padding-left: 5px !important;
+    margin-bottom: 10px;
   }
   button{
     margin-top: 10px;
     margin-bottom: 30px;
+  }
+}
+.popup form{
+  label{
+    margin-bottom: 5px;
+  }
+  input[type="text"],
+  input[type="tel"]{
+    margin-bottom: 10px;
+    padding-left: 5px;
+    border-color: $border-color;
+  }
+  select{
+    padding-left: 5px;
+    color: $font-dark;
+  }
+  .select-wrapper{
+    border: 1px solid $border-color;
+    margin-bottom: 10px;
   }
 }
 /* Collection */
@@ -3315,6 +3342,37 @@ body.active-popup{
   }
   .empty-cart{
     padding-bottom: 200px;
+  }
+}
+/* Search */
+.SearchPage__form-container{
+  .SearchForm{
+    border-color: $font-dark;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+  }
+  .SearchForm__submit,
+  .SearchForm__reset{
+    background-color: transparent;
+    color: $font-dark;
+    margin-bottom: 0 !important;
+  }
+  .SearchForm__buttons{
+    width: 15%;
+    text-align: right;
+    @include justify-content(flex-end);
+  }
+  .SearchForm__input{
+    width: 85%;
+    color: $font-dark;
+    padding-left: 0;
+    font-size: 1.6rem;
+    margin-bottom: 0 !important;
+    @include placeholder{
+      font-size: 1.6rem;
+      color: $font-dark;
+    }
   }
 }
 

@@ -10,10 +10,11 @@
       <div class="Header__logo column l2">
         {% include 'theme-logo' %}
       </div>
+      {% unless template == 'gift_card' %}
       <div class="Header__user column l5">
         {% include 'form-search' %}
         {% if customer %}
-          <a class="Header__user-link" href="/account" data-trigger="popup" data-target="#PopupAccount">{{ 'account.general.title' | t }}</a>
+          <a class="Header__user-link" href="/account" data-trigger="popup" data-target="#PopupAccount"><i class="icon flaticon-profile"></i></a>
         {% else %}
           <a class="Header__user-link" href="/account"><i class="icon flaticon-profile"></i></a>
         {% endif %}
@@ -21,6 +22,7 @@
           <i class="icon flaticon-business"></i><span rv-text="cart.item_count"></span>
         </a>
       </div>
+      {% endunless %}
       <div class="s-show margin-top-2x">
         <a href="#NavToggled" data-trigger="popup" data-target="#NavToggled">
           {{ 'common.menu' | t }}
@@ -32,21 +34,24 @@
 <header class="MobileHeader">
   <div class="container xl">
     <div class="row MobileHeader__row">
+      {% unless template == 'gift_card' %}
       <div class="MobileHeader__nav column l3">
         <a id="MobileNavToggle" class="js-mobileNavToggle" href="#NavToggled" data-trigger="popup" data-target="#NavToggled">
           <span class="line"></span>
         </a>
         {% include 'theme-nav-toggled' with menu:mobileMainMenu %}
       </div>
+      {% endunless %}
       <div class="MobileHeader__logo column l6">
         {% include 'theme-logo' %}
       </div>
+      {% unless template == 'gift_card' %}
       <div class="MobileHeader__user column l3">
         <a class="MobileHeader__user-link js-mobileSearchTrigger" href="#">
           <i class="flaticon flaticon-search"></i>
         </a>
         {% if customer %}
-          <a class="MobileHeader__user-link" href="/account" data-trigger="popup" data-target="#PopupAccount">{{ 'account.general.title' | t }}</a>
+          <a class="MobileHeader__user-link" href="/account" data-trigger="popup" data-target="#PopupAccount"><i class="icon flaticon-profile"></i></a>
         {% else %}
           <a class="MobileHeader__user-link" href="/account"><i class="icon flaticon-profile"></i></a>
         {% endif %}
@@ -54,6 +59,7 @@
           <i class="icon flaticon-business"></i><span rv-text="cart.item_count"></span>
         </a>
       </div>
+      {% endunless %}
     </div>
     <div class="MobileSearch js-mobileSearch">
       {% include 'form-search-mobile' %}

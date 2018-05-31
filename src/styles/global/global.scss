@@ -64,7 +64,7 @@ em, i {
 }
 
 small, .small {
-  font-size: $small;
+  font-size: 1.4rem;
 }
 
 .rte {
@@ -186,6 +186,7 @@ input[type="checkbox"] {
       text-align: center;
       vertical-align: top;
       @include transition();
+      font-size: 1.4rem;
     }
   }
   &:checked {
@@ -234,7 +235,7 @@ input[type="reset"] {
   }
 }
 a.button {
-  display: inline-block;
+  @include inline-flex();
   text-decoration: none;
 }
 

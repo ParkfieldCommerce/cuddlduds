@@ -6,15 +6,6 @@
 
 {% layout 'gift_card' %}
 
-<header role="banner">
-  <div itemscope itemtype="http://schema.org/Organization">
-    <a href="{{ shop.url }}" itemprop="url" class="site-logo">
-      {{ shop.name }}
-    </a>
-  </div>
-  <div>{{ shop.url | escape }}</div>
-</header>
-
 <main class="giftcard {% if gift_card.expired or gift_card.enabled != true %} giftcard--disabled{% endif %}">
 
   <h1>{{ 'gift_cards.issued.subtext' | t }}</h1>
@@ -42,7 +33,9 @@
   {% endif %}
 
   {%- assign code_size = gift_card.code | format_code | size -%}
+  <strong>
   <span id="GiftCardDigits">{{ gift_card.code | format_code }}</span>
+  </strong>
 
   <p>{{ 'gift_cards.issued.redeem' | t }}</p>
 
@@ -55,9 +48,4 @@
       <img class="apple-wallet-image" src="{{ 'gift-card/add-to-apple-wallet.svg' | shopify_asset_url }}" width="120" height="40" alt="{{ 'gift_cards.issued.add_to_apple_wallet' | t }}">
     </a>
   {% endif %}
-
-  <a href="#" id="PrintGiftCard" class="print-giftcard">
-    {{ 'gift_cards.issued.print' | t }}
-  </a>
-
 </main>

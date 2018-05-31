@@ -12,13 +12,14 @@
 <footer class="Footer theme-footer padding-top-3x padding-bottom-3x" role="contentinfo">
   <div class="container xl">
     <div class="row l-margin-bottom-2x Footer__menu-row">
-      <div class="column l7 m7 s7 m-center m-margin-bottom-3x s-margin-bottom-3x">
-        <ul class="Footer__menu">
+      <div class="column l7 m7 s7 m-center m-margin-bottom-3x s-margin-bottom-3x" {% if template == 'gift_card' %}style="width: 100%"{% endif %}>
+        <ul class="Footer__menu" {% if template == 'gift_card' %}style="justify-content: center;"{% endif %}>
         {% for link in linklists[section.settings.menu].links %}
         <li class="Footer__menu-link"><a href="{{link.url}}">{{link.title}}</a></li>
         {% endfor %}
         </ul>
       </div>
+      {% unless template == 'gift_card' %}
       <div class="column l5 m5 s5 m-center m-margin-bottom-3x s-margin-bottom-3x">
         <div class="Footer__form m-center">
           {% if show_subscribe %}
@@ -26,6 +27,7 @@
           {% endif %}
         </div>
       </div>
+      {% endunless %}
     </div>
   </div>
 

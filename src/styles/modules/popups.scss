@@ -7,6 +7,12 @@
   opacity: 0;
   visibility: hidden;
   @include transition();
+  .fa-2x{
+    font-size: 2rem;
+  }
+  .fa-times-thin:before {
+    content: '\00d7';
+  }
   &.visible {
     opacity: 1;
     visibility: visible;
@@ -19,7 +25,7 @@
     max-height: 100%;
     overflow: auto; // Optional line for overly tall popups
     padding: $gutter;
-    background-color: $colorBackground;
+    background-color: $bg-light;
     text-align: initial;
     cursor: default;
     white-space: initial;

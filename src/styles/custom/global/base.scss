@@ -7,7 +7,7 @@ body{
   @include book(1.6rem);
 }
 
-button, .Button{
+button, .Button, .button{
   background-color: $accent-dark;
   color: $font-light;
   @include inline-flex-center();
