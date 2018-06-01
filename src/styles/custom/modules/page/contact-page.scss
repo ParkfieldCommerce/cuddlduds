@@ -1,0 +1,31 @@
+.Contact__heading{
+  text-align: center;
+}
+.Contact__links{
+  @include flex();
+  flex-flow: row wrap;
+  margin-top: 20px;
+  @include justify-content(space-between);
+}
+.Contact__rte{
+  @include book(1.4rem);
+}
+.Contact__link{
+  @include flex();
+  @include align-items(center);
+  @include s(){
+    margin-bottom: 15px;
+  }
+  .fa{
+    margin-right: 5px;
+    font-size: 2.5rem;
+  }
+  a{
+    @include medium(1.4rem);
+    color: $font-dark;
+    text-decoration: underline;
+    &:hover{
+      color: $accent-color;
+    }
+  }
+}

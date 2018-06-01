@@ -1,16 +1,23 @@
 <!-- /templates/page.contact.liquid -->
 
-<div class="container l">
+<div class="container s l-padding-top-5x m-padding-top-5x s-padding-top-3x padding-bottom-5x">
   <div class="row">
-    <div class="column l6 m12 s12">
-      <h1>{{ page.title }}</h1>
+    <div class="column l12 m12 s12 center">
+      <div class="Contact__inner-content left">
+      <h1 class="Contact__heading">{{ page.title }}</h1>
 
-      <div class="rte">
+      <div class="Contact__rte rte">
         {{ page.content }}
+        <div class="Contact__links">
+        <div class="Contact__link">
+          <i class="fa fa-phone"></i><a href="tel:{{settings.contact_phone}}">{{settings.contact_phone | replace:'-','.' | replace:' ','.'}}</a>
+        </div>
+        <div class="Contact__link">
+          <i class="fa fa-envelope"></i><a href="mailto:{{settings.contact_email}}">{{settings.contact_email}}</a>
+        </div>
+        </div>
       </div>
-    </div>
-    <div class="column l6 m12 s12">
-      {% include 'form-contact' %}
+      </div>
     </div>
   </div>
 </div>

@@ -1,3 +1,9 @@
+.Gift__title{
+  @include book(3rem);
+}
+.Gift__description{
+  @include medium(1.4rem);
+}
 .Gift__form{
   @include flex();
   flex-flow: row wrap;
@@ -9,9 +15,10 @@
   label{
     text-transform: uppercase;
     margin-bottom: 0;
+    @include medium(1.4rem);
   }
   select{
-    @include book(1.4rem);
+    @include medium(1.4rem);
   }
   margin-bottom: 20px;
 }
@@ -24,8 +31,9 @@ textarea.Gift__input{
   border-bottom: 1px solid $border-color;
   background-color: $bg-light;
   margin-bottom: 20px;
-  @include book(1.4rem);
+  @include medium(1.4rem);
   @include placeholder{
+    color: $font-gray;
     text-transform: uppercase;
   }
 }

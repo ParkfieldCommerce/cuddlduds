@@ -13,9 +13,15 @@
     margin-bottom: 0;
     text-transform: uppercase;
     color: $accent-color;
+    @include medium(2.2rem);
+    font-weight: 500;
   }
   .SizeGuide__body{
     text-align: center;
+    @include book(1.2rem);
+    a{
+      @include medium(1.2rem);
+    }
   }
   .popup-close{
     color: $font-dark;
@@ -32,9 +38,11 @@
       background-color: $border-color;
       color: $font-dark;
       text-transform: uppercase;
+      @include medium(1.4rem);
       td{padding: 5px;}
     }
     td:first-child{//First Column
+      @include medium(1.4rem);
       width: 10%;
       background-color: $border-color;
       color: $font-dark;

@@ -35,14 +35,14 @@ $borderStyle: solid;
 
 // Typography
 $fontLight: 300;
-$fontNormal: 400;
+$fontNormal: 500;
 $fontBold: 700;
 $fontFamily: sans-serif;
 $lineHeight: 1.5;
 $lineMargin: $spacing*2;
 
 // Font bases
-$h1: 2.5rem;
+$h1: 3rem;
 $h2: 2rem;
 $h3: 1.75rem;
 $h4: 1.25rem;
@@ -77,6 +77,7 @@ $bg-dark: black;
 $heading: black;
 
 $font-light: white;
+$font-gray: #b7b7b7;
 $font-dark: black;
 
 $border-color: #e0e0e0;
@@ -418,7 +419,7 @@ h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   display: block;
   font-family: inherit;
-  font-weight: $fontBold;
+  font-weight: $fontNormal;
   line-height: $lineHeight;
   margin-bottom: $lineMargin;
 }
@@ -1648,6 +1649,7 @@ hr{
 }
 .column.MobileHeader__user{
   @include justify-content(flex-end);
+  padding-right: 0;
   @include maxQuery(500px){
     width: 30%;
   }
@@ -2271,7 +2273,21 @@ $mobilenav-tier3-padding: 30px;
   color: $accent-color;
 }
 .CollectionProduct__price--old{
-  color: #b8b8b8;
+  color: $font-gray;
+  position: relative;
+  padding-right: 4px;
+  margin-right: 4px;
+  &:after{
+    content:'';
+    display: block;
+    height: 12px;
+    right: -2px;
+    background-color: $font-gray;
+    width: 1px;
+    top: 50%;
+    @include prefix(transform, translateY(-50%));
+    position: absolute;
+  }
 }
 
 .CollectionProduct .Product__swatches{
@@ -2837,9 +2853,15 @@ $mobilenav-tier3-padding: 30px;
     margin-bottom: 0;
     text-transform: uppercase;
     color: $accent-color;
+    @include medium(2.2rem);
+    font-weight: 500;
   }
   .SizeGuide__body{
     text-align: center;
+    @include book(1.2rem);
+    a{
+      @include medium(1.2rem);
+    }
   }
   .popup-close{
     color: $font-dark;
@@ -2856,9 +2878,11 @@ $mobilenav-tier3-padding: 30px;
       background-color: $border-color;
       color: $font-dark;
       text-transform: uppercase;
+      @include medium(1.4rem);
       td{padding: 5px;}
     }
     td:first-child{//First Column
+      @include medium(1.4rem);
       width: 10%;
       background-color: $border-color;
       color: $font-dark;
@@ -2952,6 +2976,12 @@ $mobilenav-tier3-padding: 30px;
     font-size: 1.2rem;
   }
 }
+.Gift__title{
+  @include book(3rem);
+}
+.Gift__description{
+  @include medium(1.4rem);
+}
 .Gift__form{
   @include flex();
   flex-flow: row wrap;
@@ -2963,9 +2993,10 @@ $mobilenav-tier3-padding: 30px;
   label{
     text-transform: uppercase;
     margin-bottom: 0;
+    @include medium(1.4rem);
   }
   select{
-    @include book(1.4rem);
+    @include medium(1.4rem);
   }
   margin-bottom: 20px;
 }
@@ -2978,8 +3009,9 @@ textarea.Gift__input{
   border-bottom: 1px solid $border-color;
   background-color: $bg-light;
   margin-bottom: 20px;
-  @include book(1.4rem);
+  @include medium(1.4rem);
   @include placeholder{
+    color: $font-gray;
     text-transform: uppercase;
   }
 }
@@ -2994,12 +3026,48 @@ textarea.Gift__input{
 /* Page */
 .Page{
   min-height: 75vh;
+  strong{
+    font-weight: 500;
+    @include medium(1.4rem);
+  }
 }
 .Page__heading{
   text-align: center;
-  text-transform: uppercase;
   font-weight: 500;
   width: 100%;
+}
+
+
+.Contact__heading{
+  text-align: center;
+}
+.Contact__links{
+  @include flex();
+  flex-flow: row wrap;
+  margin-top: 20px;
+  @include justify-content(space-between);
+}
+.Contact__rte{
+  @include book(1.4rem);
+}
+.Contact__link{
+  @include flex();
+  @include align-items(center);
+  @include s(){
+    margin-bottom: 15px;
+  }
+  .fa{
+    margin-right: 5px;
+    font-size: 2.5rem;
+  }
+  a{
+    @include medium(1.4rem);
+    color: $font-dark;
+    text-decoration: underline;
+    &:hover{
+      color: $accent-color;
+    }
+  }
 }
 /* Cart */
 .PopupCart{

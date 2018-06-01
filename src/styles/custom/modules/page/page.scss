@@ -1,9 +1,13 @@
 .Page{
   min-height: 75vh;
+  strong{
+    font-weight: 500;
+    @include medium(1.4rem);
+  }
 }
 .Page__heading{
   text-align: center;
-  text-transform: uppercase;
   font-weight: 500;
   width: 100%;
 }
+

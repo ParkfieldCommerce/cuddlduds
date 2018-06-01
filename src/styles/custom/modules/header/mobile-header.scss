@@ -43,6 +43,7 @@
 }
 .column.MobileHeader__user{
   @include justify-content(flex-end);
+  padding-right: 0;
   @include maxQuery(500px){
     width: 30%;
   }

@@ -23,7 +23,21 @@
   color: $accent-color;
 }
 .CollectionProduct__price--old{
-  color: #b8b8b8;
+  color: $font-gray;
+  position: relative;
+  padding-right: 4px;
+  margin-right: 4px;
+  &:after{
+    content:'';
+    display: block;
+    height: 12px;
+    right: -2px;
+    background-color: $font-gray;
+    width: 1px;
+    top: 50%;
+    @include prefix(transform, translateY(-50%));
+    position: absolute;
+  }
 }
 
 .CollectionProduct .Product__swatches{

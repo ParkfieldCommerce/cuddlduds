@@ -217,5 +217,22 @@
         "default": true
       }
     ]
+  },
+  {
+    "name":"Contact",
+    "settings":[
+      {
+        "type":"text",
+        "id":"contact_phone",
+        "label":"Phone",
+        "default":"1-888-202-5445"
+      },
+      {
+        "type":"text",
+        "id":"contact_email",
+        "label":"Email Address",
+        "default":"custserv@cuddlduds.com"
+      }
+    ]
   }
 ]
