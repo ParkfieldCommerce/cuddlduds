@@ -45,7 +45,7 @@
 .Product__option{
   @include flex();
   @include align-items(center);
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .Product__option-label{
   text-transform: uppercase;
@@ -163,16 +163,22 @@
 .Product__tab-heading{
   text-transform: uppercase;
   @include medium(1.2rem);
+  margin-bottom: 10px;
   &:hover{
     cursor: pointer;
   }
+}
+.Product__tab-heading.active{
+  margin-bottom: 0;
 }
 .Product__tab-body{
   @include book(1.2rem);
   overflow: hidden;
   max-height: 0;
 }
-
+.Product__tab-body.active{
+  margin-bottom: 20px;
+}
 
 .Product__images-column{
   @include flex();

@@ -31,9 +31,11 @@
         {% for item in search.results %}
           {% if item.price %}
             {% assign product = item %}
+            {% unless product.type == 'Gift Card' %}
             <div class="column l3 m3 s6">
               {% include 'collection-product-quickadd' %}
             </div>
+            {% endunless %}
           {% endif %}
         {% endfor %}
         </div>

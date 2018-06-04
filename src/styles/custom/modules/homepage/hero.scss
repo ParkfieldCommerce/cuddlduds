@@ -21,7 +21,7 @@
   font-weight: 300;
 }
 .Hero__subheading{
-  @include medium(3rem);
+  @include book(3rem);
   margin-bottom: 30px;
 }
 .Hero__button{

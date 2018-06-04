@@ -60,10 +60,14 @@ descriptionHeadings.each(function(){
 $('.js-tabHeading').click(function(){
   var state = $(this).attr('data-open');
   if(state == 'true'){
+    $(this).removeClass('active');
+    $(this).next().removeClass('active');
     $(this).next().css('max-height', 0);
     $(this).attr('data-open', 'false');
     $(this).find('span').text('+');
   }else{
+    $(this).addClass('active');
+    $(this).next().addClass('active');
     $(this).next().css('max-height','initial');
     $(this).attr('data-open', 'true');
     $(this).find('span').text('-');

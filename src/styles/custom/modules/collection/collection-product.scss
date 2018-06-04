@@ -9,7 +9,7 @@
   margin-top: 10px;
   margin-bottom: 10px;
   @include book(1.8rem);
-  color: $font-dark;
+  color: $font-dark-gray;
   &:hover{
     color: $accent-color;
   }
@@ -17,6 +17,9 @@
 
 .CollectionProduct__price{
   @include medium(1.4rem);
+}
+.CollectionProduct__price--current{
+  color: $font-dark-gray;
 }
 .CollectionProduct__price--sale,
 .CollectionProduct__price--from{

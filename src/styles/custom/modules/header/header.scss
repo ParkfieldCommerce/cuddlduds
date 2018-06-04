@@ -57,15 +57,17 @@
   @include align-items(center);
   padding-right: 10px;
   @include justify-content(space-between);
+  width: 350px;
   .SearchForm__input{
     background-color: transparent;
     color: white;
-    height: 45px;
+    height: 35px;
     border: none;
     padding: 0px 10px;
     @include medium(1.2rem);
     @include placeholder{
       color: white;
+      text-transform: uppercase;
       @include medium(1.2rem);
     }
   }

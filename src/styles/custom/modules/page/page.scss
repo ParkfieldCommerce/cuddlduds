@@ -4,6 +4,17 @@
     font-weight: 500;
     @include medium(1.4rem);
   }
+  .rte{
+    max-width: 95%;
+    margin-right: auto;
+    margin-left: auto;
+    div{
+      margin-bottom: 20px;
+    }
+    @include s(){
+      max-width: 100%;
+    }
+  }
 }
 .Page__heading{
   text-align: center;

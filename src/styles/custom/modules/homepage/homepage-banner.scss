@@ -17,11 +17,11 @@
 }
 .HomeBanner__heading{
   font-size: 4.8rem;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-weight: 300;
 }
 .HomeBanner__subheading{
-  @include medium(2.4rem);
+  @include book(2.4rem);
   margin-bottom: 30px;
 }
 .HomeBanner__button{

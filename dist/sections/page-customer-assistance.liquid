@@ -1,0 +1,107 @@
+<div class="CustomerPage container l l-padding-top-5x m-padding-top-5x s-padding-top-3x l-padding-bottom-10x m-padding-bottom-10x s-padding-bottom-5x">
+  {% include 'theme-breadcrumbs' %}
+  <div class="row">
+    <div class="column l4 m4 s-hide">
+      <nav class="CustomerNav">
+        <ul>
+          {% for block in section.blocks %}
+          <li>
+            <a class="CustomerNav__link js-page-trigger {% if forloop.first %}active{% endif %}" href="#" data-page-id="{{forloop.index}}">{{block.settings.title}}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+    <div class="column l8 m8 s12">
+      <h1 class="Customer__heading">{{page.title}}</h1>
+      <div class="Customer__content">
+        <div class="Customer__pages">
+          {% for block in section.blocks %}
+          <div class="Customer__page js-page {% if forloop.first %}active{% endif %}" data-page-id="{{forloop.index}}">
+            <h2 class="Customer__page-heading js-mobile-page-trigger {% if forloop.last %}last{% endif %}">{{block.settings.title}}</h2>
+            {% assign tabPage = pages[block.settings.page] %}
+            <div class="js-tab Customer__page-data">{{tabPage.content}}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  $('.js-page-trigger').click(function(){
+    $('.js-page-trigger').removeClass('active');
+    $(this).addClass('active');
+
+    var pageNum = $(this).attr('data-page-id');
+    $('.js-page[data-page-id!="'+pageNum+'"]').hide();
+    $('.js-page[data-page-id="'+pageNum+'"]').show();
+
+    $('.Customer__page h4, .Customer__page div').removeClass('active');
+  });
+
+  $('.js-tab h4').click(function(){
+    var heading = $(this);
+    var body = $(this).next();
+
+    if(heading.hasClass('active')){
+      heading.removeClass('active');
+      body.removeClass('active');
+    }else{
+      heading.addClass('active');
+      body.addClass('active');
+    }
+  });
+
+  //Mobile Logic
+  $('.js-mobile-page-trigger').click(function(){
+    var heading = $(this);
+    var body = $(this).next();
+    if(heading.hasClass('active')){
+      heading.removeClass('active');
+      body.removeClass('active');
+    }else{
+      heading.addClass('active');
+      body.addClass('active');
+    }    
+  });
+</script>
+{% schema %}
+  {
+    "name": "Customer Assistance",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content":"Add a Section Block which takes the content from different pages"
+      },
+      {
+        "type": "paragraph",
+        "content":"To add a dropdown to a section block, set the heading and the body sections within the page in the following format"
+      },
+      {
+        "type":"paragraph",
+        "content":"<h4>[Your Heading]<h4>\n\n<div>[Your dropdown content]</div>"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "featured_collection",
+        "name": "Section",
+        "settings": [
+          {
+            "type":"text",
+            "id":"title",
+            "label":"Heading"
+          },
+          {
+            "label": "Content",
+            "id": "page",
+            "type": "page"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

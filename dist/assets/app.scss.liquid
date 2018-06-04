@@ -45,8 +45,8 @@ $lineMargin: $spacing*2;
 $h1: 3rem;
 $h2: 2rem;
 $h3: 1.75rem;
-$h4: 1.25rem;
-$h5: 1rem;
+$h4: 1.6rem;
+$h5: 1.6rem;
 $h6: 0.75rem;
 $p: 1rem;
 $small: 0.625rem;
@@ -78,6 +78,7 @@ $heading: black;
 
 $font-light: white;
 $font-gray: #b7b7b7;
+$font-dark-gray: #464646; 
 $font-dark: black;
 
 $border-color: #e0e0e0;
@@ -1058,7 +1059,6 @@ hr{
   .nav-link {
     font-size: 1.1rem;
     font-weight: $fontBold;
-    margin-right: $gutter/3;
   }
   .dropdown {
     position: relative;
@@ -1493,15 +1493,17 @@ hr{
   @include align-items(center);
   padding-right: 10px;
   @include justify-content(space-between);
+  width: 350px;
   .SearchForm__input{
     background-color: transparent;
     color: white;
-    height: 45px;
+    height: 35px;
     border: none;
     padding: 0px 10px;
     @include medium(1.2rem);
     @include placeholder{
       color: white;
+      text-transform: uppercase;
       @include medium(1.2rem);
     }
   }
@@ -1879,7 +1881,7 @@ $mobilenav-tier3-padding: 30px;
   font-weight: 300;
 }
 .Hero__subheading{
-  @include medium(3rem);
+  @include book(3rem);
   margin-bottom: 30px;
 }
 .Hero__button{
@@ -1970,7 +1972,7 @@ $mobilenav-tier3-padding: 30px;
 }
 .HomeCollection__subheading{
   @include book(1.2rem);
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .HomeCollection__heading{
   @include medium(2.4rem);
@@ -2006,11 +2008,11 @@ $mobilenav-tier3-padding: 30px;
 }
 .HomeBanner__heading{
   font-size: 4.8rem;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-weight: 300;
 }
 .HomeBanner__subheading{
-  @include medium(2.4rem);
+  @include book(2.4rem);
   margin-bottom: 30px;
 }
 .HomeBanner__button{
@@ -2096,7 +2098,11 @@ $mobilenav-tier3-padding: 30px;
 .Footer__menu{
   @include flex();
 }
-
+.Footer__menu-row{
+  @include flex();
+  flex-flow: row wrap;
+  @include align-items(center);
+}
 .Footer__menu-link{
   border-right: 1px solid white;
   padding-right: 10px;
@@ -2135,6 +2141,7 @@ $mobilenav-tier3-padding: 30px;
     margin-bottom: 0;
     @include placeholder{
       color: white;
+      opacity: 1;
     }
   }
   button{
@@ -2259,7 +2266,7 @@ $mobilenav-tier3-padding: 30px;
   margin-top: 10px;
   margin-bottom: 10px;
   @include book(1.8rem);
-  color: $font-dark;
+  color: $font-dark-gray;
   &:hover{
     color: $accent-color;
   }
@@ -2267,6 +2274,9 @@ $mobilenav-tier3-padding: 30px;
 
 .CollectionProduct__price{
   @include medium(1.4rem);
+}
+.CollectionProduct__price--current{
+  color: $font-dark-gray;
 }
 .CollectionProduct__price--sale,
 .CollectionProduct__price--from{
@@ -2358,7 +2368,7 @@ $mobilenav-tier3-padding: 30px;
   background-color: transparent;
   border: 1px solid $border-color;
   border-right: none;
-  color: $font-dark;
+  color: $font-dark-gray;
   text-transform: uppercase;
   height: 50px;
   width: 150px;
@@ -2409,7 +2419,7 @@ $mobilenav-tier3-padding: 30px;
 }
 .CollectionFilter__filter-value-label{
   margin-bottom: 0;
-  @include book(1.4rem);
+  @include book(1.6rem);
   color: #9e9e9e;
   font-weight: 300;
 }
@@ -2455,7 +2465,7 @@ $mobilenav-tier3-padding: 30px;
   }
 }
 .CollectionFilter--mobile .CollectionFilter__category{
-  margin-top: 10px;
+  margin-top: 20px;
   display: none;
   @include s(){
     margin-top: 0;
@@ -2570,7 +2580,7 @@ $mobilenav-tier3-padding: 30px;
 .Product__option{
   @include flex();
   @include align-items(center);
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .Product__option-label{
   text-transform: uppercase;
@@ -2688,16 +2698,22 @@ $mobilenav-tier3-padding: 30px;
 .Product__tab-heading{
   text-transform: uppercase;
   @include medium(1.2rem);
+  margin-bottom: 10px;
   &:hover{
     cursor: pointer;
   }
+}
+.Product__tab-heading.active{
+  margin-bottom: 0;
 }
 .Product__tab-body{
   @include book(1.2rem);
   overflow: hidden;
   max-height: 0;
 }
-
+.Product__tab-body.active{
+  margin-bottom: 20px;
+}
 
 .Product__images-column{
   @include flex();
@@ -3018,7 +3034,7 @@ textarea.Gift__input{
 .Gift__add{
   height: 50px;
   width: 100%;
-  background-color: $accent-color;
+  background-color: #f97596;
   &:hover{
     background-color: darken($accent-color, 10%);
   }
@@ -3030,6 +3046,17 @@ textarea.Gift__input{
     font-weight: 500;
     @include medium(1.4rem);
   }
+  .rte{
+    max-width: 95%;
+    margin-right: auto;
+    margin-left: auto;
+    div{
+      margin-bottom: 20px;
+    }
+    @include s(){
+      max-width: 100%;
+    }
+  }
 }
 .Page__heading{
   text-align: center;
@@ -3038,6 +3065,9 @@ textarea.Gift__input{
 }
 
 
+.Contact{
+  min-height: 71vh;
+}
 .Contact__heading{
   text-align: center;
 }
@@ -3069,6 +3099,114 @@ textarea.Gift__input{
     }
   }
 }
+.CustomerPage{
+  min-height: 71vh;
+}
+.CustomerNav__link{
+  color: $font-gray;
+  @include medium(1.2rem);
+  margin-bottom: 5px;
+  display: inline-block;
+  &:hover{
+    color: $font-dark-gray;
+  }
+}
+.CustomerNav__link.active{
+  color: $font-dark;
+}
+.Customer__heading{
+  @include s(){
+    font-size: 2.5rem;
+  }
+}
+.Customer__page{
+  display: none;
+  @include s(){
+    display: block;
+  }
+}
+.Customer__page.active{
+  display: block;
+}
+.Customer__page-data{
+  h4{
+    margin-bottom: 10px;
+    @include medium(1.4rem);
+    position: relative;
+    transition: color .3s;
+    &:hover{
+      color: $accent-color;
+      cursor: pointer;
+    }
+    &:before{
+      position: relative;
+      content:'+';
+      display: inline-block;
+      margin-right: 10px;
+    }
+  }
+  h4.active{
+    &:before{
+      content:'-';
+    }
+  }
+  div{
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity .5s;
+    a{
+      @include medium(1.4rem);
+    }
+  }
+  div.active{
+    opacity: 1;
+    max-height: initial;
+  }
+  @include s(){
+    display: none;
+  }
+}
+.Customer__page-heading{
+  @include medium(1.8rem);
+  @include s(){
+    border: 1px solid $border-color;
+    border-bottom: none;
+    text-align: center;
+    position: relative;
+    margin-bottom: 0;
+    padding: 5px 20px 5px;
+    &:after{
+      color: $accent-color;
+      content:'+';
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      @include prefix(transform, translateY(-50%));
+      right: 10px;
+    }
+  }
+}
+.Customer__page-heading.active{
+  @include s(){
+    border-bottom: 1px solid $border-color;
+    margin-bottom: 10px;
+    &:after{
+      content:'-';
+    }
+  }
+}
+.Customer__page-heading.last{
+  @include s(){
+    border-bottom: 1px solid $border-color;
+  }
+}
+.Customer__page-data.active{
+  @include s(){
+    display: block;
+  }
+}
+
 /* Cart */
 .PopupCart{
   overflow-y: scroll;

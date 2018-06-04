@@ -5,7 +5,11 @@
 .Footer__menu{
   @include flex();
 }
-
+.Footer__menu-row{
+  @include flex();
+  flex-flow: row wrap;
+  @include align-items(center);
+}
 .Footer__menu-link{
   border-right: 1px solid white;
   padding-right: 10px;
@@ -44,6 +48,7 @@
     margin-bottom: 0;
     @include placeholder{
       color: white;
+      opacity: 1;
     }
   }
   button{
