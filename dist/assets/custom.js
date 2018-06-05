@@ -1,4 +1,14 @@
 $(document).ready(function(){
+  //Logic for fixed header
+  $(document).scroll(function() {
+    var scrolledAmount = $(document).scrollTop();
+    var header = $('.js-header');
+    if(scrolledAmount > 200){
+      header.addClass('fixed');
+    }else{
+      header.removeClass('fixed');
+    }
+  })
   //Logic to Open Mobile Search
   $('.js-mobileSearchTrigger, .js-mobileSearchClose').click(function(){
     var mobileSearch = $('.js-mobileSearch');

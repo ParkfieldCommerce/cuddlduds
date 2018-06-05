@@ -1,7 +1,7 @@
 <!-- /snippets/theme-header.liquid -->
 {% assign mainMenu = linklists[section.settings.main_menu] %}
 {% assign mobileMainMenu = linklists[section.settings.mobile_main_menu] %}
-<header class="Header" role="banner">
+<header class="Header js-header" role="banner">
   <div class="container xl">
     <div class="row Header__row">
       <div class="Header__nav column l5">
@@ -31,7 +31,7 @@
     </div>
   </div>
 </header>
-<header class="MobileHeader">
+<header class="MobileHeader js-header">
   <div class="container xl">
     <div class="row MobileHeader__row">
       {% unless template == 'gift_card' %}

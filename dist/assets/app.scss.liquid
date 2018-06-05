@@ -1450,6 +1450,14 @@ hr{
     display: none;
   }
 }
+.Header.fixed{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 50;
+}
 .Header .container{
   margin-top: 0;
   margin-bottom: 0;
@@ -1628,7 +1636,14 @@ hr{
   @include maxQuery(1000px){
     @include flex();
   }
-
+}
+.MobileHeader.fixed{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 50;
 }
 .MobileHeader .container{
   margin-top: 0;
