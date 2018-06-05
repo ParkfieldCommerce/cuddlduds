@@ -1,0 +1,44 @@
+
+<div class="container m Page StoreLocator l-padding-top-5x m-padding-top-5x s-padding-top-3x l-padding-bottom-10x m-padding-bottom-10x s-padding-bottom-5x">
+  <div class="row">
+    <div class="column l12 m12 s12">
+      <h1>{{page.title}}</h1>
+    </div>
+  </div>
+  <div class="row">
+    {% for block in section.blocks %}
+    <div class="column l6 m6 s6 center">
+      <a class="StoreLocator__image" target="_blank" rel="nofollow" href="{{block.settings.url}}"><img src="{{block.settings.image | img_url:'master'}}" alt="{{block.settings.image.alt}}"></a>
+      <a class="StoreLocator__link" target="_blank" rel="nofollow" href="{{block.settings.url}}">{{block.settings.title}}</a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Store Locator Page",
+    "blocks": [
+      {
+        "type": "store",
+        "name": "Store",
+        "settings": [
+          {
+            "type":"image_picker",
+            "id":"image",
+            "label":"Image"
+          },
+          {
+            "type": "text",
+            "label": "Text",
+            "id": "title"
+          },
+          {
+            "type":"url",
+            "label":"url",
+            "id":"url"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -16,7 +16,7 @@
                   {% for childlink in linklists[child_list_handle].links %}
                     <div class="DesktopNav__slide swiper-slide">
                       {% if childlink.object%}
-                      <img src="{{childlink.object | img_url:'300x300'}}" alt="">
+                      <a href="{{ childlink.url }}" class="{% if childlink.active %}active{% endif %}"><img src="{{childlink.object | img_url:'300x300'}}" alt="{{childlink.object.alt}}"></a>
                       {% endif %}
                       <a href="{{ childlink.url }}" class="DesktopNav__dropdown-link nav-link{% if childlink.active %} active{% endif %}">{{ childlink.title | escape }}</a>
                     </div>

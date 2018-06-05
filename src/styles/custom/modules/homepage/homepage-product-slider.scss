@@ -1,5 +1,6 @@
 .ProductSlider__heading{
   @include medium(2.4rem);
+  margin-bottom: 10px;
 }
 .ProductSlider__subheading{
   @include book(1.6rem);

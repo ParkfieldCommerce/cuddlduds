@@ -1393,6 +1393,13 @@ hr{
     display: none;
   }
 }
+
+@include s(){
+  .Page .Breadcrumbs,
+  .CustomerPage .Breadcrumbs{
+    display: none;
+  }
+}
 .Pagination{
   display: inline-block;
   width: 100%;
@@ -1560,6 +1567,13 @@ hr{
 }
 .DesktopNav__slide{
   text-align: center;
+  img{
+    border: 2px solid transparent;
+    transition: border-color .3s;
+    &:hover{
+      border-color: $accent-color;
+    }
+  }
 }
 .DesktopNav .DesktopNav__link{
   @include medium(1.4rem);
@@ -1754,12 +1768,9 @@ $mobilenav-tier3-padding: 30px;
 
 .MobileNav__dropdown--second{
   padding-left: $mobilenav-tier2-padding;
-  padding-top: 10px;
+  padding-top: 5px;
   padding-bottom: 10px;
   @include book(1.2rem);
-  &:last-child{
-    padding-top: 0;
-  }
 }
 
 .MobileNav__dropdown--third{
@@ -1877,7 +1888,7 @@ $mobilenav-tier3-padding: 30px;
 }
 .Hero__heading{
   font-size: 7.2rem;
-  margin-bottom: 30px;
+  margin-bottom: 0;
   font-weight: 300;
 }
 .Hero__subheading{
@@ -1929,6 +1940,7 @@ $mobilenav-tier3-padding: 30px;
 }
 .ProductSlider__heading{
   @include medium(2.4rem);
+  margin-bottom: 10px;
 }
 .ProductSlider__subheading{
   @include book(1.6rem);
@@ -2120,6 +2132,20 @@ $mobilenav-tier3-padding: 30px;
       color: $accent-color;
     }
   }
+  @include maxQuery(550px){
+    &:nth-child(3){
+      border-right: none;
+    }
+  }
+  @include maxQuery(370px){
+    &:nth-child(3){
+      border-right: 1px solid white;
+    }
+    &:nth-child(2),
+    &:nth-child(4){
+      border-right: none;
+    }
+  }
 }
 
 .Footer__form #contact_form{
@@ -2201,6 +2227,12 @@ $mobilenav-tier3-padding: 30px;
   button{
     margin-top: 10px;
     margin-bottom: 30px;
+  }
+}
+
+#PasswordRecoverForm{
+  button{
+    margin-top: 20px;
   }
 }
 .popup form{
@@ -3086,9 +3118,8 @@ textarea.Gift__input{
   @include s(){
     margin-bottom: 15px;
   }
-  .fa{
+  img{
     margin-right: 5px;
-    font-size: 2.5rem;
   }
   a{
     @include medium(1.4rem);
@@ -3099,6 +3130,7 @@ textarea.Gift__input{
     }
   }
 }
+
 .CustomerPage{
   min-height: 71vh;
 }
@@ -3207,6 +3239,9 @@ textarea.Gift__input{
   }
 }
 
+.StoreLocator__image{
+  display: block;
+}
 /* Cart */
 .PopupCart{
   overflow-y: scroll;

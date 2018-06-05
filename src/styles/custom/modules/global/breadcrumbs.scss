@@ -14,3 +14,10 @@
     display: none;
   }
 }
+
+@include s(){
+  .Page .Breadcrumbs,
+  .CustomerPage .Breadcrumbs{
+    display: none;
+  }
+}

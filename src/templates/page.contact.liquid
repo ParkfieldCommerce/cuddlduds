@@ -10,10 +10,10 @@
         {{ page.content }}
         <div class="Contact__links">
         <div class="Contact__link">
-          <i class="fa fa-phone"></i><a href="tel:{{settings.contact_phone}}">{{settings.contact_phone | replace:'-','.' | replace:' ','.'}}</a>
+          <img class="Contact__link-image" src="{{'phone.png' | asset_url}}" alt="Phone"><a href="tel:{{settings.contact_phone}}">{{settings.contact_phone | replace:'-','.' | replace:' ','.'}}</a>
         </div>
         <div class="Contact__link">
-          <i class="fa fa-envelope"></i><a href="mailto:{{settings.contact_email}}">{{settings.contact_email}}</a>
+          <img class="Contact__link-image" src="{{'email.png' | asset_url}}" alt="Email"><a href="mailto:{{settings.contact_email}}">{{settings.contact_email}}</a>
         </div>
         </div>
       </div>

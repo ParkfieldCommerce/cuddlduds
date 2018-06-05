@@ -55,12 +55,9 @@ $mobilenav-tier3-padding: 30px;
 
 .MobileNav__dropdown--second{
   padding-left: $mobilenav-tier2-padding;
-  padding-top: 10px;
+  padding-top: 5px;
   padding-bottom: 10px;
   @include book(1.2rem);
-  &:last-child{
-    padding-top: 0;
-  }
 }
 
 .MobileNav__dropdown--third{

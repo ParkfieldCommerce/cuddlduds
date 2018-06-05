@@ -32,6 +32,13 @@
 }
 .DesktopNav__slide{
   text-align: center;
+  img{
+    border: 2px solid transparent;
+    transition: border-color .3s;
+    &:hover{
+      border-color: $accent-color;
+    }
+  }
 }
 .DesktopNav .DesktopNav__link{
   @include medium(1.4rem);
