@@ -23,15 +23,24 @@
     <header>
       <div class="row s-margin-bottom-2x m-margin-bottom-3x l-margin-bottom-3x">
         <div class="column l12 m12 s12 right Collection__mobile-sort">
-          <div class="select-wrapper s-show m-hide l-hide">
+          <div class="select-wrapper">
             <button type="button" class="CollectionFilter__mobile-trigger js-mobileFilterTrigger">Filter By</button>
           </div>
-          {% include 'collection-sort' %}
+          <div>
+            {% include 'collection-sort', type:'main' %}
+          </div>
         </div>
       </div>
       <div class="row">
-        <div class="column l12 m12 s12">
+        <div class="column l3 m3 s12"></div>
+        <div class="column l6 m6 s12 CollectionFilter__desktop-section">
           {% include 'collection-filter' %}
+        </div>
+        <div class="column l3 m3 s12 CollectionFilter__desktop-section CollectionFilter__desktop-section--sort">
+          {% include 'collection-sort', type:'sub'%}
+        </div>
+        <div class="column l12 m12 s12">
+          {% include 'collection-filter-values' %}
         </div>
       </div>
       {% if current_tags %}

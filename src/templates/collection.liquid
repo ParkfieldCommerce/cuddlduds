@@ -5,3 +5,11 @@
 <div class="margin-bottom-10x">
 {% section 'template-collection' %}
 </div>
+<script>
+  //There are two sorting dropdowns, this will just trigger the events on the main one, when the second one gets changed
+  $('select[data-sort-sub]').change(function(){
+    var mainSort = $('select[data-sort]');
+    mainSort.val($(this).val());
+    mainSort.trigger('change');
+  });
+</script>

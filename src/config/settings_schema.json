@@ -86,6 +86,17 @@
     ]
   },
   {
+    "name":"Collection",
+    "settings":[
+      {
+        "type":"checkbox",
+        "id":"enable_quickshop",
+        "label":"Enable Quickshop",
+        "default":false
+      }
+    ]
+  },
+  {
     "name": "Search",
     "settings": [
       {

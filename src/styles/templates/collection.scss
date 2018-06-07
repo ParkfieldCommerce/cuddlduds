@@ -5,5 +5,10 @@
   select{
     color: $font-dark-gray;
     font-size: 1.4rem;
+    height: 48px !important;
+    @include maxQuery(1000px){
+      height: 30px !important;
+      font-size: 1.25rem;
+    }
   }
 }

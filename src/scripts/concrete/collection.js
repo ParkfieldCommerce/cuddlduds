@@ -24,7 +24,6 @@ concrete.Collection = (function() {
         type: 'sortByChange',
         sortBy: sortBy
       });
-
       concrete.urlParams.sort_by = this.currentSortBy = sortBy;
       location.search = jQuery.param(concrete.urlParams);
     },

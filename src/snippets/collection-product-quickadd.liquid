@@ -29,6 +29,7 @@
         <img class="CollectionProduct__image js-CollectionProductImage" srcset="{{ product.featured_image | img_url: '512x512', scale: 2 }} 2x" src="{{ product.featured_image | img_url: '512x512' }}" alt="{{ product.featured_image.alt | escape }}">
       </a>
     {% endif %}
+    {% if settings.enable_quickshop %}
     {% if hasColors %}
       <div class="CollectionProduct__size-variants js-CollectionProductSizes">
         <span class="CollectionProduct__size-variants-label">Add To Bag</span>
@@ -47,6 +48,7 @@
       {% endif %}
       {% endfor %}
       </div>
+    {% endif %}
     {% endif %}
   </div>
   <p>

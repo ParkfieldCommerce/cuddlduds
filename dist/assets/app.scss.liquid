@@ -977,6 +977,11 @@ hr{
   select{
     color: $font-dark-gray;
     font-size: 1.4rem;
+    height: 48px !important;
+    @include maxQuery(1000px){
+      height: 30px !important;
+      font-size: 1.25rem;
+    }
   }
 }
 /* Product ===================================================================*/
@@ -2441,6 +2446,15 @@ $mobilenav-tier3-padding: 30px;
     }
   }
 }
+.CollectionFilter__desktop-section--sort{
+  @include flex();
+  @include justify-content(flex-end);
+}
+.CollectionFilter__desktop-section{
+  @include maxQuery(1000px){
+    display: none;
+  }
+}
 .CollectionFilter--desktop{
   @include flex();
   justify-content: center;
@@ -2455,7 +2469,7 @@ $mobilenav-tier3-padding: 30px;
   color: $font-dark-gray;
   text-transform: uppercase;
   height: 50px;
-  width: 150px;
+  min-width: 120px;
   @include book(1.4rem);
   &:hover{
     border-color: $border-color;
@@ -2589,34 +2603,36 @@ $mobilenav-tier3-padding: 30px;
 }
 
 .Collection__mobile-sort{
-  @include flex();
-  @include align-items(center);
-  @include justify-content(flex-end);
-  @include s(){
+  display: none;
+  @include maxQuery(1000px){
+    @include flex();
+    @include align-items(center);
+    @include justify-content(space-between);
     .select-wrapper{
       width: auto;
       margin-bottom: 0;
     }
-    @include justify-content(space-between);
   }
 }
 .CollectionFilter__mobile-trigger{
   width: auto;
   background-color: transparent;
   border: 1px solid $border-color;
-  color: #b8b8b8;
+  color: $font-dark-gray;
   margin-bottom: 0 !important;
   height: 30px;
   @include book(1.25rem);
   padding-right: 30px;
   display: inline-block;
   &:hover{
-    color: #b8b8b8;
     background-color: transparent;
     border-color: $border-color;
   }
 }
 /* Product */
+.ProductPage{
+  min-height: 71vh;
+}
 .Product__heading--mobile{
   display: none;
   @include s(){
@@ -2721,7 +2737,7 @@ $mobilenav-tier3-padding: 30px;
   border: 1px solid $border-color;
   padding: 0px;
   margin-right: 10px;
-  margin-bottom: 0;
+  margin-bottom: 5px;
   transition: border-color .3s;
   &:hover{
     background-color: transparent;
@@ -2740,6 +2756,9 @@ $mobilenav-tier3-padding: 30px;
 }
 .Product__swatch--active{
   border-color: $accent-dark;
+  @include s(){
+    border-color: $border-color;
+  }
 }
 .Product__option-select-wrapper--color{
   display: none !important;

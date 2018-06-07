@@ -62,29 +62,28 @@
 }
 
 .Collection__mobile-sort{
-  @include flex();
-  @include align-items(center);
-  @include justify-content(flex-end);
-  @include s(){
+  display: none;
+  @include maxQuery(1000px){
+    @include flex();
+    @include align-items(center);
+    @include justify-content(space-between);
     .select-wrapper{
       width: auto;
       margin-bottom: 0;
     }
-    @include justify-content(space-between);
   }
 }
 .CollectionFilter__mobile-trigger{
   width: auto;
   background-color: transparent;
   border: 1px solid $border-color;
-  color: #b8b8b8;
+  color: $font-dark-gray;
   margin-bottom: 0 !important;
   height: 30px;
   @include book(1.25rem);
   padding-right: 30px;
   display: inline-block;
   &:hover{
-    color: #b8b8b8;
     background-color: transparent;
     border-color: $border-color;
   }

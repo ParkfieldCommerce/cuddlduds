@@ -1,3 +1,6 @@
+.ProductPage{
+  min-height: 71vh;
+}
 .Product__heading--mobile{
   display: none;
   @include s(){
@@ -102,7 +105,7 @@
   border: 1px solid $border-color;
   padding: 0px;
   margin-right: 10px;
-  margin-bottom: 0;
+  margin-bottom: 5px;
   transition: border-color .3s;
   &:hover{
     background-color: transparent;
@@ -121,6 +124,9 @@
 }
 .Product__swatch--active{
   border-color: $accent-dark;
+  @include s(){
+    border-color: $border-color;
+  }
 }
 .Product__option-select-wrapper--color{
   display: none !important;

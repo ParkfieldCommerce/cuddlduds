@@ -113,6 +113,7 @@ concrete.Product = (function() {
         var videoClass = $(window).width() < 600 ? '.js-video--mobile' : '.js-video--desktop';
         var video = document.querySelector(videoClass);
         $('.js-mainPhoto').hide();
+        $('.zoomContainer').remove();
         $(videoClass).show();
         video.src = videoUrl;
         if($(window).width() < 600){
@@ -126,7 +127,6 @@ concrete.Product = (function() {
       if(numOfSlides > 3){
         numOfSlides = 3;
       }
-      console.log(numOfSlides);
       if(numOfSlides === 0){
         $('.js-ProductThumbs').addClass('hide');
         $('#ProductPhoto').show();

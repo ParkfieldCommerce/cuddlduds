@@ -14,7 +14,7 @@
 <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
 <meta itemprop="image" content="{{ product.featured_image | img_url: '1024x1024' }}">
 
-<div class="l-padding-top-5x m-padding-top-5x s-padding-top-3x padding-bottom-5x">
+<div class="l-padding-top-5x m-padding-top-5x s-padding-top-3x padding-bottom-5x ProductPage">
   <div class="container l" itemscope itemtype="http://schema.org/Product" data-section-type="product" data-section-id="{{ section.id }}" data-enable-history-state="true">
     <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
     <meta itemprop="image" content="{{ product.featured_image | img_url: '1024x1024' }}">
@@ -114,9 +114,7 @@
                   <div class="Product__option-select-wrapper select-wrapper Product__option-select-wrapper--{{option.name | downcase }}">
                     <select class="single-option-selector Product__option-select Product__option-select-{{option.name | downcase }}" id="SingleOptionSelector-{{ forloop.index }}" data-index="option{{ forloop.index }}">
                       {% for value in option.values %}
-                        {% if forloop.first %}
-                        <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>Select {{ option.name }}</option>
-                        {% endif %}
+
                         <option value="{{ value | escape }}">{{ value }}</option>
                       {% endfor %}
                     </select>
