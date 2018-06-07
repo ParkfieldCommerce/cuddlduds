@@ -662,9 +662,7 @@ a.button {
   padding: $gutter/3.5;
   margin: $gutter/2 auto;
   color: $colorBackground;
-  background-color: $colorHighlight;
-  border: $borderWeight $borderStyle $colorHighlight;
-  border-radius: $borderRadius;
+  background-color: $accent-color;
   li {
     margin-bottom: $gutter/3;
     &:last-of-type {
@@ -676,6 +674,9 @@ a.button {
   }
 }
 
+#contact_form .note{
+  background-color: transparent;
+}
 /* Grid System ===============================================================*/
 
 .container {
@@ -973,6 +974,10 @@ hr{
 .CollectionSort{
   border: 1px solid $border-color;
   width: auto;
+  select{
+    color: $font-dark-gray;
+    font-size: 1.4rem;
+  }
 }
 /* Product ===================================================================*/
 
@@ -1075,7 +1080,7 @@ hr{
       padding: $gutter/3 0;
       position: absolute;
       top: 1.5rem;
-      z-index: 2;
+      z-index: 20;
       li {
         display: block;
         font-size: 0;
@@ -1554,7 +1559,13 @@ hr{
   position: static !important;
   height: 100%;
   @include flex-center();
-  flex: 1;
+  margin-right: 50px;
+  @include maxQuery(1278px){
+    margin-right: 40px;
+  }
+  @include maxQuery(1150px){
+    margin-right: 20px;
+  }
 }
 .DesktopNav__dropdown-menu{
   width: 100%;
@@ -1618,6 +1629,9 @@ hr{
   &:hover{
     color: $accent-color;
   }
+}
+.DesktopNav__arrow.swiper-button-disabled{
+  opacity: 0;
 }
 .theme-nav-main .DesktopNav__dropdown-link{
   display: block;
@@ -1868,8 +1882,7 @@ $mobilenav-tier3-padding: 30px;
 
 .MobileSearch.active{
   padding-top: 10px;
-  height: 500px;
-  height: 80vh;
+  height: auto;
 }
 /* Homepage Modules */
 .Promobar{
@@ -1905,6 +1918,7 @@ $mobilenav-tier3-padding: 30px;
   font-size: 7.2rem;
   margin-bottom: 0;
   font-weight: 300;
+  line-height: 1.125;
 }
 .Hero__subheading{
   @include book(3rem);
@@ -1953,6 +1967,25 @@ $mobilenav-tier3-padding: 30px;
     @include justify-content(flex-end);
   }
 }
+
+@include maxQuery(400px){
+  .Hero__heading{
+    font-size: 2.4rem;
+  }
+  .Hero__subheading{
+    font-size: 1.8rem;
+  }
+  .Hero__button{
+    font-size: 1.6rem;
+  }
+  .Hero__content{
+    width: 50%;
+    padding: 0px 20px;
+    @include flex();
+    @include justify-content(flex-end);
+  }
+}
+
 .ProductSlider__heading{
   @include medium(2.4rem);
   margin-bottom: 10px;
@@ -2085,6 +2118,24 @@ $mobilenav-tier3-padding: 30px;
     @include justify-content(flex-end);
   }
 }
+
+@include maxQuery(400px){
+  .HomeBanner__heading{
+    font-size: 2.4rem;
+  }
+  .HomeBanner__subheading{
+    font-size: 1.8rem;
+  }
+  .HomeBanner__button{
+    font-size: 1.6rem;
+  }
+  .HomeBanner__content{
+    width: 50%;
+    padding: 0px 20px;
+    @include flex();
+    @include justify-content(flex-end);
+  }
+}
 .Instagram__feed{
   @include flex();
   flex-flow: row wrap;
@@ -2145,20 +2196,6 @@ $mobilenav-tier3-padding: 30px;
     color: white;
     &:hover{
       color: $accent-color;
-    }
-  }
-  @include maxQuery(550px){
-    &:nth-child(3){
-      border-right: none;
-    }
-  }
-  @include maxQuery(370px){
-    &:nth-child(3){
-      border-right: 1px solid white;
-    }
-    &:nth-child(2),
-    &:nth-child(4){
-      border-right: none;
     }
   }
 }
@@ -2584,6 +2621,7 @@ $mobilenav-tier3-padding: 30px;
   display: none;
   @include s(){
     display: block;
+    width: 100%;
   }
 }
 .Product__heading--desktop{
@@ -2659,6 +2697,9 @@ $mobilenav-tier3-padding: 30px;
     padding-left: 10px;
     position: relative;
     z-index: 2;
+    &:hover{
+      cursor: pointer;
+    }
   }
   @include maxQuery($s){
     margin-bottom: 0 !important;
@@ -2769,6 +2810,9 @@ $mobilenav-tier3-padding: 30px;
 }
 .Product__main-image{
   width: 80%;
+  @include s(){
+    width: 100%;
+  }
 }
 .Product__thumbs{
   padding-top: 20px;
@@ -2779,11 +2823,17 @@ $mobilenav-tier3-padding: 30px;
     margin-bottom: 20px;
   }
 }
+.Product__thumbs.hide{
+  opacity: 0;
+}
 .Product__thumbs-slider{
   max-height: 440px;
   .swiper-slide{
     position: relative;
     height: 150px !important;
+    @include maxQuery($s){
+      height: auto !important;
+    }
   }
 }
 .ProductThumbsSliderDots{
@@ -3097,6 +3147,9 @@ textarea.Gift__input{
     max-width: 95%;
     margin-right: auto;
     margin-left: auto;
+    h4{
+      font-weight: bold;
+    }
     div{
       margin-bottom: 20px;
     }

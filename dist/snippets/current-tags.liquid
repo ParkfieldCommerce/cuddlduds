@@ -2,6 +2,7 @@
         <span class="CurrentTags">
         {% for tag in current_tags %}
         {% assign currentTag = tag %}
+
         {% if tag contains '(0)'%}
           {% assign currentTag = tag | replace_first: '(0)', '' %}
         {% endif %}
@@ -13,6 +14,13 @@
         {% endif %}
         {% if tag contains '(k)' %}
           {% assign currentTag = tag | replace_first: '(k)', '000' %}
+        {% endif %}
+
+        {% if currentTag contains 'price' %}
+        {% assign labelText = tag | split:'_' | last %}
+        {% assign firstMoney = labelText | split:'-' | first %}
+        {% assign lastMoney = labelText | split:'-' | last %}
+        {% assign currentTag = '$' | append: firstMoney | append:'.00' | append:' - $' | append: lastMoney %}
         {% endif %}
         
         {% if forloop.length > 2 %}

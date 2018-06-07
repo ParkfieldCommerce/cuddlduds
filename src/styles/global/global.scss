@@ -264,9 +264,7 @@ a.button {
   padding: $gutter/3.5;
   margin: $gutter/2 auto;
   color: $colorBackground;
-  background-color: $colorHighlight;
-  border: $borderWeight $borderStyle $colorHighlight;
-  border-radius: $borderRadius;
+  background-color: $accent-color;
   li {
     margin-bottom: $gutter/3;
     &:last-of-type {
@@ -276,4 +274,8 @@ a.button {
   a {
     color: $colorBackground;
   }
+}
+
+#contact_form .note{
+  background-color: transparent;
 }

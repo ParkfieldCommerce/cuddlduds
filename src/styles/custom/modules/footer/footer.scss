@@ -27,20 +27,6 @@
       color: $accent-color;
     }
   }
-  @include maxQuery(550px){
-    &:nth-child(3){
-      border-right: none;
-    }
-  }
-  @include maxQuery(370px){
-    &:nth-child(3){
-      border-right: 1px solid white;
-    }
-    &:nth-child(2),
-    &:nth-child(4){
-      border-right: none;
-    }
-  }
 }
 
 .Footer__form #contact_form{

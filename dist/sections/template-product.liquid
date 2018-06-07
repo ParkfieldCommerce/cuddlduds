@@ -167,8 +167,8 @@
                 <span id="AddToCartText">{{ 'product.add_to_cart' | t }}</span>
               </button>
             {% endif %}
-            {% assign shippingPage = pages[section.settings.shipping_page] %}
-            <a class="Product__shipping-link target="_blank" href="{{shippingPage.url}}">{{shippingPage.title}}</a>
+            {% assign assistancePage = pages[section.settings.assistance_page] %}
+            <a class="Product__shipping-link target="_blank" href="{{assistancePage.url}}#{{section.settings.shipping_page}}">Shipping & Returns</a>
           </form>
           <div class="Product__tabs js-productTabs"></div>
         </div>
@@ -205,7 +205,7 @@
       },
       {
         "type":"paragraph",
-        "content":"Tag the product with 'fit_[FIT GUIDE PAGE HANDLE]'"
+        "content":"Tag the product with 'SizeGuide=[FIT GUIDE PAGE HANDLE]'"
       },
       {
         "type":"paragraph",
@@ -222,6 +222,11 @@
       {
         "type":"header",
         "content":"Shipping Page"
+      },
+      {
+        "type":"page",
+        "id":"assistance_page",
+        "label":"Assistance Page"
       },
       {
         "type":"page",

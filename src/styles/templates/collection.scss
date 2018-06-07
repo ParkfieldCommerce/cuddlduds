@@ -2,4 +2,8 @@
 .CollectionSort{
   border: 1px solid $border-color;
   width: auto;
+  select{
+    color: $font-dark-gray;
+    font-size: 1.4rem;
+  }
 }

@@ -6,7 +6,7 @@
         <ul>
           {% for block in section.blocks %}
           <li>
-            <a class="CustomerNav__link js-page-trigger {% if forloop.first %}active{% endif %}" href="#" data-page-id="{{forloop.index}}">{{block.settings.title}}</a>
+            <a class="CustomerNav__link js-page-trigger {% if forloop.first %}active{% endif %}" href="#" data-page-id="{{forloop.index}}" data-page-title="{{block.settings.page}}">{{block.settings.title}}</a>
           </li>
           {% endfor %}
         </ul>
@@ -18,7 +18,7 @@
         <div class="Customer__pages">
           {% for block in section.blocks %}
           <div class="Customer__page js-page {% if forloop.first %}active{% endif %}" data-page-id="{{forloop.index}}">
-            <h2 class="Customer__page-heading js-mobile-page-trigger {% if forloop.last %}last{% endif %}">{{block.settings.title}}</h2>
+            <h2 data-page-title="{{block.settings.page}}" class="Customer__page-heading js-mobile-page-trigger {% if forloop.last %}last{% endif %}">{{block.settings.title}}</h2>
             {% assign tabPage = pages[block.settings.page] %}
             <div class="js-tab Customer__page-data">{{tabPage.content}}</div>
           </div>
@@ -67,6 +67,19 @@
       body.addClass('active');
     }    
   });
+
+  //Open first tab by default
+  $('.js-page.active .js-tab h4').trigger('click');
+
+  //If theres an anchor, trigger the page that was in the url
+  if(window.location.href.indexOf('#') !== -1){
+    var search = window.location.href.split('#')[1];
+    if($(window).width() < 600){
+      $('h2[data-page-title="'+search+'"]').trigger('click');
+    }else{
+      $('a[data-page-title="'+search+'"]').trigger('click');
+    }
+  }
 </script>
 {% schema %}
   {

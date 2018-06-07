@@ -11,7 +11,13 @@
   position: static !important;
   height: 100%;
   @include flex-center();
-  flex: 1;
+  margin-right: 50px;
+  @include maxQuery(1278px){
+    margin-right: 40px;
+  }
+  @include maxQuery(1150px){
+    margin-right: 20px;
+  }
 }
 .DesktopNav__dropdown-menu{
   width: 100%;
@@ -75,6 +81,9 @@
   &:hover{
     color: $accent-color;
   }
+}
+.DesktopNav__arrow.swiper-button-disabled{
+  opacity: 0;
 }
 .theme-nav-main .DesktopNav__dropdown-link{
   display: block;

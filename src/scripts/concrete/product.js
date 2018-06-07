@@ -100,7 +100,6 @@ concrete.Product = (function() {
       //Show Correct Variant Images
       $('.js-ProductThumbsSlider .swiper-wrapper').empty();
       $('.js-ProductThumbsSliderDots').empty();
-      //$('.js-ProductThumbsSliderDots').empty();
       $('.BackupSlides .swiper-slide').clone().appendTo('.js-ProductThumbsSlider .swiper-wrapper');
       $('.js-ProductThumbs img').each(function(){
         if($(this).attr('alt') != color && $(this).attr('alt').indexOf('mp4') == -1){
@@ -126,6 +125,13 @@ concrete.Product = (function() {
       var numOfSlides = $('.js-ProductThumbsSlider .swiper-slide').length;
       if(numOfSlides > 3){
         numOfSlides = 3;
+      }
+      console.log(numOfSlides);
+      if(numOfSlides === 0){
+        $('.js-ProductThumbs').addClass('hide');
+        $('#ProductPhoto').show();
+      }else{
+        $('.js-ProductThumbs').removeClass('hide');
       }
 
       //Destroy Existing Slider

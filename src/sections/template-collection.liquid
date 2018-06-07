@@ -13,8 +13,10 @@
 
 {% paginate collection.products by pagination %}
   <div class="CollectionBanner l-margin-bottom-5x m-margin-bottom-5x s-margin-bottom-3x" data-section-type="collection">
+    {% if hasBanner %}
     <img class="CollectionBanner__image CollectionBanner__image--desktop" src="{{banner}}" alt="Collection Banner">
     <img class="CollectionBanner__image CollectionBanner__image--mobile" src="{{mobileBanner}}" alt="CollectionBanner">
+    {% endif %}
     <h1 class="CollectionBanner__heading">{{ collection.title }}</h1>
   </div>
   <div class="container l" data-section-type="collection">

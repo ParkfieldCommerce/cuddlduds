@@ -2,6 +2,7 @@
   display: none;
   @include s(){
     display: block;
+    width: 100%;
   }
 }
 .Product__heading--desktop{
@@ -77,6 +78,9 @@
     padding-left: 10px;
     position: relative;
     z-index: 2;
+    &:hover{
+      cursor: pointer;
+    }
   }
   @include maxQuery($s){
     margin-bottom: 0 !important;
@@ -187,6 +191,9 @@
 }
 .Product__main-image{
   width: 80%;
+  @include s(){
+    width: 100%;
+  }
 }
 .Product__thumbs{
   padding-top: 20px;
@@ -197,11 +204,17 @@
     margin-bottom: 20px;
   }
 }
+.Product__thumbs.hide{
+  opacity: 0;
+}
 .Product__thumbs-slider{
   max-height: 440px;
   .swiper-slide{
     position: relative;
     height: 150px !important;
+    @include maxQuery($s){
+      height: auto !important;
+    }
   }
 }
 .ProductThumbsSliderDots{

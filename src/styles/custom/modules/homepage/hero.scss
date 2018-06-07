@@ -19,6 +19,7 @@
   font-size: 7.2rem;
   margin-bottom: 0;
   font-weight: 300;
+  line-height: 1.125;
 }
 .Hero__subheading{
   @include book(3rem);
@@ -62,6 +63,24 @@
   }
   .Hero__content{
     width: 100%;
+    padding: 0px 20px;
+    @include flex();
+    @include justify-content(flex-end);
+  }
+}
+
+@include maxQuery(400px){
+  .Hero__heading{
+    font-size: 2.4rem;
+  }
+  .Hero__subheading{
+    font-size: 1.8rem;
+  }
+  .Hero__button{
+    font-size: 1.6rem;
+  }
+  .Hero__content{
+    width: 50%;
     padding: 0px 20px;
     @include flex();
     @include justify-content(flex-end);
