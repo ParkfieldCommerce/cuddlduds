@@ -1,3 +1,9 @@
+.RequestedRecover{
+  display: none;
+  p{
+    color: $accent-color;
+  }
+}
 .LoginRegister{
   min-height: 52vh;
   input{

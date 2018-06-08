@@ -12,7 +12,8 @@ $(document).on('variantImageChange', function(event) {
   // Lets get the new image at the correct size
   var newImage = concrete.Images.getImageUrl(event.variant.featured_image.src, oldSize)
   // Change to the new variants image
-  $('#ProductPhoto img').attr('src', newImage);
+  $('.js-mainPhoto').attr('src', newImage);
+  $('.js-mainPhoto').attr('data-zoom-image', newImage);
   $('.js-mainPhoto').myElevateZoom();
 });
 

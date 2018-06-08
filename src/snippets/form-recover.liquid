@@ -17,3 +17,11 @@
     {% endif %}
   {% endform %}
 </div>
+
+
+<script>
+  $('form[action="/account/recover"]').submit(function(e){
+    localStorage.setItem('requestedRecover', 'true');
+    return true;
+  });
+</script>

@@ -1,6 +1,11 @@
 <!-- /templates/customers/login.liquid -->
 
 <div class="LoginRegister container m l-padding-top-10x l-padding-bottom-10x s-padding-top-3x s-padding-bottom-5x">
+  <div class="row RequestedRecover js-requestedRecover">
+    <div class="column l12 m12 s12">
+      <p>We've sent you an email containing a password reset link.</p>
+    </div>
+  </div>
   <div class="row">
     <div class="column l6 m6 s12">
       {% include 'form-login' %}
@@ -17,3 +22,12 @@
     {% endform %}
   {% endif %}
 </div>
+<script>
+  $(document).ready(function(){
+    var state = localStorage.getItem('requestedRecover');
+    if(state == 'true'){
+      $('.js-requestedRecover').show();
+      localStorage.removeItem('requestedRecover');
+    }
+  });
+</script>

@@ -28,7 +28,7 @@
         {% endfor %}
       {% else %}
         <p class="h4">{{ 'account.orders.none' | t }}</p>
-        <a href="/collections/all" class="button">{{ 'account.orders.add' | t }}</a>
+        <a href="/collections" class="button">{{ 'account.orders.add' | t }}</a>
       {% endif %}
 
       {% include 'theme-pagination' with 'hr' %}

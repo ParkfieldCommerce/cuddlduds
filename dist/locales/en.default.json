@@ -85,7 +85,7 @@
       "guest": "Login as guest"
     },
     "register": {
-      "title": "Register account",
+      "title": "Register Account",
       "message": "Create a new account",
       "already_registered": "Already have an account?",
       "submit": "Create account"

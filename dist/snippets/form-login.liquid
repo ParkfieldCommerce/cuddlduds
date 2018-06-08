@@ -2,7 +2,10 @@
 <div class="LoginRegister">
 {% form 'customer_login' %}
   <h1>{{ 'account.login.title' | t }}</h1>
-  {{ form.errors | default_errors }}
+
+  {% if template.name == 'login' %}
+    {{ form.errors | default_errors }}
+  {% endif %}
 
   <label for="CustomerEmail">{{ 'form.email' | t }}</label>
   <input type="email" name="customer[email]" id="CustomerEmail"{% if form.errors contains 'email' %} class="error"{% endif %} autocorrect="off" autocapitalize="off" autofocus>

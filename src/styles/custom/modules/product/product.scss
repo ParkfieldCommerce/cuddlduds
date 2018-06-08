@@ -193,10 +193,14 @@
 .Product__images-column{
   @include flex();
   @include align-items(flex-start);
+  @include justify-content(space-between);
   flex-flow: row-reverse wrap;
 }
 .Product__main-image{
-  width: 80%;
+  width: 78%;
+  img{
+    max-height: 425px;
+  }
   @include s(){
     width: 100%;
   }

@@ -38,8 +38,8 @@
             </span>
           </div>
         </div>
-        <div id="ProductPhoto" data-zoom-image="{{ product.featured_image | img_url: '2048x2048' }}" class="Product__main-image">
-          <img class="js-mainPhoto" srcset="{{ product.featured_image | img_url: '1024x1024', scale: 2 }} 2x" src="{{ product.featured_image | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %}>
+        <div id="ProductPhoto" class="Product__main-image">
+          <img class="js-mainPhoto" srcset="{{ product.featured_image | img_url: '1024x1024', scale: 2 }} 2x" src="{{ product.featured_image | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %} data-zoom-image="{{ product.featured_image | img_url: '2048x2048' }}">
           <video src="" class="js-video js-video--desktop Product__video" width="320" height="240" controls></video>
           <div class="Product__social">
           {% include 'social-sharing' %}

@@ -913,7 +913,7 @@ body{
   @include book(1.6rem);
 }
 
-button, .Button, .button{
+button, .Button, .button, input[type="submit"].btn{
   background-color: $accent-dark;
   color: $font-light;
   @include inline-flex-center();
@@ -1592,6 +1592,7 @@ hr{
 .DesktopNav__slide{
   text-align: center;
   img{
+    max-height: 150px;
     border: 2px solid transparent;
     transition: border-color .3s;
     &:hover{
@@ -2275,6 +2276,12 @@ $mobilenav-tier3-padding: 30px;
   }
 }
 /* LoginRegister */
+.RequestedRecover{
+  display: none;
+  p{
+    color: $accent-color;
+  }
+}
 .LoginRegister{
   min-height: 52vh;
   input{
@@ -2291,6 +2298,9 @@ $mobilenav-tier3-padding: 30px;
   button{
     margin-top: 20px;
   }
+}
+.AccountPage{
+  min-height: 71vh;
 }
 .popup form{
   label{
@@ -2309,6 +2319,14 @@ $mobilenav-tier3-padding: 30px;
   .select-wrapper{
     border: 1px solid $border-color;
     margin-bottom: 10px;
+  }
+}
+
+.shopify-challenge__container{
+  padding-top: 200px;
+  padding-bottom: 200px;
+  @include maxQuery($s){
+    padding-top: 100px;
   }
 }
 /* Collection */
@@ -2349,6 +2367,7 @@ $mobilenav-tier3-padding: 30px;
 }
 .CollectionProduct__image{
   border: 1px solid $border-color;
+  max-height: 262px;
 }
 .CollectionProduct__title{
   display: block;
@@ -2825,10 +2844,14 @@ $mobilenav-tier3-padding: 30px;
 .Product__images-column{
   @include flex();
   @include align-items(flex-start);
+  @include justify-content(space-between);
   flex-flow: row-reverse wrap;
 }
 .Product__main-image{
-  width: 80%;
+  width: 78%;
+  img{
+    max-height: 425px;
+  }
   @include s(){
     width: 100%;
   }

@@ -1,3 +1,6 @@
+.AccountPage{
+  min-height: 71vh;
+}
 .popup form{
   label{
     margin-bottom: 5px;
@@ -15,5 +18,13 @@
   .select-wrapper{
     border: 1px solid $border-color;
     margin-bottom: 10px;
+  }
+}
+
+.shopify-challenge__container{
+  padding-top: 200px;
+  padding-bottom: 200px;
+  @include maxQuery($s){
+    padding-top: 100px;
   }
 }

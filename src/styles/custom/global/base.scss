@@ -7,7 +7,7 @@ body{
   @include book(1.6rem);
 }
 
-button, .Button, .button{
+button, .Button, .button, input[type="submit"].btn{
   background-color: $accent-dark;
   color: $font-light;
   @include inline-flex-center();
