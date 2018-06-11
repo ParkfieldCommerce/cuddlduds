@@ -1,8 +1,4 @@
 <!-- /snippets/popup-cart.liquid -->
-{% comment %}
-  The popup cart has been added to display the opportunities for displaying the
-  cart contents on any page
-{% endcomment %}
 <div id="PopupCart" class="js-PopupCart popup overlay">
   <div class="popup-inner">
     <div class="popup-content">
@@ -12,6 +8,9 @@
             <a href="#close" class="popup-close" data-close aria-label="{{ 'common.close' | t }}">
               <i class="fa fa-times-thin fa-2x"></i>
             </a>
+            <div class="PopupCart__logo-container">
+              <img src="{{ settings.cart_logo | img_url: logo_width, scale: 2 }}" alt="{{ shop.name }}" title="{{ shop.name }}" itemprop="image" class="PopupCart__logo">
+            </div>
             <div class="PopupCart__title">{{ 'cart.title' | t }}</div>
           </div>
           <div class="PopupCart__product" rv-each-item="cart.items">

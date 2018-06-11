@@ -6,6 +6,12 @@
   border: 1px solid black;
   height: 100%;
   margin-left: auto;
+  .PopupCart__logo-container{
+    text-align: center;
+  }
+  .PopupCart__logo{
+    display: inline-block;
+  }
   .top-half{
     width: 100%;
   }

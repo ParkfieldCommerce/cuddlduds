@@ -29,11 +29,11 @@
         <div class="Product__heading--mobile">
           <h1 class="Product__name" itemprop="name">{{ product.title }}</h1>
           <div class="Product__prices">
-            <span class="hidden">{{ 'product.regular_price' | t }}</span>
-            {% if on_sale %}
-                <s id="ComparePrice" class="Product__price Product__price--old">{{ product.compare_at_price | money }}</s>
-            {% endif %}
-            <span id="ProductPrice" class="h2 Product__price Product__price{% if on_sale %}--sale{% else %}--current{% endif %}" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+            <span id="OnSale" class="js-OnSale">
+              <span class="hidden">{{ 'product.regular_price' | t }}</span>
+              <s id="ComparePrice" class="js-oldProductPrice Product__price Product__price--old">{{ product.compare_at_price | money }}</s>
+            </span>
+            <span id="ProductPrice" class="h2 js-currentProductPrice Product__price Product__price{% if on_sale %}--sale{% else %}--current{% endif %}" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
               {{ current_variant.price | money }}
             </span>
           </div>
@@ -82,10 +82,10 @@
           <h1 class="Product__name" itemprop="name">{{ product.title }}</h1>
           <div class="Product__prices">
             <span class="hidden">{{ 'product.regular_price' | t }}</span>
-            {% if on_sale %}
-                <s id="ComparePrice" class="Product__price Product__price--old">{{ product.compare_at_price | money }}</s>
-            {% endif %}
-            <span id="ProductPrice" class="h2 Product__price Product__price{% if on_sale %}--sale{% else %}--current{% endif %}" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+            <span id="OnSale" class="js-OnSale">
+              <s id="ComparePrice" class="js-oldProductPrice Product__price Product__price--old">{{ product.compare_at_price | money }}</s>
+            </span>
+            <span id="ProductPrice" class="js-currentProductPrice h2 Product__price Product__price{% if on_sale %}--sale{% else %}--current{% endif %}" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
               {{ current_variant.price | money }}
             </span>
           </div>

@@ -169,6 +169,7 @@
     }
   },
   "product": {
+    "unavailable":"Unavailable",
     "add_to_cart": "Add to Bag",
     "regular_price": "Regular price",
     "quantity": "Quantity",

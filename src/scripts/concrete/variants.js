@@ -72,17 +72,19 @@ concrete.Variants = (function() {
     },
 
     _updateImages: function(variant) {
-      var variantImage = variant.featured_image || {};
-      var currentVariantImage = this.currentVariant.featured_image || {};
+      if(variant){
+        var variantImage = variant.featured_image || {};
+        var currentVariantImage = this.currentVariant.featured_image || {};
 
-      if (!variant.featured_image || variantImage.src === currentVariantImage.src) {
-        return;
+        if (!variant.featured_image || variantImage.src === currentVariantImage.src) {
+          return;
+        }
+
+        this.$container.trigger({
+          type: 'variantImageChange',
+          variant: variant
+        });
       }
-
-      this.$container.trigger({
-        type: 'variantImageChange',
-        variant: variant
-      });
     },
 
     _updatePrice: function(variant) {
