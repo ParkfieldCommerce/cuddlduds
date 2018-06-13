@@ -15,7 +15,9 @@
     color: $accent-color;
   }
 }
-
+.CollectionProduct--quickadd .CollectionProduct__title{
+  min-height: 81px;
+}
 .CollectionProduct__price{
   @include medium(1.4rem);
 }

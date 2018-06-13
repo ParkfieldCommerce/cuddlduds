@@ -14,6 +14,7 @@
   }
 }
 .Product__name{
+  line-height: 1.5;
   @include book(3rem);
   margin-bottom: 5px;
   @include s(){
@@ -33,7 +34,12 @@
 .Product__price--old{
   color: #b8b8b8;
 }
-
+.Product__sku{
+  color: $font-gray;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  display: inline-block;
+}
 .Product__description{
   @include book(1.4rem);
   padding-bottom: 10px;
@@ -58,12 +64,14 @@
 }
 .Product__option-select{
   @include medium(1.4rem);
+  color: $font-dark;
 }
+
 .select-wrapper{
   position: relative;
   display: inline-block !important;
   &:after{
-    color: #b8b8b8;
+    color: $font-dark;
     font-family: FontAwesome;
     content:'\f0d7' !important;
     display: inline-block;
@@ -92,6 +100,10 @@
 
 .Product__option--Color .Product__option-select-wrapper:after{
   display: none !important;
+}
+.Product__option__color-label{
+  font-size: 1.2rem;
+  color: $font-gray;
 }
 .Product__swatches{
   @include flex();
@@ -142,10 +154,36 @@
 }
 .Product__quantity-label{
   margin-bottom: 0;
+  margin-right: 10px;
   text-transform: uppercase;
 }
-.Product__quantity-select{
-  @include medium(1.4rem);
+.quantity-wrapper{
+  @include flex();
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
+
+  input[type=number] {
+      -moz-appearance:textfield;
+  }
+  .Product__quantity{
+    width: 50px;
+    height: 35px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
+    border: none;
+  }
+  .Product__quantity-button{
+    background-color: transparent;
+    color: $font-dark;
+    width: 35px;
+    &:hover{
+      color: $accent-color;
+    }
+  }
 }
 .Product__addToCart{
   background-color: $accent-color;
@@ -198,9 +236,6 @@
 }
 .Product__main-image{
   width: 78%;
-  img{
-    max-height: 425px;
-  }
   @include s(){
     width: 100%;
   }
@@ -261,7 +296,7 @@
     color: $accent-color;
   }
   @include s(){
-    display: none;
+    display: none !important;
   }
 }
 .ProductThumbsSliderArrow--prev{

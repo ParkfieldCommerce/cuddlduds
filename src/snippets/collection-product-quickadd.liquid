@@ -13,42 +13,49 @@
 {% endif %}
 
 {% for option in product.options_with_values %}
-{% if option.name == 'Color' %}
-{% assign hasColors = true %}
-{% endif %}
+  {% if option.name == 'Color' %}
+    {% assign hasColors = true %}
+    {% break %}
+  {% endif %}
 {% endfor %}
 
 <div class="CollectionProduct CollectionProduct--quickadd js-CollectionProductContainer collection-product {% if sold_out %} sold_out{% endif %}{% if on_sale %} on_sale{% endif %}">
   <div class="CollectionProduct__image-container">
-    {% if product.variants.first.image %}
+    {% if product.selected_or_first_available_variant.image %}
       <a href="{{ product.url | within: collection }}">
-        <img class="CollectionProduct__image js-CollectionProductImage" srcset="{{ product.variants.first.image | img_url: '512x512', scale: 2 }} 2x" src="{{ product.variants.first.image | img_url: '512x512' }}" alt="{{ product.variants.first.image.alt | escape }}">
+        <img class="CollectionProduct__image js-CollectionProductImage" src="{{ product.selected_or_first_available_variant.image | img_url: '512x512' }}" alt="{{ product.selected_or_first_available_variant.image.alt | escape }}">
       </a>
     {% else %}
       <a href="{{ product.url | within: collection }}">
-        <img class="CollectionProduct__image js-CollectionProductImage" srcset="{{ product.featured_image | img_url: '512x512', scale: 2 }} 2x" src="{{ product.featured_image | img_url: '512x512' }}" alt="{{ product.featured_image.alt | escape }}">
+        <img class="CollectionProduct__image js-CollectionProductImage" src="{{ product.featured_image | img_url: '512x512' }}" alt="{{ product.featured_image.alt | escape }}">
       </a>
     {% endif %}
+    {% include 'product-color-check' %}
     {% if settings.enable_quickshop %}
-    {% if hasColors %}
-      <div class="CollectionProduct__size-variants js-CollectionProductSizes">
-        <span class="CollectionProduct__size-variants-label">Add To Bag</span>
-      {% assign firstColor = product.options_with_values.first.values[0] %}
-      {% for variant in product.variants %}
-      {% if variant.option1 == firstColor and variant.available %}
-        <button class="CollectionProduct__size-variant" type="button" data-variant-id="{{variant.id}}">{{variant.option2}}</button>
+      {% if hasColors %}
+        <div class="CollectionProduct__size-variants js-CollectionProductSizes">
+          <span class="CollectionProduct__size-variants-label">Add To Bag</span>
+          {% for color in product.options_with_values.first.values %}
+            {% if availableColors contains color %}
+              {% assign firstColor = color %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+        {% for variant in product.variants %}
+          {% if variant.option1 == firstColor and variant.available %}
+            <button class="CollectionProduct__size-variant" type="button" data-variant-id="{{variant.id}}">{{variant.option2}}</button>
+          {% endif %}
+        {% endfor %}
+        </div>
+      {% else %}
+        <div class="CollectionProduct__size-variants js-CollectionProductSizes">
+        {% for variant in product.variants %}
+        {% if variant.available %}
+          <button class="CollectionProduct__size-variant" type="button" data-variant-id="{{variant.id}}">Add To Bag</button>
+        {% endif %}
+        {% endfor %}
+        </div>
       {% endif %}
-      {% endfor %}
-      </div>
-    {% else %}
-      <div class="CollectionProduct__size-variants js-CollectionProductSizes">
-      {% for variant in product.variants %}
-      {% if variant.available %}
-        <button class="CollectionProduct__size-variant" type="button" data-variant-id="{{variant.id}}">Add To Bag</button>
-      {% endif %}
-      {% endfor %}
-      </div>
-    {% endif %}
     {% endif %}
   </div>
   <p>
@@ -76,9 +83,11 @@
   {% if option.name == 'Color' %}
     <div class="Product__swatches">
       {% for value in option.values %}
+      {% if availableColors contains value %}
       <button class="js-QuickAddProductSwatch Product__swatch {% if forloop.first %}Product__swatch--active{% endif %}" type="button" data-color="{{value}}">
         <span class="Product__swatch-color {{value | handleize }}"></span>
       </button>
+      {% endif %}
       {% endfor %}
     </div>
   {% endif %}

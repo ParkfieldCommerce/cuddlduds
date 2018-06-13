@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="column l6 m6 s12">
+      <div class="column l7 m7 s12">
         <div class="Product__images-column">
         <div class="Product__heading--mobile">
           <h1 class="Product__name" itemprop="name">{{ product.title }}</h1>
@@ -77,7 +77,7 @@
         </div>
         </div>
       </div>
-      <div class="column l6 m6 s12">
+      <div class="column l5 m5 s12">
         <div class="Product__heading--desktop">
           <h1 class="Product__name" itemprop="name">{{ product.title }}</h1>
           <div class="Product__prices">
@@ -85,10 +85,11 @@
             <span id="OnSale" class="js-OnSale">
               <s id="ComparePrice" class="js-oldProductPrice Product__price Product__price--old">{{ product.compare_at_price | money }}</s>
             </span>
-            <span id="ProductPrice" class="js-currentProductPrice h2 Product__price Product__price{% if on_sale %}--sale{% else %}--current{% endif %}" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+            <span id="ProductPrice" class="js-currentProductPrice Product__price Product__price{% if on_sale %}--sale{% else %}--current{% endif %}" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
               {{ current_variant.price | money }}
             </span>
           </div>
+          <span class="Product__sku js-productSKU">Style #: {{product.selected_or_first_available_variant.sku }}</span>
         </div>
         <div class="Product__description js-ProductDescription"></div>
         <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
@@ -96,18 +97,21 @@
           <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
 
           <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" data-cart-submit class="Product__form">
+            {% include 'product-color-check' %}
             {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
               {% for option in product.options_with_values %}
                 <div class="Product__option Product__option--{{option.name}}">
                   <label class="Product__option-label" {% if option.name == 'default' %}class="hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index }}">
-                    {{ option.name }}
+                    {{ option.name }}{% if option.name == 'Color' %}<br><span class="Product__option__color-label js-colorLabel"></span>{% endif %}
                   </label>
                   {% if option.name == 'Color' %}
                   <div class="Product__swatches">
                     {% for value in option.values %}
+                    {% if availableColors contains value %}
                     <button class="js-ProductSwatch Product__swatch" type="button" data-color="{{value}}">
                       <span class="Product__swatch-color {{value | handleize }}"></span>
                     </button>
+                    {% endif %}
                     {% endfor %}
                   </div>
                   {% endif %%}
@@ -148,20 +152,18 @@
             </div>
             <div class="Product__quantity-container">
               <label class="Product__quantity-label" for="Quantity">{{ 'product.quantity' | t }}</label>
-              <div class="select-wrapper">
-                <select class="js-productQuantity Product__quantity-select" name="quantity" id="Quantity">
-                  {% for i in (1..10) %}
-                  <option value="{{i}}">{{i}}</option>
-                  {% endfor %}
-                </select>
+              <div class="quantity-wrapper">
+                <button class="Product__quantity-button js-quantityDecrement" type="button">-</button>
+                <input type="number" min="0" class="js-productQuantity Product__quantity" name="quantity" id="Quantity" value="1">
+                <button class="Product__quantity-button js-quantityIncrement" type="button">+</button>
               </div>
             </div>
             {% if sold_out %}
-              <button class="Product__addToCart js-AddToCart" type="submit" name="add" data-cart-quantity="1" data-cart-add="{{product.selected_or_first_available_variant.id}}" disabled>
+              <button class="Product__addToCart js-AddToCart" type="button" name="add" data-quantity="1" data-add="{{product.selected_or_first_available_variant.id}}" disabled>
                 <span id="AddToCartText">{{ 'product.sold_out' | t }}</span>
               </button>
             {% else %}
-              <button class="Product__addToCart js-AddToCart" type="submit" name="add" data-cart-quantity="1" data-cart-add="{{product.selected_or_first_available_variant.id}}">
+              <button class="Product__addToCart js-AddToCart" type="button" name="add" data-quantity="1" data-add="{{product.selected_or_first_available_variant.id}}">
                 <span id="AddToCartText">{{ 'product.add_to_cart' | t }}</span>
               </button>
             {% endif %}

@@ -51,7 +51,7 @@ concrete.Product = (function() {
       this.$container.on('variantChange', this._updatePrices.bind(this));
       this.$container.on('variantChange', this._customActions.bind(this));
 
-      $('.Product__option-select-color').trigger('change');
+      $('.js-ProductSwatch').first().trigger('click');
     },
 
     _updateAddToCart: function(evt) {
@@ -104,6 +104,8 @@ concrete.Product = (function() {
         $('.Product__swatch--active').removeClass('Product__swatch--active');
         $('.Product__swatch[data-color="'+ color +'"]').addClass('Product__swatch--active');
 
+        //Set Current Color
+        $('.js-colorLabel').text(color);
         //Show Correct Variant Images
         $('.js-ProductThumbsSlider .swiper-wrapper').empty();
         $('.js-ProductThumbsSliderDots').empty();
@@ -172,7 +174,7 @@ concrete.Product = (function() {
         thumbsSlider = new Swiper('.js-ProductThumbsSlider', sliderSettings);        
 
         //Set VariantId to button
-        $('.js-AddToCart').attr('data-cart-add', variant.id);
+        $('.js-AddToCart').attr('data-add', variant.id);
       }else{
         $('.ProductThumbsSliderArrow').hide();
       }

@@ -12,7 +12,7 @@
   {% assign on_sale = true %}
 {% endif %}
 
-<div class="CollectionProduct collection-product {% if sold_out %} sold_out{% endif %}{% if on_sale %} on_sale{% endif %}">
+<div class="CollectionProduct CollectionProduct--standard collection-product {% if sold_out %} sold_out{% endif %}{% if on_sale %} on_sale{% endif %}">
   {% if product.featured_image %}
     <a href="{{ product.url | within: collection }}">
       <img class="CollectionProduct__image" srcset="{{ product.featured_image | img_url: '512x512', scale: 2 }} 2x" src="{{ product.featured_image | img_url: '512x512' }}" alt="{{ product.featured_image.alt | escape }}">

@@ -1,0 +1,51 @@
+{% assign availableColors = '' %}
+{% assign currentVariantColor = ''%}
+{% assign colorAvailable = false %}
+
+{% for variant in product.variants %}
+  {% comment %}If theres a single color {% endcomment %}
+  {% if forloop.first %}
+    {% assign firstColor = variant.option1 %}
+  {% endif %}
+  
+  {% if forloop.last and firstColor == variant.option1 %}
+    {% if variant.available %}
+      {% assign colorAvailable = true %}
+      {% assign currentVariantColor = variant.option1 %}
+    {% endif %}
+
+    {% if colorAvailable %}
+      {% if availableColors == blank %}
+        {% assign availableColors = currentVariantColor %}
+      {% else %}
+        {% assign availableColors = availableColors | append:',' | append: currentVariantColor %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+  {% comment %}If there are multiple colors {% endcomment %}
+  {% if currentVariantColor != variant.option1 %}
+    {% if colorAvailable %}
+      {% if availableColors == blank %}
+        {% assign availableColors = currentVariantColor %}
+      {% else %}
+        {% assign availableColors = availableColors | append:',' | append: currentVariantColor %}
+      {% endif %}
+    {% endif %}
+    {% assign currentVariantColor = variant.option1 %}
+    {% assign colorAvailable = false %}
+  {% else %}
+    {% if forloop.last and colorAvailable %}
+      {% if availableColors == blank %}
+        {% assign availableColors = currentVariantColor %}
+      {% else %}
+        {% assign availableColors = availableColors | append:',' | append: currentVariantColor %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+  {% if variant.available and variant.option1 == currentVariantColor %}
+    {% assign colorAvailable = true %}
+  {% endif %}
+{% endfor %}
+{% assign availableColors = availableColors | split:',' %}

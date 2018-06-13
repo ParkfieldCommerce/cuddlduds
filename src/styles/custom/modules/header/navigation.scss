@@ -38,13 +38,9 @@
 }
 .DesktopNav__slide{
   text-align: center;
+  border: 1px solid $border-color;
   img{
     max-height: 150px;
-    border: 2px solid transparent;
-    transition: border-color .3s;
-    &:hover{
-      border-color: $accent-color;
-    }
   }
 }
 .DesktopNav .DesktopNav__link{
@@ -94,4 +90,9 @@
   &:hover{
     color: $accent-color;
   }
+}
+
+.DesktopNav__dropdown-link__label{
+  display: block;
+  text-align: center;
 }

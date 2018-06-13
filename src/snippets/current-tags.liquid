@@ -17,10 +17,15 @@
         {% endif %}
 
         {% if currentTag contains 'price' %}
+        {% unless tag contains 'and' %}
         {% assign labelText = tag | split:'_' | last %}
         {% assign firstMoney = labelText | split:'-' | first %}
         {% assign lastMoney = labelText | split:'-' | last %}
         {% assign currentTag = '$' | append: firstMoney | append:'.00' | append:' - $' | append: lastMoney %}
+        {% else %}
+        {% assign currentTag = tag | split:'_' | last %}
+        {% assign currentTag = '$' | append: currentTag %}
+        {% endunless %}
         {% endif %}
         
         {% if forloop.length > 2 %}

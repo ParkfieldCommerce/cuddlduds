@@ -83,12 +83,37 @@ $('.js-ProductSwatch').click(function(){
 });
 
 //Quantity
-$('.js-productQuantity').change(function(e){
-  $('.js-AddToCart').attr('data-cart-quantity', $(this).val());
+$('.js-quantityDecrement').click(function(){
+  var value = $('.js-productQuantity').val();
+  if(value > 1){
+    value--;
+  }
+  $('.js-productQuantity').val(value);
+  $('.js-AddToCart').attr('data-quantity', value);
 });
+$('.js-quantityIncrement').click(function(){
+  var value = $('.js-productQuantity').val();
+  value++;
+  $('.js-productQuantity').val(value);
+  $('.js-AddToCart').attr('data-quantity', value);
+})
+
 
 //Setting Thumbslider Globally so we can access it in product.js
 var thumbsSlider;
+$('.js-AddToCart').click(function(){
+  var id = $(this).attr('data-add');
+  var quantity = $(this).attr('data-quantity');
+  CartJS.addItem(id, quantity,{},{
+    success:function(data, textStatus, jqXHR){
+      FocusPopupCart.show();
+      $('body').addClass('active-popup');
+    },
+    error:function(jqXHR, textStatus, errorThrown){
+      alert(jqXHR.responseJSON.description);
+    }
+  });
+});
 </script>
 
 <script type="application/json" id="ProductJson">

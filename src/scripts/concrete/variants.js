@@ -115,7 +115,7 @@ concrete.Variants = (function() {
       }
 
       // Push the variant attribute to the browser history and url
-      concrete.pushNewUrl(concrete.replaceUrlParam(window.location.href, 'variant', variant.id))
+      //concrete.pushNewUrl(concrete.replaceUrlParam(window.location.href, 'variant', variant.id))
     },
 
     _updateMasterSelect: function(variant) {

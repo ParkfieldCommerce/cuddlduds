@@ -1,3 +1,6 @@
+.ProductSlider{
+  position: relative;
+}
 .ProductSlider__heading{
   @include medium(2.4rem);
   margin-bottom: 10px;
@@ -9,25 +12,7 @@
 .ProductSlider__slide{
   text-align: center;
 }
-.ProductSlider__product-num{
-  text-align: center;
-  color: $accent-color;
-  @include medium(2.4rem);
-  position: relative;
-  display: inline-block;
-  min-width: 20px;
-  padding-bottom: 5px;
-  margin-bottom: 20px;
-  &:after{
-    content:'';
-    position: absolute;
-    display: block;
-    height: 2px;
-    width: 100%;
-    bottom: 0;
-    background-color: $accent-color;
-  }  
-}
+
 .ProductSlider__swiper-scrollbar{
   height: 3px;
   background-color: #eaeaea;
@@ -35,4 +20,36 @@
     border-radius: 0;
     background-color: #bbbbbb;
   }
+}
+
+.ProductSlider__arrow{
+  z-index: 3;
+  height: 100%;
+  width: 2.5%;
+  font-size: 4rem;
+  position: absolute;
+  top: 50%;
+  @include prefix(transform, translateY(-50%));
+  @include flex();
+  @include align-items(center);
+  @include justify-content(center);
+  &:hover{
+    color: $accent-color;
+    cursor: pointer;
+  }
+}
+.ProductSlider__arrow--next{
+  right: 0px;
+}
+.ProductSlider__arrow--prev{
+  left: 0px;
+}
+.ProductSlider__arrow{
+  color: $font-dark;
+  &:hover{
+    color: $accent-color;
+  }
+}
+.ProductSlider__arrow.swiper-button-disabled{
+  opacity: 0;
 }

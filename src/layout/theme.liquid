@@ -71,7 +71,7 @@ MIT License
     jQuery(function() {
         CartJS.init({{ cart | json }});
     });
-    {% unless template == 'cart' %}
+    {% unless template == 'cart' or template == 'product' %}
     $(document).on('cart.requestComplete', function(event, cart) {
       FocusPopupCart.show();
       $('body').addClass('active-popup');

@@ -16,9 +16,11 @@
                   {% for childlink in linklists[child_list_handle].links %}
                     <div class="DesktopNav__slide swiper-slide">
                       {% if childlink.object%}
-                      <a href="{{ childlink.url }}" class="{% if childlink.active %}active{% endif %}"><img src="{{childlink.object | img_url:'300x300'}}" alt="{{childlink.object.alt}}"></a>
+                      <a href="{{ childlink.url }}" class="DesktopNav__dropdown-link nav-link{% if childlink.active %} active{% endif %}">
+                        <img src="{{childlink.object | img_url:'300x300'}}" alt="{{childlink.object.alt}}">
+                        <span class="DesktopNav__dropdown-link__label">{{ childlink.title | escape }}</span>
+                      </a>
                       {% endif %}
-                      <a href="{{ childlink.url }}" class="DesktopNav__dropdown-link nav-link{% if childlink.active %} active{% endif %}">{{ childlink.title | escape }}</a>
                     </div>
                   {% endfor %}
                 </div>
@@ -41,13 +43,19 @@
     {% assign child_list_handle = link.title | handleize %}
     {% if linklists[child_list_handle].links != blank %}
     var swiper{{forloop.index}} = new Swiper('.swiper-container-{{forloop.index}}', {
-      slidesPerView: 4,
+      slidesPerView: 8,
       spaceBetween: 30,
       loop: false,
       centeredSlides: false,
       navigation:{
         nextEl:'.js-DesktopNavNext-{{forloop.index}}',
         prevEl:'.js-DesktopNavPrev-{{forloop.index}}'
+      },
+      breakpoints: {
+        // when window width is <= 320px
+        1250: {
+          slidesPerView: 6,
+        }
       }
     });
     {% endif %}

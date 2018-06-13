@@ -1,6 +1,6 @@
 <!-- /snippets/collection-sort.liquid -->
 
-{% assign sort_options = 'manual,best-selling,title-ascending,title-descending,price-ascending,price-descending,created-descending,created-ascending' | split: ',' %}
+{% assign sort_options = 'manual,best-selling,title-ascending,title-descending,price-ascending,price-descending' | split: ',' %}
 
 <div class="CollectionSort select-wrapper">
   <select name="SortBy" {% if type=='main' %} data-sort {% else %} data-sort-sub {% endif %}>

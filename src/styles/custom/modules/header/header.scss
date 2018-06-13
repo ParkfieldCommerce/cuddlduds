@@ -60,7 +60,7 @@
 
 .SearchForm{
   position: relative;
-  border: 2px solid white;
+  border-bottom: 2px solid white;
   @include flex();
   @include align-items(center);
   padding-right: 10px;

@@ -30,9 +30,13 @@
         <div class="CollectionFilter__checkbox js-filterCheckbox"></div>
         {% assign labelText = tag | split:'_' | last %}
         {% if categoryCheck == 'price' %}
+        {% unless tag contains 'and' %}
         {% assign firstMoney = labelText | split:'-' | first %}
         {% assign lastMoney = labelText | split:'-' | last %}
         {% assign labelText = '$' | append: firstMoney | append:'.00' | append:' - $' | append: lastMoney %}
+        {% else %}
+        {% assign labelText = '$' | append: labelText %}
+        {% endunless %}
         {% endif %}
         <label class="CollectionFilter__filter-value-label" for="{{tag}}">{{ labelText }}</label>
       </li>
