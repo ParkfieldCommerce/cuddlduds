@@ -39,7 +39,7 @@
           </div>
         </div>
         <div id="ProductPhoto" class="Product__main-image">
-          <img class="js-mainPhoto" srcset="{{ product.featured_image | img_url: '1024x1024', scale: 2 }} 2x" src="{{ product.featured_image | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %} data-zoom-image="{{ product.featured_image | img_url: '2048x2048' }}">
+          <img class="js-mainPhoto" src="{{ product.featured_image | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %} data-zoom-image="{{ product.featured_image | img_url: '2048x2048' }}">
           <video src="" class="js-video js-video--desktop Product__video" width="320" height="240" controls></video>
           <div class="Product__social">
           {% include 'social-sharing' %}
@@ -52,7 +52,7 @@
               <div class="swiper-wrapper">
               {% for image in product.images %}
                 <div class="swiper-slide">
-                  <img srcset="{{ product.featured_image | img_url: '512x512', scale: 2 }} 2x" src="{{ image | img_url: '512x512' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %}>
+                  <img src="{{ image | img_url: '512x512' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %}>
                   {% if image.alt contains 'mp4' %}<span class="Product__video-trigger js-videoImage"><i class="fa fa-play"></i></span>{% endif %}
                   <video src="" class="js-video js-video--mobile Product__video" width="320" height="240" controls></video>
                 </div>
@@ -67,7 +67,7 @@
         <div class="BackupSlides" style="display: none;">
           {% for image in product.images %}
             <div class="swiper-slide">
-              <img srcset="{{ product.featured_image | img_url: '512x512', scale: 2 }} 2x" src="{{ image | img_url: '512x512' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %}>
+              <img src="{{ image | img_url: '512x512' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %}>
               {% if image.alt contains 'mp4' %}
                 <span class="Product__video-trigger js-videoImage"><i class="fa fa-play"></i></span>
                 <video src="" class="js-video js-video--mobile Product__video" width="320" height="240" controls></video>
@@ -102,7 +102,7 @@
               {% for option in product.options_with_values %}
                 <div class="Product__option Product__option--{{option.name}}">
                   <label class="Product__option-label" {% if option.name == 'default' %}class="hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index }}">
-                    {{ option.name }}{% if option.name == 'Color' %}<br><span class="Product__option__color-label js-colorLabel"></span>{% endif %}
+                    {{ option.name }}
                   </label>
                   {% if option.name == 'Color' %}
                   <div class="Product__swatches">
@@ -127,6 +127,7 @@
                   {% include 'size-guide' %}
                   {% endif %}
                 </div>
+                {% if option.name == 'Color' %}<span class="Product__option__color-label js-colorLabel"></span>{% endif %}
               {% endfor %}
             {% endunless %}
 

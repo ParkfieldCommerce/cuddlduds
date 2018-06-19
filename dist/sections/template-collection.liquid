@@ -12,7 +12,7 @@
 {% endfor %}
 
 {% paginate collection.products by pagination %}
-  <div class="CollectionBanner {% if hasBanner %}l-margin-bottom-5x m-margin-bottom-5x s-margin-bottom-3x {% else %}l-margin-top-5x s-margin-top-5x{% endif %}" data-section-type="collection">
+  <div class="CollectionBanner {% if hasBanner %}l-margin-bottom-5x m-margin-bottom-5x s-margin-bottom-3x {% else %}l-margin-top-5x m-margin-top-5x s-margin-top-5x{% endif %}" data-section-type="collection">
     {% if hasBanner %}
     <img class="CollectionBanner__image CollectionBanner__image--desktop" src="{{banner}}" alt="Collection Banner">
     <img class="CollectionBanner__image CollectionBanner__image--mobile" src="{{mobileBanner}}" alt="CollectionBanner">

@@ -15,15 +15,19 @@
   </div>
   <div class="row">
     <div class="column l12 m12 s12">
-      <div class="swiper-container js-Product__related-products-slider">
-          <div class="swiper-wrapper">
-          {% if mainCollection %}
-          {% for product in mainCollection.products limit: numOfRelated %}
-            <div class="swiper-slide">{% include 'collection-product-quickadd' %}</div>
-          {% endfor %}
-          {% endif %}
-          </div>
-          <div class="swiper-scrollbar"></div>
+      <div class="RelatedProductsSlider">
+        <div class="RelatedProductsSlider__arrow RelatedProductsSlider__arrow--prev js-RelatedProductsSliderPrev"><i class="fa fa-angle-left"></i></div>
+        <div class="RelatedProductsSlider__container swiper-container js-Product__related-products-slider">
+            <div class="swiper-wrapper">
+            {% if mainCollection %}
+            {% for product in mainCollection.products limit: numOfRelated %}
+              <div class="swiper-slide">{% include 'collection-product-quickadd' %}</div>
+            {% endfor %}
+            {% endif %}
+            </div>
+            <div class="swiper-scrollbar"></div>
+        </div>
+        <div class="RelatedProductsSlider__arrow RelatedProductsSlider__arrow--next js-RelatedProductsSliderNext"><i class="fa fa-angle-right"></i></div>
       </div>
     </div>
   </div>
@@ -58,7 +62,11 @@
         slidesPerView: 2,
         spaceBetween: 5
       }
-    }
+    },
+    navigation:{
+      nextEl:'.js-RelatedProductsSliderNext',
+      prevEl:'.js-RelatedProductsSliderPrev'
+    },
   })
 </script>
 {% endif %}

@@ -43,7 +43,7 @@
     {% assign child_list_handle = link.title | handleize %}
     {% if linklists[child_list_handle].links != blank %}
     var swiper{{forloop.index}} = new Swiper('.swiper-container-{{forloop.index}}', {
-      slidesPerView: 8,
+      slidesPerView: 7,
       spaceBetween: 30,
       loop: false,
       centeredSlides: false,
@@ -53,8 +53,14 @@
       },
       breakpoints: {
         // when window width is <= 320px
-        1250: {
+        1440: {
           slidesPerView: 6,
+        },
+        1250:{
+          slidesPerView: 5
+        },
+        1110:{
+          slidesPerView: 4
         }
       }
     });

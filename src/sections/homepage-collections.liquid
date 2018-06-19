@@ -4,7 +4,7 @@
     {% for block in section.blocks %}
       <div class="column l4">
         <div class="HomeCollection">
-          <img src="{{block.settings.image | img_url:'master'}}" alt="{{block.settings.image.alt}}">
+          <a href="/collections/{{block.settings.collection}}"><img src="{{block.settings.image | img_url:'master'}}" alt="{{block.settings.image.alt}}"></a>
           <div class="HomeCollection__subheading">SHOP</div>
           <h3 class="HomeCollection__heading">
             {{block.settings.title}}

@@ -4,6 +4,9 @@
 .CollectionProduct__image{
   border: 1px solid $border-color;
   max-height: 262px;
+  @include s(){
+    max-height: 140px;
+  }
 }
 .CollectionProduct__title{
   display: block;

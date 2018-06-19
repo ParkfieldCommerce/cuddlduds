@@ -11,6 +11,11 @@
 
 .ProductSlider__slide{
   text-align: center;
+  .CollectionProduct__image{
+    @include s(){
+      max-height: 132.5px;
+    }
+  }
 }
 
 .ProductSlider__swiper-scrollbar{
@@ -40,9 +45,15 @@
 }
 .ProductSlider__arrow--next{
   right: 0px;
+  @include s(){
+    right: 3px;
+  }
 }
 .ProductSlider__arrow--prev{
   left: 0px;
+  @include s(){
+    left: 3px;
+  }
 }
 .ProductSlider__arrow{
   color: $font-dark;

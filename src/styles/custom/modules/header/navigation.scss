@@ -38,7 +38,7 @@
 }
 .DesktopNav__slide{
   text-align: center;
-  border: 1px solid $border-color;
+  padding: 1px;
   img{
     max-height: 150px;
   }
@@ -87,6 +87,7 @@
   text-align: center;
   @include book(1.4rem);
   color: $font-dark;
+  border: 1px solid $border-color;
   &:hover{
     color: $accent-color;
   }
