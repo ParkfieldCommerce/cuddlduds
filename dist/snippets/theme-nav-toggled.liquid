@@ -11,9 +11,9 @@
       {% for link in menu.links %}
         {% if link.links != blank %}
           <li class="MobileNav__dropdown MobileNav__dropdown--first" aria-haspopup="true">
-            <span class="MobileNav__dropdown-heading MobileNav__dropdown-heading--first js-toggleChildDropdown" data-closed="true">
+            <a href="{{link.url}}" class="MobileNav__dropdown-heading MobileNav__dropdown-heading--first js-toggleChildDropdown" data-closed="true">
               {{ link.title }}<i class="fa fa-caret-down"></i>
-            </span>
+            </a>
             <ul class="dropdown-menu">
               {% for childlink in link.links %}
                 <li class="MobileNav__dropdown MobileNav__dropdown--second">
@@ -55,16 +55,17 @@
 </nav>
 
 <script>
-  $('.js-toggleChildDropdown').click(function(){
+  $('.js-toggleChildDropdown').click(function(e){
     var state = $(this).data('closed');
     if(state){
+      e.preventDefault();
       $(this).data('closed',false);
       $(this).addClass('active');
       $(this).next().show();
-    }else{
+    }/*else{
       $(this).data('closed',true);
       $(this).removeClass('active');
       $(this).next().hide();
-    }
+    }*/
   })
 </script>

@@ -2469,6 +2469,7 @@ $mobilenav-tier3-padding: 30px;
   .CollectionProduct__size-variants{
     @include flex();
     @include align-items(center);
+    @include justify-content(center);
     flex-flow: row wrap;
     height: 70px;
     width: 100%;
@@ -2494,6 +2495,7 @@ $mobilenav-tier3-padding: 30px;
     padding: 0;
     color: black;
     flex: 1;
+    max-width: 35px;
     transition: color .3s;
     &:hover{
       color: $accent-color;
